@@ -19,6 +19,7 @@ class App extends React.Component {
         <BrowserRouter>
           <div className = "container">
             <Header />
+            <br />
             <Route path = "/" exact component = {Landing} />
             <Route path = "/list" exact component = {BlogList} />
           </div>
