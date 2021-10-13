@@ -13,7 +13,7 @@ module.exports = app => {
         passport.authenticate('google'),
         function(req, res) {
             // Successful authentication, redirect home
-            res.redirect('/');
+            res.redirect('/list');
         }
     )
 
@@ -29,7 +29,7 @@ module.exports = app => {
             '/auth/spotify/callback',
             passport.authenticate('spotify'),
             function(req,res) {
-                res.redirect('/');
+                res.redirect('/list');
             }
     );
     

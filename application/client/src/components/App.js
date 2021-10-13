@@ -5,6 +5,7 @@ import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
+import BlogList from './BlogList';
 
 class App extends React.Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class App extends React.Component {
           <div className = "container">
             <Header />
             <Route path = "/" exact component = {Landing} />
+            <Route path = "/list" exact component = {BlogList} />
           </div>
         </BrowserRouter>
         
