@@ -21,6 +21,7 @@ class Header extends React.Component {
                         <li><a className = "btn grey" href = "/list">Blog Posts</a></li>
                     ]
                 )
+                /////////////////////////
         }
     }
 
