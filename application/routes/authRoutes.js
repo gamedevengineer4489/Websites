@@ -1,4 +1,8 @@
 const passport = require('passport');
+const mongoose = require('mongoose');
+const keys = require('../config/keys');
+
+// const Blog = mongoose.model('blogs');
 
 module.exports = app => {
     app.get(
@@ -51,6 +55,24 @@ module.exports = app => {
     app.get('/api/current_user_google', 
         function(req, res) {
             res.send(req.user);
+        }
+    )
+        
+    app.post('/api/blog_posts',
+        function(req, res) {
+            //console.log(req.body);
+            
+            res.send([req.body]);
+
+        }
+    )
+
+    app.get('/api/blog_posts',
+        function(req, res) {
+            //console.log(req);
+            console.log(res);
+            res.send([req.user]);
+
         }
     )
 };

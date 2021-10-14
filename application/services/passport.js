@@ -32,7 +32,7 @@ passport.use( new SpotifyStrategy(
                 return done(null, existingUser);
             }
             console.log(profile);
-            const user = await new User({ spotifyID: profile.id, email: profile.emails[0].value }).save();
+            const user = await new User({ spotifyID: profile.id, email: profile.emails[0].value, spotifyUserName: profile.displayName }).save();
             done(null, user);
         }
     )
@@ -53,7 +53,7 @@ passport.use(new GoogleStrategy(
                 return done(null, existingUser);
             }
             console.log(profile);
-            const user = await new User({ googleID: profile.id, email: profile.emails[0].value }).save();
+            const user = await new User({ googleID: profile.id, email: profile.emails[0].value, googleUserName: profile.displayName }).save();
             done(null, user);
         }
     )

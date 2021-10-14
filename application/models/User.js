@@ -4,7 +4,9 @@ const { Schema } = mongoose;
 const userSchema = new Schema({
     googleID: String,
     spotifyID: String,
-    email: String
+    email: String,
+    googleUserName: String,
+    spotifyUserName: String
 });
 
 mongoose.model('users', userSchema);
