@@ -24,25 +24,25 @@ module.exports = (app) => {
     const surveys = await Survey.find({ _user: req.user.id }).sort({ "title": -1 });
     console.log(surveys);
     res.send(surveys);
-  })
+  });
 
   app.get('/api/surveys/sortByDateSent', requireLogin, async (req, res) => {
     const surveys = await Survey.find({ _user: req.user.id }).sort({ "dateSent": -1 });
     console.log(surveys);
     res.send(surveys);
-  })
+  });
 
   app.get('/api/surveys/sortByYes', requireLogin, async (req, res) => {
     const surveys = await Survey.find({ _user: req.user.id }).sort({ "yes": -1 });
     console.log(surveys);
     res.send(surveys);
-  })
+  });
 
   app.get('/api/surveys/sortByNo', requireLogin, async (req, res) => {
     const surveys = await Survey.find({ _user: req.user.id }).sort({ "no": -1 });
     console.log(surveys);
     res.send(surveys);
-  })
+  });
 
   app.delete('/api/surveys/:surveyId', (req, res) => {
     Survey.findOneAndDelete(
@@ -51,7 +51,7 @@ module.exports = (app) => {
       }
     ).exec();
 
-  })
+  });
 
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for voting!');

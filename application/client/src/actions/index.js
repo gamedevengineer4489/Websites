@@ -38,8 +38,9 @@ export const fetchUsersBlog = (id) => async (dispatch) => {
 }
 
 export const fetchPostsBlog = () => async (dispatch) => {
-        const res = await jsonPlaceholder.get('/posts');
-        
+        //const res = await jsonPlaceholder.get('/posts');
+        const res = await axios.get('/api/blog_posts');
+        console.log(res.data);
         dispatch({ type: FETCH_POSTS_BLOG, payload: res.data });
 }
 
@@ -53,7 +54,7 @@ export const fetchPostsAndUsersBlog = () => async (dispatch, getState) => {
 
         // Using the lodash library
         // Always have to use the dispatch function when returning a function.
-        _.chain(getState().blogs).map('userId').uniq().forEach(id => dispatch(fetchUsersBlog(id))).value();
+        _.chain(getState().blogs).map('userId').uniq().value();
 }
 
 // Add a new post. This new post uses the display name stored in this application's state.
@@ -63,14 +64,14 @@ export const removeUndefinedValues = () => async (dispatch) => {
         dispatch({ type: REMOVE_UNDEFINED_VALUES });
 }
 
-export const addNewPost = (title, body, userId, email, userName) => async (dispatch) => {
-        const newPost = { userId: userId, username: userName, email: email, body: body, title: title };
+export const addNewPost = (title, body, userId, email, userName, date_created) => async (dispatch) => {
+        const newPost = { userId: userId, username: userName, email: email, body: body, title: title, date_created: date_created  };
         const result = await axios.post('/api/blog_posts', newPost);
         console.log(result);
         dispatch({ type: ADD_NEW_POST, payload: newPost});
 }
 
-export const addNewUser = (title, body, userId, email, userName) => async (dispatch) => {
+export const addNewUser = (title, body, userId, email, userName, date_created) => async (dispatch) => {
         const newUser = { id: userId, username: userName, email: email }
 
         dispatch({ type: ADD_NEW_USER, payload: newUser});

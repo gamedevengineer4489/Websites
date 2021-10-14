@@ -9,6 +9,7 @@ const cookieSession = require('cookie-session');
 
 // Database models(content to be stored or key-value pairs that are used to store data on the database) 
 require('./models/User');
+require('./models/Blog');
 // Using passport services.
 require('./services/passport');
 

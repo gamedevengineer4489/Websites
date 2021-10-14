@@ -3,21 +3,21 @@ import { connect } from 'react-redux';
 
 class UserHeader extends React.Component {
     render() {
-        const { user } = this.props;
-
-        if(!user)
+        const { auth } = this.props;
+        console.log(auth);
+        if(!auth)
         {
             return null;
         }
 
         return(
-            <div className = "header"><i className = "large middle aligned icon user" /><b>{user.username}</b></div>
+            <div className = "header"><i className = "large middle aligned icon user" /><b>{auth}</b></div>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return { user: state.users.find(user => user.id === ownProps.userId)}
+    return { auth: state.auth.googleUserName || state.auth.spotifyUserName }
 };
 
 export default connect(mapStateToProps)(UserHeader);

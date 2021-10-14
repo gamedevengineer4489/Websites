@@ -41,8 +41,8 @@ class BlogList extends React.Component {
 
 
     newPosts = () => {
-        this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName );
-        this.props.addNewUser(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName );
+        this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
+        this.props.addNewUser(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
     }
     
 
@@ -51,20 +51,23 @@ class BlogList extends React.Component {
     renderList() {
             return this.props.blogs.map(blog => {
                 return(
+                    
                     <div className = "item" key = {Math.random() * 10}>
                         <span>
+                        {console.log(blog)}
                         {console.log(this.props.blogs)}
                         {console.log(this.props.users)}
                         {console.log(this.props.auth)}
                         {console.log(this.state.userId)}
                         {console.log(this.state.displayName)}
                         {console.log(this.state.email)}
-                        <UserHeader userId = {blog.userId} />
+                        <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName} />
                         </span>
                         <div className = "content">
                             <div className = "description">
                                 <h5>{blog.title}</h5>
-                                <p>{blog.body}</p>
+                                <p>{blog.body} </p>
+                                <p>{blog.date_created}</p>
                             </div>
                         </div>
                         <br />
