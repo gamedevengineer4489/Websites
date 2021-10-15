@@ -77,5 +77,13 @@ export const addNewUser = (title, body, userId, email, userName, date_created) =
         dispatch({ type: ADD_NEW_USER, payload: newUser});
 }
 
+export const addNewUserCustom = function(username, password, firstName, lastName, email) {
+        return async function(dispatch) {
+                const newUser = { username, password, firstName, lastName, email };
+                const res = await axios.post('/api/register', newUser);
+                console.log(res);
+        }
+}
+
 
 

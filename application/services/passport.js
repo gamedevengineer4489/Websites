@@ -1,8 +1,9 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const SpotifyStrategy = require('passport-spotify').Strategy;
-const LocalStrategy = require('passport-local')
+const LocalStrategy = require('passport-local');
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 const keys = require('../config/keys');
 
 const User = mongoose.model('users');

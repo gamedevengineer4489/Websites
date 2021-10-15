@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const customSchema = new Schema({
+const userSchema = new Schema({
     googleID: String,
     spotifyID: String,
     email: String,
@@ -16,4 +16,4 @@ const customSchema = new Schema({
     userID: String
 });
 
-mongoose.model('users', customSchema);
+mongoose.model('customusers', userSchema);

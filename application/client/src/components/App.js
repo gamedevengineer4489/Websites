@@ -3,9 +3,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+import Login from '../loginComponents/Login';
+import Register from '../loginComponents/Register';
 import Header from './Header';
 import Landing from './Landing';
 import BlogList from './BlogList';
+
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,6 +25,8 @@ class App extends React.Component {
             <br />
             <Route path = "/" exact component = {Landing} />
             <Route path = "/list" exact component = {BlogList} />
+            <Route path = "/login" exact component = {Login} />
+            <Route path = "/register" exact component = {Register} />
           </div>
         </BrowserRouter>
         

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
 const Blog = mongoose.model('blogs');
+const User = mongoose.model('customusers');
 
 module.exports = app => {
     app.get(
@@ -98,9 +99,45 @@ module.exports = app => {
         async function(req, res) {
             //console.log(req);
             //console.log(res);
-            const blogs = await Blog.find({ email: req.user.email }) || [{}];
+            const blogs = await Blog.find({ email: req.user.email, userID }) || [{}];
             //console.log(blogs);
             res.send(blogs);
+        }
+    )
+
+    app.post('/api/register', 
+        async function(req, res) {
+            console.log(req.body);
+            const existingUser = User.find({ email: req.body.email,  userID: any });
+            if(existingUser) {
+                res.send("A user with that email already exists. Please log-in");
+                alert("A user with that username or email already exists. Please log-in");
+                res.redirect('/');
+            }
+
+            const newUser = new User({
+                username: req.body.username,
+                password: req.body.password,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
+                userID: Math.random().toString(32)
+            })
+            
+            
+            try {
+                // Save the data on a database.
+                await newUser.save();
+                const user = await req.user.save();
+
+                res.send(user);
+                res.redirect('/list');
+            } catch(err) {
+                res.status(422).send(err);
+                res.redirect('/register');
+            }
+            
+
         }
     )
 };

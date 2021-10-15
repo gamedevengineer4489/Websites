@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, addNewUser } from '../actions';
 import { connect } from 'react-redux';
 import UserHeader from './UserHeader';
-
+import Header from './Header';
 
 class BlogList extends React.Component {
     l
@@ -80,13 +80,17 @@ class BlogList extends React.Component {
     render() {
         return(
             <div>
+                
                 <h4>Create a new blog post</h4>
-                Title: <input onChange = {(event) => {this.newTitle(event)}}/>
-                Message: <input onChange = {(event) => {this.newMessage(event)}}/>
-                <button className = "btn waves-effect-light" type = "submit" name = "action" onClick = {() => this.newPosts()}>
-                    Submit
-                    
-                </button>
+                <form>
+                    Title: <input onChange = {(event) => {this.newTitle(event)}} required/>
+                    Message: <input onChange = {(event) => {this.newMessage(event)}} required/>
+                    <button className = "btn waves-effect-light" type = "submit" name = "action" onClick = {() => this.newPosts()}>
+                        Submit
+                        
+                    </button>
+                </form>
+                
                 <br />
                 <h1 className = "center">Blog Posts</h1>
                 {this.renderList()}

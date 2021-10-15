@@ -12,7 +12,7 @@ class Header extends React.Component {
                     [
                         <li><a className = "btn" href = "/auth/spotify">Sign In with Spotify <i className = "spotify icon small" /></a></li>,
                         <li><a className = "btn red" href = '/auth/google'>Sign In with Google <i className = "google icon small" /></a></li>,
-                        
+                        <li><a className = "btn brown" href = '/login'>Login <i className = "computer icon small" /></a></li>,
                     ]
                 )
             default:
