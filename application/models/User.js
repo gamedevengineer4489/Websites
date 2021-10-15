@@ -6,7 +6,9 @@ const userSchema = new Schema({
     spotifyID: String,
     email: String,
     googleUserName: String,
-    spotifyUserName: String
+    spotifyUserName: String,
+    imageURLGoogle: String,
+    imageURLSpotify: String
 });
 
 mongoose.model('users', userSchema);

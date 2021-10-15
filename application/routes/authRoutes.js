@@ -17,6 +17,7 @@ module.exports = app => {
         passport.authenticate('google'),
         function(req, res) {
             // Successful authentication, redirect home
+            console.log(req);
             res.redirect('/list');
         }
     )
@@ -33,6 +34,7 @@ module.exports = app => {
             '/auth/spotify/callback',
             passport.authenticate('spotify'),
             function(req,res) {
+                console.log(req);
                 res.redirect('/list');
             }
     );
@@ -48,6 +50,7 @@ module.exports = app => {
 
     app.get('/api/current_user_spotify', 
         function(req, res) {
+            console.log(req);
             res.send(req.user);
         }
     )
@@ -74,6 +77,7 @@ module.exports = app => {
                 body: req.body.body,
                 title: req.body.title,
                 date_created: await Date(Date.now()).toString()
+                
             });
 
             try {
@@ -92,10 +96,10 @@ module.exports = app => {
 
     app.get('/api/blog_posts',
         async function(req, res) {
-            console.log(req);
+            //console.log(req);
             //console.log(res);
-            const blogs = await Blog.find({ email: req.user.email }) || {};
-            console.log(blogs);
+            const blogs = await Blog.find({ email: req.user.email }) || [{}];
+            //console.log(blogs);
             res.send(blogs);
         }
     )

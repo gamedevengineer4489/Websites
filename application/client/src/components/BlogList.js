@@ -6,7 +6,7 @@ import UserHeader from './UserHeader';
 
 class BlogList extends React.Component {
     l
-   state  = { title: null, body: null, userId: null, displayName: null, email: null }
+   state  = { title: null, body: null, userId: null, displayName: null, email: null, imageFile: null }
 
 
     componentDidMount() {
