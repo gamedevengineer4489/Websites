@@ -72,7 +72,7 @@ module.exports = app => {
                 username: req.body.username,
                 email: req.body.email,
                 body: req.body.body,
-                title: req.body.title.userId,
+                title: req.body.title,
                 date_created: await Date(Date.now()).toString()
             });
 
