@@ -1,4 +1,4 @@
-import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY } from "../actions/types";
+import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_USER_LOCAL } from "../actions/types";
 
 // A reducer is a simple Javscript function that takes two arguments - the current state and an action - and returns a new state based on both arguments.
 
@@ -11,6 +11,8 @@ export default function(state = null, action) {
             // would be returned if the user is not signed-in to the application.
             return action.payload || false;
         case FETCH_USER_SPOTIFY:
+            return action.payload || false;
+        case FETCH_USER_LOCAL:
             return action.payload || false;
         default:
             return state;

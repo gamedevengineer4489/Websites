@@ -1,12 +1,13 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const SpotifyStrategy = require('passport-spotify').Strategy;
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const keys = require('../config/keys');
 
 const User = mongoose.model('users');
+const CustomUser = mongoose.model('customusers');
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -63,17 +64,19 @@ passport.use(new GoogleStrategy(
 
 passport.use(new LocalStrategy(
     async (username, password, done) => {
-        await User.findOne({ username: username }, (err, user) => {
+        await CustomUser.findOne({ "username": username }, (err, user) => {
             if(err) {
                 return done(err);
             }
-            if(!user) {
-                return done(null, false);
-            }
-            if(!user.verifyPassword(password)) {
-                return done(null, false);
-            }
+            console.log(user);
+            // if(!user) {
+            //     return done(null, false);
+            // }
+            // if(!user.verifyPassword(password)) {
+            //     return done(null, false);
+            // }
             return done(null, user);
+
         });
     }
 ));

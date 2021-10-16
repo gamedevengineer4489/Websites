@@ -6,11 +6,11 @@
 // importing the axios library
 import axios from 'axios';
 import jsonPlaceholder from '../api/jsonPlaceholder';
-import _ from 'lodash';
+import _, { values } from 'lodash';
 
 
 // import constants from types.js
-import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER } from './types';
+import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL } from './types';
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
@@ -81,8 +81,17 @@ export const addNewUserCustom = function(username, password, firstName, lastName
         return async function(dispatch) {
                 const newUser = { username, password, firstName, lastName, email };
                 const res = await axios.post('/api/register', newUser);
-                console.log(res);
+                // console.log(res);
+                // dispatch({ type: ADD_NEW_USER, payload: newUser});
         }
+}
+
+export const fetchUserLocal = (username, password) => async (dispatch) => {
+        const data = {username: username, password: password}
+        const res = await axios.post('/api/current_user_local', values);
+        console.log(res.data);
+        
+        dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
 

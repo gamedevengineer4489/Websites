@@ -61,7 +61,7 @@ class BlogList extends React.Component {
                         {console.log(this.state.userId)}
                         {console.log(this.state.displayName)}
                         {console.log(this.state.email)}
-                        <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName} />
+                        <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.userName} />
                         </span>
                         <div className = "content">
                             <div className = "description">
@@ -82,14 +82,14 @@ class BlogList extends React.Component {
             <div>
                 
                 <h4>Create a new blog post</h4>
-                <form>
+
                     Title: <input onChange = {(event) => {this.newTitle(event)}} required/>
-                    Message: <input onChange = {(event) => {this.newMessage(event)}} required/>
-                    <button className = "btn waves-effect-light" type = "submit" name = "action" onClick = {() => this.newPosts()}>
+                    Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
+                    <button className = "btn waves-effect-light" name = "action" onClick = {() => this.newPosts()}>
                         Submit
                         
                     </button>
-                </form>
+
                 
                 <br />
                 <h1 className = "center">Blog Posts</h1>
