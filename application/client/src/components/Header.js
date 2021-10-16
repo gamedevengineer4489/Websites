@@ -17,6 +17,7 @@ class Header extends React.Component {
                 )
             default:
                 return([
+                        
                         <li><a className = "btn" href = "/api/logout">Sign Out</a></li>,
                         <li><a className = "btn grey" href = "/list">Blog Posts</a></li>
                     ]
@@ -28,6 +29,7 @@ class Header extends React.Component {
     render() {
         return(
             <nav>
+                {console.log(this.props.auth)}
                 <div className = "nav-wrapper blue">
                     <Link className = "brand-logo right" to = "/">OC Websites</Link>
                     <ul className = "left">

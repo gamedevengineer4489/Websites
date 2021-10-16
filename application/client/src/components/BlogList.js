@@ -32,8 +32,8 @@ class BlogList extends React.Component {
     newMessage = (event) => {
         this.setState({
             body: event.target.value,
-            userId: this.props.auth.spotifyID || this.props.auth.googleID,
-            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName,
+            userId: this.props.auth.spotifyID || this.props.auth.googleID || this.props.auth.userID,
+            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username,
             email: this.props.auth.email
         })
         console.log(this.state.body);

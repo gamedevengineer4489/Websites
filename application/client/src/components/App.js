@@ -14,6 +14,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.fetchUserGoogle();
     this.props.fetchUserSpotify();
+    this.props.fetchUserLocal();
   }
 
   render() {

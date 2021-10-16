@@ -6,7 +6,7 @@
 // importing the axios library
 import axios from 'axios';
 import jsonPlaceholder from '../api/jsonPlaceholder';
-import _, { values } from 'lodash';
+import _ from 'lodash';
 
 
 // import constants from types.js
@@ -82,17 +82,27 @@ export const addNewUserCustom = function(username, password, firstName, lastName
                 const newUser = { username, password, firstName, lastName, email };
                 const res = await axios.post('/api/register', newUser);
                 // console.log(res);
-                // dispatch({ type: ADD_NEW_USER, payload: newUser});
+                 dispatch({ type: ADD_NEW_USER, payload: newUser});
         }
 }
 
-export const fetchUserLocal = (username, password) => async (dispatch) => {
-        const data = {username: username, password: password}
-        const res = await axios.post('/api/current_user_local', values);
+export const signInLocal = (username, password) => async (dispatch) => {
+        const data = {"username": username, "password": password}
+        const res = await axios.post('/auth/local', data);
+        console.log(res);
+        
+        dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
+}
+
+
+export const fetchUserLocal = () => async (dispatch) => {
+        const res = await axios.get('/api/current_user_local');
         console.log(res.data);
         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
+
+
 
 
 

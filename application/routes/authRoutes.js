@@ -99,7 +99,7 @@ module.exports = app => {
         async function(req, res) {
             //console.log(req);
             //console.log(res);
-            const blogs = await Blog.find({ email: req.user.email }) || [{}];
+            const blogs = await Blog.find({ email: req.user.email || "alexanderdalessi@yahoo.com" }) || [{}];
             //console.log(blogs);
             res.send(blogs);
         }
@@ -107,19 +107,19 @@ module.exports = app => {
 
     app.post('/api/register', 
         async function(req, res) {
-            console.log(req);
+            //console.log(req);
             //console.log(req.user);
             // const existingUser = CustomUser.find({ email: req.body.email });
             // if(existingUser) {
             //     res.send("A user with that email already exists. Please log-in");
             // } else {
                 
-                const existingUser = CustomUser.find({ email: req.body.email });
-                //console.log(existingUser);
-                if(existingUser) {
+                // const existingUser = CustomUser.find({ email: req.body.email });
+                // //console.log(existingUser);
+                // if(existingUser) {
                    
-                    res.redirect('/login');
-                } else {
+                //     res.redirect('/login');
+                // } else {
                     const newUser = new CustomUser({
                         username: req.body.username,
                         password: req.body.password,
@@ -134,49 +134,66 @@ module.exports = app => {
                         await newUser.save();
                         
                         // passport.authenticate("local"), function(req, res) {
-                        //     res.redirect('/list');
+                             res.redirect('/list');
                         // }
 
                     } catch(err) {
                         res.status(422).send(err);
                         //res.redirect('/register');
                     }
-                }
+    })
                 
-                
+            app.post('/auth/local',
+                passport.authenticate('local', {
+                    successRedirect: '/auth/local/callback',
+                    failureRedirect: '/login'
+                })
+            )
+
+            app.get('/auth/local/callback',
+                    
+                    function(req, res) {
+                            console.log(req);
+                            res.send({"_id": "616a70e2670b9f539cbe1a28",
+                            "email": 'alexanderdalessi@yahoo.com',
+                            "password": 'asdf',
+                            "username": 'Alexander The Great',
+                            "firstName": 'Alexander',
+                            "lastName": 'Dalessi',
+                            "userID": '0.1htuon9qr0g',
+                            "__v": 0});
+                    }
+            )
+
+            app.get('/api/current_user_local', 
+                    
+            async function(req, res) {
+                await console.log(req.isAuthenticated());
+                res.send({
+                    "_id": "616a70e2670b9f539cbe1a28",
+                    "email": 'alexanderdalessi@yahoo.com',
+                    "password": 'asdf',
+                    "username": 'Alexander The Great',
+                    "firstName": 'Alexander',
+                    "lastName": 'Dalessi',
+                    "userID": '0.1htuon9qr0g',
+                    "__v": 0
+                });
+            }
+        )
+            
+             
+
+            
+                    
             
 
             
             
 
-        }
-    )
-
-    // app.get("/login",
-    //     function(req, res) {
-    //         res.send("Error")
-    //     }
-    // )
-
-    // app.get("/list",
-    //     function(req, res) {
-    //         res.redirect("/list")
-    //     }
-    // )
+    }
 
 
-
-
-    // app.post('/api/current_user_local',
-    //     passport.authenticate('local', {
-    //         successRedirect: "/list",
-    //         failureRedirect: "/login"
-    //     }, function (req, res) {
-    //         //console.log(req.body);
-    //         console.log(req);
-    //     })
-    // )
 
 
     
-};

@@ -63,21 +63,35 @@ passport.use(new GoogleStrategy(
 );
 
 passport.use(new LocalStrategy(
+    {
+        callbackURL: '/auth/local/callback',
+        proxy: true
+    },
     async (username, password, done) => {
-        await CustomUser.findOne({ "username": username }, (err, user) => {
-            if(err) {
-                return done(err);
-            }
-            console.log(user);
-            // if(!user) {
-            //     return done(null, false);
-            // }
-            // if(!user.verifyPassword(password)) {
-            //     return done(null, false);
-            // }
-            return done(null, user);
+        console.log("username is: " + username);
+        console.log("password: " + password);
+        const existingUser = await CustomUser.findOne({ username });
+        //  (err, user) => {
+        //     if(err) {
+        //         return done(err);
+        //     }
+        //     console.log(user);
+        //     if(!user) {
+        //         return done(null, false);
+        //     }
+        //     // if(!user.verifyPassword(password)) {
+        //     //     return done(null, false);
+        //     // }
+        //     return done(null, user);
 
-        });
+        // };
+        console.log(existingUser);
+        if(password === existingUser.password)
+        {
+            console.log("Existing User's passowrd is: " + existingUser.password);
+            
+            return done(null, existingUser);
+        }
     }
 ));
 
