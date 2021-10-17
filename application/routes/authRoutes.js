@@ -45,24 +45,26 @@ module.exports = app => {
 
     app.get(
         '/api/logout', 
-        function(req, res) {
+        function(req, res, next) {
+            console.log(req);
             req.logout();
+            //req.clear();
             res.redirect('/');
         }
     );
 
-    app.get('/api/current_user_spotify', 
-        function(req, res) {
-            //console.log(req);
-            res.send(req.user);
-        }
-    )
+    // app.get('/api/current_user_spotify', 
+    //     function(req, res) {
+    //         //console.log(req);
+    //         res.send(req.user);
+    //     }
+    // )
 
-    app.get('/api/current_user_google', 
-        function(req, res) {
-            res.send(req.user);
-        }
-    )
+    // app.get('/api/current_user_google', 
+    //     function(req, res) {
+    //         res.send(req.user);
+    //     }
+    // )
         
     app.post('/api/blog_posts',
         // Post the blog's data to the mongoDB database
@@ -101,7 +103,7 @@ module.exports = app => {
         async function(req, res) {
             console.log(req);
             //console.log(res);
-            const blogs = await Blog.find({ email: req.user.email }) || [{}];
+            const blogs = await Blog.find({ username: req.user.username }) || [{}];
             //console.log(blogs);
             res.send(blogs);
         }
@@ -132,10 +134,10 @@ module.exports = app => {
                                     res.redirect('/list');
                                 })
                             }
-                        })
+                    })
     })
                     
-        
+            
                 
             app.post('/auth/local',
                 passport.authenticate('local', { failureRedirect: '/login'}),
@@ -156,12 +158,25 @@ module.exports = app => {
             )
             
             
-            app.get('/api/current_user_local', 
+            app.post('/api/current_user_local', 
+                    
+                async function(req, res) {
+                    console.log('hello world');
+                    await console.log(req);
+                    res.send(req.user);
+
+            }
+
+            
+        )
+
+        app.get('/api/current_user', 
                     
             async function(req, res) {
-                await console.log(req.user);
+                // console.log('hello world');
+                // await console.log(req.user);
+                // // res.send(req.body);
                 res.send(req.user);
-
             }
         )
             

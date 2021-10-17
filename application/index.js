@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const passportLocalMongoose = require('passport-local-mongoose');
+const expressSession = require('express-session');
 const cookieSession = require('cookie-session');
 
 // Database models(content to be stored or key-value pairs that are used to store data on the database) 
@@ -43,6 +44,13 @@ const app = express();
 // Also from the documentation: "As req.body's shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting"
 // bodyParser.json only parses json and only looks at requests where the Content-Type header matches the type opeion. 
 app.use(bodyParser.json());
+
+// app.use(expressSession({
+//     name: 'session-id',
+//     secret: '123-456-789',
+//     saveUninitialized: false,
+//     resave: false
+// }))
 
 // Cookie-session is a simple cookie-bases session middleware. 
 // From the documentation: "This module stores the session data on the client within a cookie, 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, addNewUser } from '../actions';
+import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, addNewUser, fetchUserLocal, postUserLocal } from '../actions';
 import { connect } from 'react-redux';
 import UserHeader from './UserHeader';
 import Header from './Header';
@@ -10,13 +10,13 @@ class BlogList extends React.Component {
 
 
     componentDidMount() {
+        //this.props.fetchUserLocal(this.props.auth);
         this.props.fetchPostsAndUsersBlog();
         console.log(this.props.blogs);
-        console.log(this.props.users);
         console.log(this.props.auth);
         this.props.removeUndefinedValues();
-
-        
+        this.props.postUserLocal(this.props.auth);
+        this.props.fetchUserLocal(this.props.auth);
     }
 
     newTitle = (event) => {
@@ -42,7 +42,7 @@ class BlogList extends React.Component {
 
     newPosts = () => {
         this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
-        this.props.addNewUser(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
+        //this.props.addNewUser(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
     }
     
 
@@ -56,7 +56,6 @@ class BlogList extends React.Component {
                         <span>
                         {console.log(blog)}
                         {console.log(this.props.blogs)}
-                        {console.log(this.props.users)}
                         {console.log(this.props.auth)}
                         {console.log(this.state.userId)}
                         {console.log(this.state.displayName)}
@@ -102,7 +101,7 @@ class BlogList extends React.Component {
 
 const mapStateToProps = (state) => {
     console.log(state);
-    return { blogs: state.blogs, users: state.users, auth: state.auth }
+    return { blogs: state.blogs, auth: state.auth }
 }
 
-export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, addNewUser })(BlogList);
+export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, addNewUser, fetchUserLocal, postUserLocal })(BlogList);

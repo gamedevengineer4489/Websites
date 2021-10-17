@@ -14,7 +14,7 @@ import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BL
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
-        const res = await axios.get('/api/current_user_spotify');
+        const res = await axios.get('/api/current_user');
         console.log(res.data);
         // res.data.email = ""
         // res.data.spotifyUserName = ""
@@ -24,7 +24,7 @@ export const fetchUserSpotify = () => async (dispatch) => {
 
 
 export const fetchUserGoogle = () => async (dispatch) => {
-        const res = await axios.get('/api/current_user_google');
+        const res = await axios.get('/api/current_user');
         console.log(res.data);
         
         dispatch({ type: FETCH_USER_GOOGLE, payload: res.data });
@@ -89,17 +89,25 @@ export const addNewUserCustom = function(username, password, firstName, lastName
 export const signInLocal = (username, password) => async (dispatch) => {
         const data = {"username": username, "password": password}
         const res = await axios.post('/auth/local', data);
-        console.log(res);
+        console.log(res.data);
         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
 
-export const fetchUserLocal = () => async (dispatch) => {
-        const res = await axios.get('/api/current_user_local');
+export const postUserLocal = (auth) => async (dispatch) => {
+        const res = await axios.post('/api/current_user', auth);
         console.log(res.data);
         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
+}
+
+export const fetchUserLocal = (auth) => async (dispatch) => {
+        const res = await axios.get('/api/current_user');
+        //console.log(auth);
+        console.log(res.data);
+        
+        //dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
 

@@ -14,7 +14,8 @@ class App extends React.Component {
   componentDidMount() {
     this.props.fetchUserGoogle();
     this.props.fetchUserSpotify();
-    this.props.fetchUserLocal();
+    // this.props.postUserLocal(this.props.auth);
+    //this.props.postUserLocal(this.props.auth);
   }
 
   render() {
@@ -36,4 +37,8 @@ class App extends React.Component {
   }
 }
 
-export default connect(null, actions)(App);
+const mapStateToProps = function(state) {
+  return { auth: state.auth };
+}
+
+export default connect(mapStateToProps, actions)(App);

@@ -12,5 +12,5 @@ import blogReducer from "./blogReducer";
 export default combineReducers({
     auth: authReducer,
     blogs: blogReducer,
-    users: userReducer
+    
 });
