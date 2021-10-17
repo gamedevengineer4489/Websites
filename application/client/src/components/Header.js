@@ -19,7 +19,7 @@ class Header extends React.Component {
                 return([
                         
                         <li><a className = "btn" href = "/api/logout">Sign Out</a></li>,
-                        <li><a className = "btn grey" href = "/list">Blog Posts</a></li>
+                        <li><Link className = "btn grey" to = "/list">Blog Posts</Link></li>
                     ]
                 )
                 

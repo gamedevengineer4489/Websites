@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+
 const customSchema = new Schema({
     googleID: String,
     spotifyID: String,

@@ -23,7 +23,7 @@ class BlogList extends React.Component {
         this.setState({
             title: event.target.value,
             userId: this.props.auth.spotifyID || this.props.auth.googleID,
-            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName,
+            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username,
             email: this.props.auth.email
         })
         console.log(this.state.title);
@@ -61,12 +61,12 @@ class BlogList extends React.Component {
                         {console.log(this.state.userId)}
                         {console.log(this.state.displayName)}
                         {console.log(this.state.email)}
-                        <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.userName} />
+                        <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username} />
                         </span>
                         <div className = "content">
                             <div className = "description">
                                 <h5>{blog.title}</h5>
-                                <p>{blog.body} </p>
+                                <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
                                 <p>{blog.date_created}</p>
                             </div>
                         </div>
@@ -81,19 +81,20 @@ class BlogList extends React.Component {
         return(
             <div>
                 
-                <h4>Create a new blog post</h4>
-
-                    Title: <input onChange = {(event) => {this.newTitle(event)}} required/>
-                    Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
-                    <button className = "btn waves-effect-light" name = "action" onClick = {() => this.newPosts()}>
-                        Submit
-                        
-                    </button>
-
-                
-                <br />
+               
                 <h1 className = "center">Blog Posts</h1>
                 {this.renderList()}
+                <h4>Create a new blog post</h4>
+
+                Title: <input onChange = {(event) => {this.newTitle(event)}} required/>
+                Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
+                <button className = "btn waves-effect-light" name = "action" onClick = {() => this.newPosts()}>
+                    Submit
+                    
+                </button>
+
+
+<br />
             </div>
         )
     }
