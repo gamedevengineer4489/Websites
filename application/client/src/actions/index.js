@@ -71,11 +71,11 @@ export const addNewPost = (title, body, userId, email, userName, date_created) =
         dispatch({ type: ADD_NEW_POST, payload: newPost});
 }
 
-export const addNewUser = (title, body, userId, email, userName, date_created) => async (dispatch) => {
-        const newUser = { id: userId, username: userName, email: email }
+// export const addNewUser = (title, body, userId, email, userName, date_created) => async (dispatch) => {
+//         const newUser = { id: userId, username: userName, email: email }
 
-        dispatch({ type: ADD_NEW_USER, payload: newUser});
-}
+//         dispatch({ type: ADD_NEW_USER, payload: newUser});
+// }
 
 export const addNewUserCustom = function(username, password, firstName, lastName, email) {
         return async function(dispatch) {
@@ -107,7 +107,7 @@ export const fetchUserLocal = (auth) => async (dispatch) => {
         //console.log(auth);
         console.log(res.data);
         
-        //dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
+        dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
 

@@ -11,7 +11,7 @@ class UserHeader extends React.Component {
         }
 
         return(
-            <div className = "header"><img  style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={auth.imageURLGoogle || auth.imageURLSpotify } /><b style = {{ fontSize: 'x-large', margin: '8px'}}>{auth.googleUserName || auth.spotifyUserName }</b></div>
+            <div className = "header"><img  style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={auth.imageURLGoogle || auth.imageURLSpotify || 'https://comps.gograph.com/egg_gg57344858.jpg' } /><b style = {{ fontSize: 'x-large', margin: '8px'}}>{auth.googleUserName || auth.spotifyUserName || auth.username }</b></div>
         )
     }
 }

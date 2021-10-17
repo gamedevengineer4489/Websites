@@ -4,6 +4,9 @@ const keys = require('../config/keys');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Blog = mongoose.model('blogs');
 const CustomUser = mongoose.model('customusers');
+const fs = require('fs');
+const express = require('express');
+
 
 
 module.exports = app => {
@@ -20,7 +23,7 @@ module.exports = app => {
         passport.authenticate('google'),
         function(req, res) {
             // Successful authentication, redirect home
-            console.log(req);
+            //console.log(req);
             res.redirect('/list');
         }
     )
@@ -37,7 +40,7 @@ module.exports = app => {
             '/auth/spotify/callback',
             passport.authenticate('spotify'),
             function(req,res) {
-                console.log(req);
+                //console.log(req);
                 res.redirect('/list');
             }
     );
@@ -46,7 +49,7 @@ module.exports = app => {
     app.get(
         '/api/logout', 
         function(req, res, next) {
-            console.log(req);
+            //console.log(req);
             req.logout();
             //req.clear();
             res.redirect('/');
@@ -74,7 +77,7 @@ module.exports = app => {
         
 
         async function(req, res) {
-            //console.log(req.body);
+            console.log(req.user);
             const blog = new Blog({
                 userId: req.body.userId,
                 username: req.body.username,
@@ -88,9 +91,16 @@ module.exports = app => {
             try {
                 // Save the data on a database.
                 await blog.save();
-                const user = await req.user.save();
-
-                res.send(user);
+                if(req.user)
+                {
+                    const user = await req.user.save();
+                    res.send(user);
+                } else {
+                    res.send(req.body);
+                }
+                
+                
+                
             } catch(err) {
                 res.status(422).send(err);
             }
@@ -101,11 +111,25 @@ module.exports = app => {
 
     app.get('/api/blog_posts',
         async function(req, res) {
-            console.log(req);
+            // console.log(req);
+            // console.log(req.user);
             //console.log(res);
-            const blogs = await Blog.find({ username: req.user.username }) || [{}];
+            if(req.user) {
+                if(req.user.googleID) {  
+                    const blogs = await Blog.find({ userId: req.user.googleID }) || [{}];
+                    res.send(blogs);
+                } else if(req.user.spotifyID) {
+                    const blogs = await Blog.find({ userId: req.user.spotifyID }) || [{}];
+                    res.send(blogs);
+                } 
+            }
+            else {
+                const blogs = await Blog.find({ userId: 'no0nkbc9n38' }) || [{}];
+                res.send(blogs);
+            }
+            
             //console.log(blogs);
-            res.send(blogs);
+            
         }
     )
 
@@ -115,11 +139,11 @@ module.exports = app => {
                     console.log(req);
                     const newUser = new CustomUser({
                         username: req.body.username,
-                        password: req.body.password,
+                        
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        userID: Math.random().toString(32)
+                        userID: Math.random().toString(32).substring(2)
                     })
                     console.log(newUser);
                     CustomUser.register(newUser, req.body.password, function(err, user) {
@@ -145,6 +169,13 @@ module.exports = app => {
                     // Successful authentication, redirect home
                     console.log(req);
                     console.log(req.user);
+                    //var userJSON = JSON.stringify(req.user);
+                    // fs.writeFile("currentUser.json", userJSON, function(err, result) {
+                    //     if(err) {
+                    //         console.log('error', err);
+                    //     }
+                    // })
+                    //console.log(userJSON);
                     res.send(req.user);
                 }
             )
@@ -174,9 +205,11 @@ module.exports = app => {
                     
             async function(req, res) {
                 // console.log('hello world');
-                // await console.log(req.user);
-                // // res.send(req.body);
+                await console.log(req.user);
                 res.send(req.user);
+    
+                // // var sendThis = JSON.parse(currentUser.json);
+                // // res.sendFile(sendThis);
             }
         )
             
