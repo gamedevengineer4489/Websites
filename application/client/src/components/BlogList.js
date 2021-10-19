@@ -2,7 +2,7 @@ import React from 'react';
 import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal } from '../actions';
 import { connect } from 'react-redux';
 import UserHeader from './UserHeader';
-import Header from './Header';
+
 
 class BlogList extends React.Component {
     l
