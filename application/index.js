@@ -82,5 +82,4 @@ if(process.env.NODE_ENV === 'production') {
 
 // The server-side of this application is hosted on https://www.localhost:5000/ during development and on another port if on Amazon AWS for instance. 
 const PORT = process.env.PORT || 5000;
-console.log(process.env);
 app.listen(PORT, () => console.log(`listening on port ${PORT}`));

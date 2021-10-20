@@ -7,7 +7,8 @@ const blogSchema = new Schema({
     email: String,
     body: String,
     title: String,
-    date_created: String
+    date_created: String,
+    Id: String
 });
 
 mongoose.model('blogs', blogSchema);

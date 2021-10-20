@@ -9,6 +9,8 @@ const express = require('express');
 
 
 
+
+
 module.exports = app => {
     
     app.get(
@@ -77,15 +79,15 @@ module.exports = app => {
         
 
         async function(req, res) {
-            console.log(req.user);
+            console.log(req);
             const blog = new Blog({
                 userId: req.body.userId,
                 username: req.body.username,
                 email: req.body.email,
                 body: req.body.body,
                 title: req.body.title,
-                date_created: await Date(Date.now()).toString()
-                
+                date_created: await Date(Date.now()).toString(),
+                Id: req.body.Id
             });
 
             try {
@@ -167,8 +169,7 @@ module.exports = app => {
                 passport.authenticate('local', { failureRedirect: '/login'}),
                 function(req, res) {
                     // Successful authentication, redirect home
-                    console.log(req);
-                    console.log(req.user);
+
                     //var userJSON = JSON.stringify(req.user);
                     // fs.writeFile("currentUser.json", userJSON, function(err, result) {
                     //     if(err) {
@@ -183,7 +184,7 @@ module.exports = app => {
             app.get('/auth/local/callback',
                     
                     function(req, res) {
-                            console.log(req.user);
+
                             res.send(req.user);
                     }
             )
@@ -193,7 +194,7 @@ module.exports = app => {
                     
                 async function(req, res) {
                     console.log('hello world');
-                    await console.log(req);
+
                     res.send(req.user);
 
             }
@@ -205,12 +206,21 @@ module.exports = app => {
                     
             async function(req, res) {
                 // console.log('hello world');
-                await console.log(req.user);
+
                 res.send(req.user);
     
                 // // var sendThis = JSON.parse(currentUser.json);
                 // // res.sendFile(sendThis);
             }
+        )
+
+        app.delete('/api/blog_posts/:id',
+            async function(req, res)
+            {
+                console.log(req);
+                await Blog.findOneAndDelete({Id: req.params.id}).exec();
+            }
+        
         )
     }
 

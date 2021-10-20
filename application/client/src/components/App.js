@@ -8,6 +8,7 @@ import Register from '../loginComponents/Register';
 import Header from './Header';
 import Landing from './Landing';
 import BlogList from './BlogList';
+import Footer from './Footer';
 
 
 class App extends React.Component {
@@ -29,6 +30,7 @@ class App extends React.Component {
             <Route path = "/list" exact component = {BlogList} />
             <Route path = "/login" exact component = {Login} />
             <Route path = "/register" exact component = {Register} />
+            <Footer />
           </div>
         </BrowserRouter>
         

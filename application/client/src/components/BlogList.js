@@ -1,7 +1,9 @@
 import React from 'react';
-import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal } from '../actions';
+import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog } from '../actions';
 import { connect } from 'react-redux';
 import UserHeader from './UserHeader';
+import { Link } from 'react-router-dom';
+import blogReducer from '../reducers/blogReducer';
 
 
 class BlogList extends React.Component {
@@ -42,17 +44,37 @@ class BlogList extends React.Component {
         console.log(this.state.body);
     }
 
+    deleteThisBlog = (id) => {
+        this.props.deleteBlog(id);
+        this.props.fetchPostsAndUsersBlog();
+    }
+
 
     newPosts = () => {
-        this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
+        if(this.state.title != null && this.state.body != null)
+        {
+            this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString(), Math.random().toString(32).substring(2) );
         //this.props.addNewUser(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
-        this.setState({
-            title: null,
-            userId: null,
-            displayName: null,
-            email: null,
-            imageFile: null
-        })
+            this.setState({
+                title: null,
+                body: null,
+                userId: null,
+                displayName: null,
+                email: null,
+                imageFile: null
+            })
+        } else {
+            alert("You must enter a title and message before submitting a blog post.");
+            this.setState({
+                title: null,
+                body: null,
+                userId: null,
+                displayName: null,
+                email: null,
+                imageFile: null
+            })
+        }
+        
     }
     
 
@@ -60,25 +82,26 @@ class BlogList extends React.Component {
 
     renderList() {
             return this.props.blogs.map(blog => {
+                {console.log(blog.Id)}
                 return(
                     
                     <div className = "item" key = {Math.random() * 10}>
                         <span>
-                        {console.log(blog)}
-                        {console.log(this.props.blogs)}
-                        {console.log(this.props.auth)}
-                        {console.log(this.state.userId)}
-                        {console.log(this.state.displayName)}
-                        {console.log(this.state.email)}
+                        {console.log(blog.Id)}
                         <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username} />
                         </span>
                         <div className = "content">
                             <div className = "description">
+                                {/* //blog.Id */}
                                 <h5>{blog.title}</h5>
                                 <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
                                 <p>{blog.date_created}</p>
                             </div>
                         </div>
+                        <form>
+                            <a className = "btn"  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete</a>
+                        </form>
+                        <br />
                         <br />
                     </div>
 
@@ -93,25 +116,30 @@ class BlogList extends React.Component {
                
                 <h1 className = "center">Blog Posts</h1>
                 {this.renderList()}
-                <h4>Create a new blog post</h4>
+                <h4 className = "center">Create a new blog post</h4>
+                <form>
+                    Title: <input onChange = {(event) => {this.newTitle(event)}} value = {this.state.value} required/>
+                    Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
 
-                Title: <input onChange = {(event) => {this.newTitle(event)}} value = {this.state.title} required/>
-                Message: <textarea onChange = {(event) => {this.newMessage(event)}} value = {this.state.body} required/>
-                <button className = "btn waves-effect-light" name = "action" onClick = {() => this.newPosts()}>
-                    Submit
-                    
-                </button>
+                    <a className = "btn-large waves-effect waves-light green" name = "action" onClick = {() => this.newPosts()}>  
+                        Submit{/* <span><strong>Submit        </strong><i className = "material-icons small" >send</i></span> */}
+                    </a>  
+                </form>
 
+               
 
-<br />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
+    
     return { blogs: state.blogs, auth: state.auth }
 }
 
-export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal })(BlogList);
+export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog })(BlogList);

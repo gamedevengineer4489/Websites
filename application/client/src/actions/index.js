@@ -7,10 +7,11 @@
 import axios from 'axios';
 import jsonPlaceholder from '../api/jsonPlaceholder';
 import _ from 'lodash';
+import { createBrowserHistory } from 'history';
 
 
 // import constants from types.js
-import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL } from './types';
+import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG } from './types';
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
@@ -64,8 +65,8 @@ export const removeUndefinedValues = () => async (dispatch) => {
         dispatch({ type: REMOVE_UNDEFINED_VALUES });
 }
 
-export const addNewPost = (title, body, userId, email, userName, date_created) => async (dispatch) => {
-        const newPost = { userId: userId, username: userName, email: email, body: body, title: title, date_created: date_created  };
+export const addNewPost = (title, body, userId, email, userName, date_created, Id) => async (dispatch) => {
+        const newPost = { userId: userId, username: userName, email: email, body: body, title: title, date_created: date_created, Id: Id  };
         const result = await axios.post('/api/blog_posts', newPost);
         console.log(result);
         dispatch({ type: ADD_NEW_POST, payload: newPost});
@@ -108,6 +109,14 @@ export const fetchUserLocal = (auth) => async (dispatch) => {
         console.log(res.data);
         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
+}
+
+export const deleteBlog = (id) => async(dispatch) => {
+        
+        const res = await axios.delete(`/api/blog_posts/${id}`);
+        console.log(id);
+        dispatch({ type: DELETE_BLOG, payload: id });
+        //history.push('/');
 }
 
 
