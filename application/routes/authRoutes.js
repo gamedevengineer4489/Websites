@@ -134,16 +134,7 @@ module.exports = app => {
             
                 
             app.post('/auth/local/',
-                passport.authenticate('local', { failureRedirect: '/login'}),
-                function(req, res) {
-                    console.log(req);
-
-                    res.send(req.user);
-                    // Where is this response going?
-                        
-                    
-                    
-                }
+                passport.authenticate('local', { failureRedirect: '/login'})
             )
 
             app.get('/auth/local/callback',
