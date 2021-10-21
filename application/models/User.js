@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const customSchema = new Schema({
     googleID: String,
@@ -16,5 +16,7 @@ const customSchema = new Schema({
     lastName: String,
     userID: String
 });
+
+customSchema.plugin(passportLocalMongoose);
 
 mongoose.model('users', customSchema);

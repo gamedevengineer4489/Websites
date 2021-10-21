@@ -7,7 +7,7 @@
 import axios from 'axios';
 import jsonPlaceholder from '../api/jsonPlaceholder';
 import _ from 'lodash';
-import { createBrowserHistory } from 'history';
+
 
 
 // import constants from types.js
@@ -15,17 +15,16 @@ import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BL
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
-        const res = await axios.get('/api/current_user');
+        const res = await axios.get(`/api/current_user`);
         console.log(res.data);
-        // res.data.email = ""
-        // res.data.spotifyUserName = ""
+
         
         dispatch({ type: FETCH_USER_SPOTIFY, payload: res.data });
 }
 
 
 export const fetchUserGoogle = () => async (dispatch) => {
-        const res = await axios.get('/api/current_user');
+        const res = await axios.get(`/api/current_user`);
         console.log(res.data);
         
         dispatch({ type: FETCH_USER_GOOGLE, payload: res.data });
@@ -40,7 +39,7 @@ export const fetchUsersBlog = (id) => async (dispatch) => {
 
 export const fetchPostsBlog = () => async (dispatch) => {
         //const res = await jsonPlaceholder.get('/posts');
-        const res = await axios.get('/api/blog_posts');
+        const res = await axios.get(`/api/blog_posts`);
         console.log(res.data);
         dispatch({ type: FETCH_POSTS_BLOG, payload: res.data });
 }
@@ -68,21 +67,17 @@ export const removeUndefinedValues = () => async (dispatch) => {
 export const addNewPost = (title, body, userId, email, userName, date_created, Id) => async (dispatch) => {
         const newPost = { userId: userId, username: userName, email: email, body: body, title: title, date_created: date_created, Id: Id  };
         const result = await axios.post('/api/blog_posts', newPost);
-        console.log(result);
+
         dispatch({ type: ADD_NEW_POST, payload: newPost});
 }
 
-// export const addNewUser = (title, body, userId, email, userName, date_created) => async (dispatch) => {
-//         const newUser = { id: userId, username: userName, email: email }
 
-//         dispatch({ type: ADD_NEW_USER, payload: newUser});
-// }
 
 export const addNewUserCustom = function(username, password, firstName, lastName, email) {
         return async function(dispatch) {
                 const newUser = { username, password, firstName, lastName, email };
                 const res = await axios.post('/api/register', newUser);
-                // console.log(res);
+
                  dispatch({ type: ADD_NEW_USER, payload: newUser});
         }
 }
@@ -90,8 +85,6 @@ export const addNewUserCustom = function(username, password, firstName, lastName
 export const signInLocal = (username, password) => async (dispatch) => {
         const data = {"username": username, "password": password}
         const res = await axios.post('/auth/local', data);
-        console.log(res.data);
-        
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
@@ -103,10 +96,8 @@ export const postUserLocal = (auth) => async (dispatch) => {
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
-export const fetchUserLocal = (auth) => async (dispatch) => {
-        const res = await axios.get('/api/current_user');
-        //console.log(auth);
-        console.log(res.data);
+export const fetchUserLocal = (id) => async (dispatch) => {
+        const res = await axios.get(`/api/current_user/${id}`);
         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
@@ -114,9 +105,9 @@ export const fetchUserLocal = (auth) => async (dispatch) => {
 export const deleteBlog = (id) => async(dispatch) => {
         
         const res = await axios.delete(`/api/blog_posts/${id}`);
-        console.log(id);
+
         dispatch({ type: DELETE_BLOG, payload: id });
-        //history.push('/');
+
 }
 
 

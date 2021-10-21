@@ -50,7 +50,8 @@ module.exports = (app) => {
         _id: req.params.surveyId
       }
     ).exec();
-
+    
+    res.send({});
   });
 
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
@@ -73,7 +74,7 @@ module.exports = (app) => {
       }
     ).exec();
 
-
+    res.send({});
   });
 
 
@@ -83,20 +84,7 @@ module.exports = (app) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
 
 
-    // const events = _.map(req.body, ({email, url }) => {
-    //   const pathname = new URL(event.url).pathname;
-    //   const p = new Path('/api/surveys/:surveyId/:choice');
-    //   // console.log(p.test(pathname));
-    //   const match = p.test(pathname);
-    //   if(match) {
-    //     return { email, surveyId: match.surveyId, choice: match.choice }
-    //   }
-    // });
 
-    // const compactEvents = _.compact(events);
-    // const uniqueEvents = _.uniqBy(compactEvents, 'email', 'surveyId');
-
-    // console.log(uniqueEvents);
 
     
     _.chain(req.body)

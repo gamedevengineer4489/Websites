@@ -13,10 +13,17 @@ import Footer from './Footer';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.fetchUserGoogle();
-    this.props.fetchUserSpotify();
-    // this.props.postUserLocal(this.props.auth);
-    //this.props.postUserLocal(this.props.auth);
+    
+      this.props.fetchUserGoogle();
+      this.props.fetchUserSpotify();
+      if(this.props.auth)
+      {
+        this.props.postUserLocal(this.props.auth);
+    
+
+        this.props.fetchUserLocal(this.props.auth.userID);
+      }
+      
   }
 
   render() {

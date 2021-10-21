@@ -1,13 +1,7 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
-const keys = require('../config/keys');
-const passportLocalMongoose = require('passport-local-mongoose');
 const Blog = mongoose.model('blogs');
-const CustomUser = mongoose.model('customusers');
-const fs = require('fs');
-const express = require('express');
-
-
+const User = mongoose.model('users');
 
 
 
@@ -58,18 +52,7 @@ module.exports = app => {
         }
     );
 
-    // app.get('/api/current_user_spotify', 
-    //     function(req, res) {
-    //         //console.log(req);
-    //         res.send(req.user);
-    //     }
-    // )
 
-    // app.get('/api/current_user_google', 
-    //     function(req, res) {
-    //         res.send(req.user);
-    //     }
-    // )
         
     app.post('/api/blog_posts',
         // Post the blog's data to the mongoDB database
@@ -113,25 +96,10 @@ module.exports = app => {
 
     app.get('/api/blog_posts',
         async function(req, res) {
-            // console.log(req);
-            // console.log(req.user);
-            //console.log(res);
-            if(req.user) {
-                if(req.user.googleID) {  
-                    const blogs = await Blog.find({ userId: req.user.googleID }) || [{}];
-                    res.send(blogs);
-                } else if(req.user.spotifyID) {
-                    const blogs = await Blog.find({ userId: req.user.spotifyID }) || [{}];
-                    res.send(blogs);
-                } 
-            }
-            else {
-                const blogs = await Blog.find({ userId: 'no0nkbc9n38' }) || [{}];
-                res.send(blogs);
-            }
-            
-            //console.log(blogs);
-            
+
+           
+            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            res.send(blogs);
         }
     )
 
@@ -139,7 +107,7 @@ module.exports = app => {
         async function(req, res) {
                     // Save new User to database 
                     console.log(req);
-                    const newUser = new CustomUser({
+                    const newUser = new User({
                         username: req.body.username,
                         
                         firstName: req.body.firstName,
@@ -148,7 +116,7 @@ module.exports = app => {
                         userID: Math.random().toString(32).substring(2)
                     })
                     console.log(newUser);
-                    CustomUser.register(newUser, req.body.password, function(err, user) {
+                    User.register(newUser, req.body.password, function(err, user) {
                         // A user with the same username cannot be created.
                             if(err) {
                                 console.log(err);
@@ -165,19 +133,16 @@ module.exports = app => {
                     
             
                 
-            app.post('/auth/local',
+            app.post('/auth/local/',
                 passport.authenticate('local', { failureRedirect: '/login'}),
                 function(req, res) {
-                    // Successful authentication, redirect home
+                    console.log(req);
 
-                    //var userJSON = JSON.stringify(req.user);
-                    // fs.writeFile("currentUser.json", userJSON, function(err, result) {
-                    //     if(err) {
-                    //         console.log('error', err);
-                    //     }
-                    // })
-                    //console.log(userJSON);
                     res.send(req.user);
+                    // Where is this response going?
+                        
+                    
+                    
                 }
             )
 
@@ -203,14 +168,23 @@ module.exports = app => {
         )
 
         app.get('/api/current_user', 
-                    
+    
             async function(req, res) {
-                // console.log('hello world');
+
+                console.log(req);
 
                 res.send(req.user);
-    
-                // // var sendThis = JSON.parse(currentUser.json);
-                // // res.sendFile(sendThis);
+
+            }
+        )
+
+        app.get('/api/current_user/:id', 
+        
+            async function(req, res) {
+
+                let foundUser = await User.findOne({ userID: req.params.id });
+                res.send(foundUser);
+
             }
         )
 
@@ -219,6 +193,7 @@ module.exports = app => {
             {
                 console.log(req);
                 await Blog.findOneAndDelete({Id: req.params.id}).exec();
+                res.send({});
             }
         
         )

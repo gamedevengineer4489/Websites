@@ -18,7 +18,6 @@ class Login extends React.Component {
                     Password: <input type = "password" name = "password" placeholder = "password" onChange = {(event) => this.setState({ enteredPassword: event.target.value })} required/>
                     <Link to = "/"><button className = "btn" onClick = {() => this.props.signInLocal(this.state.enteredUsername, this.state.enteredPassword)}>Log-in</button></Link>
                     <br />
-                    {console.log(this.state.enteredUsername)}
                     Don't have an account yet? Then sign-in with google or spotify or create an account <a href = "/register">here.</a>
 
             </div>

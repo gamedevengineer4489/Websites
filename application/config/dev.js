@@ -5,7 +5,6 @@ module.exports = {
     spotifyClientSecret: 'd5847493950f4c719818e1b3197b1381',
     mongoURI: 'mongodb+srv://hello:uhNoI1kAa3IDYIAE@cluster0.hhxkv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     cookie: 'asfsdfsafdfasdfasfsds'
-    //'mongodb+srv://hello:uhNoI1kAa3IDYIAE@cluster0.hhxkv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 }
 
 

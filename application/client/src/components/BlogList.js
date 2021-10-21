@@ -1,9 +1,8 @@
 import React from 'react';
-import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog } from '../actions';
+import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify } from '../actions';
 import { connect } from 'react-redux';
 import UserHeader from './UserHeader';
-import { Link } from 'react-router-dom';
-import blogReducer from '../reducers/blogReducer';
+
 
 
 class BlogList extends React.Component {
@@ -12,16 +11,17 @@ class BlogList extends React.Component {
 
 
     componentDidMount() {
-        //this.props.fetchUserLocal(this.props.auth);
+
        
-        this.props.fetchPostsAndUsersBlog();
+            
+                this.props.fetchPostsAndUsersBlog();
+            
         
         
-        console.log(this.props.blogs);
-        console.log(this.props.auth);
-        this.props.removeUndefinedValues();
-        this.props.postUserLocal(this.props.auth);
-        //this.props.fetchUserLocal(this.props.auth);
+       
+        
+
+        
     }
 
     newTitle = (event) => {
@@ -46,7 +46,16 @@ class BlogList extends React.Component {
 
     deleteThisBlog = (id) => {
         this.props.deleteBlog(id);
-        this.props.fetchPostsAndUsersBlog();
+        if(this.props.auth.userID)
+        {
+            this.props.fetchPostsAndUsersBlog(this.props.auth.userID);
+        } else if(this.props.auth.googleID)
+        {
+            this.props.fetchPostsAndUsersBlog(this.props.auth.googleID);
+        } else if(this.props.auth.spotifyID)
+        {
+            this.props.fetchPostsAndUsersBlog(this.props.auth.spotifyID);
+        }
     }
 
 
@@ -54,7 +63,6 @@ class BlogList extends React.Component {
         if(this.state.title != null && this.state.body != null)
         {
             this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString(), Math.random().toString(32).substring(2) );
-        //this.props.addNewUser(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString() );
             this.setState({
                 title: null,
                 body: null,
@@ -142,4 +150,4 @@ const mapStateToProps = (state) => {
     return { blogs: state.blogs, auth: state.auth }
 }
 
-export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog })(BlogList);
+export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify })(BlogList);

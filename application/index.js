@@ -5,14 +5,11 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
 const bodyParser = require('body-parser');
-const passportLocalMongoose = require('passport-local-mongoose');
-const expressSession = require('express-session');
 const cookieSession = require('cookie-session');
 
 // Database models(content to be stored or key-value pairs that are used to store data on the database) 
 require('./models/User');
 require('./models/Blog');
-require('./models/customUsers');
 // Using passport services.
 require('./services/passport');
 

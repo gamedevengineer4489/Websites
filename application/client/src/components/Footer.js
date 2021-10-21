@@ -6,7 +6,7 @@ class Footer extends React.Component {
             <div id = "page-container">
                 <div id = "content-wrap">
                     
-                    <footer id = "footer">  
+                    <footer id = "footer" style = {{ padding: '1em'}}>  
                         2021 Copyright OC Websites
                         
                     </footer>  

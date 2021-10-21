@@ -5,7 +5,6 @@
 
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import userReducer from "./userReducer";
 import blogReducer from "./blogReducer";
 // No brackets here because authReducer was exported using export default.
 
