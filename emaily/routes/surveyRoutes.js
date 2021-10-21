@@ -83,10 +83,6 @@ module.exports = (app) => {
     console.log(req.body);
     const p = new Path('/api/surveys/:surveyId/:choice');
 
-
-
-
-    
     _.chain(req.body)
       .map(({ email, url }) => {
         const match = p.test(new URL(url).pathname);
