@@ -6,11 +6,10 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import blogReducer from "./blogReducer";
-import { reducer as formReducer } from 'redux-form';
 // No brackets here because authReducer was exported using export default.
 
 export default combineReducers({
     auth: authReducer,
     blogs: blogReducer,
-    form: formReducer
+    
 });

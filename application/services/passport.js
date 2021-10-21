@@ -3,7 +3,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 
-
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -85,8 +84,8 @@ passport.use(new LocalStrategy(function(username, password, done) {
             return done(null, false);
         }
 
-        // If the username and password is correct, we return the user. This shows up as user in requests.
-        // Maybe this is what was giving me issues.
+        // If the username and password is correct, we return the user.
+        // Maybe this is what was giving me issues
         return done(null, user);
     })
 }));
