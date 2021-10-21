@@ -109,7 +109,6 @@ module.exports = app => {
                     console.log(req);
                     const newUser = new User({
                         username: req.body.username,
-                        
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
@@ -124,9 +123,9 @@ module.exports = app => {
                                 res.redirect('/')
                             } else {
                                 console.log({ success: true, message: "Your account has been saved"});
-                                passport.authenticate('local')(req, res, function() {
-                                    res.redirect('/list');
-                                })
+                                // passport.authenticate('local')(req, res, function() {
+                                //     res.redirect('/list');
+                                // })
                             }
                     })
     })
@@ -134,7 +133,13 @@ module.exports = app => {
             
                 
             app.post('/auth/local/',
-                passport.authenticate('local', { failureRedirect: '/login'})
+                passport.authenticate('local', { failureRedirect: '/login'}),
+                
+                function(req, res) {
+
+                    res.send(req.user);
+                }
+
             )
 
             app.get('/auth/local/callback',
