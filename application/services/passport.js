@@ -2,6 +2,8 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
+const SteamStrategy = require('passport-steam').Strategy;
+
 
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
@@ -35,7 +37,7 @@ passport.use( new SpotifyStrategy(
             if(existingUser) {
                 return done(null, existingUser);
             }
-            console.log(profile.photos[0].value);
+
             const user = await new User({ userID: profile.id, email: profile.emails[0].value, spotifyUserName: profile.displayName,  imageURLSpotify: profile.photos[0].value }).save();
             done(null, user);
         }
@@ -56,39 +58,38 @@ passport.use(new GoogleStrategy(
             if(existingUser) {
                 return done(null, existingUser);
             }
-            console.log(profile.photos[0].value);
+
             const user = await new User({ userID: profile.id, email: profile.emails[0].value, googleUserName: profile.displayName, imageURLGoogle: profile.photos[0].value }).save();
             done(null, user);
         }
     )
 );
 
-passport.use(new LocalStrategy(function(username, password, done) {
-    User.findOne({
-        username: username
-    }, function(err, user) {
-        // Error handling
-        if(err)
+passport.use(new SteamStrategy(
         {
-            return done(err);
-        }
-        // If user is not found
-        if(!user)
-        {
-            return done(null, false);
-        }
+            returnURL: keys.return,
+            realm: keys.realm,
+            apiKey: keys.steamKey
+        },
+        async function(identifier, profile, done) {
+            const existingUser = await User.findOne({ userID: profile.id });
 
-        // When the password is not correct
-        if(!user.authenticate(password))
-        {
-            return done(null, false);
-        }
+            if(existingUser) {
+                return done(null, existingUser);
+            }
 
-        // If the username and password is correct, we return the user.
-        // Maybe this is what was giving me issues
-        return done(null, user);
-    })
-}));
+
+            const user = await new User({ userID: profile.id, steamUserName: profile.displayName, imageURLSteam: profile.photos[0].value }).save();
+            done(null, user);
+        }  
+    )
+)
+
+// The authenticate function is part of the passport-local-mongoose library.
+passport.use(new LocalStrategy(User.authenticate()));
+
+// Without the passport-local-moongoose using the passport-local strategy would be a bit more complicated. The passport-local-mongoose library hashes the password and authenticates the user.
+// Without passport-local-mongoose this would have to be done manually.
 
 
 

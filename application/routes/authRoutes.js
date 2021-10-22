@@ -2,7 +2,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const Blog = mongoose.model('blogs');
 const User = mongoose.model('users');
-
+const keys = require('../config/keys');
 
 
 module.exports = app => {
@@ -23,7 +23,7 @@ module.exports = app => {
             res.redirect('/list');
         }
     )
-
+    ///////////
     app.get(
         '/auth/spotify',
         passport.authenticate('spotify', {
@@ -35,6 +35,23 @@ module.exports = app => {
     app.get(
             '/auth/spotify/callback',
             passport.authenticate('spotify'),
+            function(req,res) {
+                //console.log(req);
+                res.redirect('/list');
+            }
+    );
+
+    app.get(
+        '/auth/steam',
+        passport.authenticate('steam'), 
+        function(req, res) {
+            // Redirects back to steam
+        }
+    );
+
+    app.get(
+            '/auth/steam/return',
+            passport.authenticate('steam'),
             function(req,res) {
                 //console.log(req);
                 res.redirect('/list');
@@ -112,7 +129,9 @@ module.exports = app => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        userID: Math.random().toString(32).substring(2)
+                        password: req.body.password,
+                        userID: Math.random().toString(32).substring(2),
+                        imageURL: req.body.imageURL
                     })
                     console.log(newUser);
                     User.register(newUser, req.body.password, function(err, user) {
@@ -123,16 +142,16 @@ module.exports = app => {
                                 res.redirect('/')
                             } else {
                                 console.log({ success: true, message: "Your account has been saved"});
-                                // passport.authenticate('local')(req, res, function() {
-                                //     res.redirect('/list');
-                                // })
+                                
+                
+                                
                             }
                     })
     })
                     
             
                 
-            app.post('/auth/local/',
+            app.post('/auth/local',
                 passport.authenticate('local', { failureRedirect: '/login'}),
                 
                 function(req, res) {
@@ -142,13 +161,7 @@ module.exports = app => {
 
             )
 
-            app.get('/auth/local/callback',
-                    
-                    function(req, res) {
-
-                            res.send(req.user);
-                    }
-            )
+            
             
             
             app.post('/api/current_user_local', 

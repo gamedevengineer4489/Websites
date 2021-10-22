@@ -16,6 +16,7 @@ class App extends React.Component {
     
       this.props.fetchUserGoogle();
       this.props.fetchUserSpotify();
+      this.props.fetchUserSteam();
       if(this.props.auth)
       {
         this.props.postUserLocal(this.props.auth);

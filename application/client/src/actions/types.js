@@ -8,3 +8,4 @@ export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const ADD_NEW_USER = 'ADD_NEW_USER';
 export const ADD_NEW_USER_CUSTOM = 'ADD_NEW_USER_CUSTOM';
 export const DELETE_BLOG = 'DELETE_BLOG';
+export const FETCH_USER_STEAM = 'FETCH_USER_STEAM';

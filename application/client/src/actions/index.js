@@ -11,7 +11,7 @@ import _ from 'lodash';
 
 
 // import constants from types.js
-import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG } from './types';
+import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG, FETCH_USER_STEAM } from './types';
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
@@ -20,6 +20,14 @@ export const fetchUserSpotify = () => async (dispatch) => {
 
         
         dispatch({ type: FETCH_USER_SPOTIFY, payload: res.data });
+}
+
+export const fetchUserSteam = () => async (dispatch) => {
+        const res = await axios.get(`/api/current_user`);
+        console.log(res.data);
+
+        
+        dispatch({ type: FETCH_USER_STEAM, payload: res.data });
 }
 
 
@@ -73,9 +81,9 @@ export const addNewPost = (title, body, userId, email, userName, date_created, I
 
 
 
-export const addNewUserCustom = function(username, password, firstName, lastName, email) {
+export const addNewUserCustom = function(username, password, firstName, lastName, email, imageURL) {
         return async function(dispatch) {
-                const newUser = { username, password, firstName, lastName, email };
+                const newUser = { username, password, firstName, lastName, email, imageURL };
                 const res = await axios.post('/api/register', newUser);
 
                  dispatch({ type: ADD_NEW_USER, payload: newUser});

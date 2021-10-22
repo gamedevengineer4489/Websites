@@ -28,7 +28,7 @@ class BlogList extends React.Component {
         this.setState({
             title: event.target.value,
             userId: this.props.auth.spotifyID || this.props.auth.googleID || this.props.auth.userID,
-            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username,
+            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username || this.props.steamUserName,
             email: this.props.auth.email
         })
         console.log(this.state.title);
@@ -38,7 +38,7 @@ class BlogList extends React.Component {
         this.setState({
             body: event.target.value,
             userId: this.props.auth.spotifyID || this.props.auth.googleID || this.props.auth.userID,
-            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username,
+            displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username || this.props.steamUserName,
             email: this.props.auth.email
         })
         console.log(this.state.body);
