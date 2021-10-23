@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom';
 class Login extends React.Component {
     state = { "enteredUsername": null, "enteredPassword": null }
 
+    signIn = () => {
+        this.props.signInLocal(this.state.enteredUsername, this.state.enteredPassword);
+        document.loginForm.reset();
+    }
+
    
 
 
@@ -13,13 +18,13 @@ class Login extends React.Component {
         return(
             <div>
                 <h1>Log-in</h1>
-
-                    Username: <input type = "text" name = "username" placeholder = "username" onChange = {(event) => this.setState({ enteredUsername: event.target.value })} required/>
-                    Password: <input type = "password" name = "password" placeholder = "password" onChange = {(event) => this.setState({ enteredPassword: event.target.value })} required/>
-                    <Link to = "/"><button className = "btn" onClick = {() => this.props.signInLocal(this.state.enteredUsername, this.state.enteredPassword)}>Log-in</button></Link>
+                    <form name = "loginForm">
+                        Username: <input type = "text" name = "username" placeholder = "username" onChange = {(event) => this.setState({ enteredUsername: event.target.value })} required/>
+                        Password: <input type = "password" name = "password" placeholder = "password" onChange = {(event) => this.setState({ enteredPassword: event.target.value })} required/>
+                        <Link to = "/"><button className = "btn" type = "submit" onClick = {() => this.signIn()}>Log-in</button></Link>
+                    </form>
                     <br />
                     Don't have an account yet? Then sign-in with google or spotify or create an account <a href = "/register">here.</a>
-
             </div>
         )
     }

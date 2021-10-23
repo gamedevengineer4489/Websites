@@ -7,7 +7,7 @@ import UserHeader from './UserHeader';
 
 class BlogList extends React.Component {
     l
-   state  = { title: null, body: null, userId: null, displayName: null, email: null, imageFile: null }
+   state  = { title: null, body: null, userId: null, displayName: null, email: null, image: null }
 
 
     componentDidMount() {
@@ -29,7 +29,8 @@ class BlogList extends React.Component {
             title: event.target.value,
             userId: this.props.auth.spotifyID || this.props.auth.googleID || this.props.auth.userID,
             displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username || this.props.steamUserName,
-            email: this.props.auth.email
+            email: this.props.auth.email,
+            image: this.props.auth.avatar
         })
         console.log(this.state.title);
     }
@@ -39,7 +40,8 @@ class BlogList extends React.Component {
             body: event.target.value,
             userId: this.props.auth.spotifyID || this.props.auth.googleID || this.props.auth.userID,
             displayName: this.props.auth.spotifyUserName || this.props.auth.googleUserName || this.props.auth.username || this.props.steamUserName,
-            email: this.props.auth.email
+            email: this.props.auth.email,
+            image: this.props.auth.avatar
         })
         console.log(this.state.body);
     }
@@ -62,15 +64,16 @@ class BlogList extends React.Component {
     newPosts = () => {
         if(this.state.title != null && this.state.body != null)
         {
-            this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString(), Math.random().toString(32).substring(2) );
+            this.props.addNewPost(this.state.title, this.state.body, this.state.userId, this.state.email, this.state.displayName, Date(Date.now()).toString(), Math.random().toString(32).substring(2), this.state.image );
             this.setState({
                 title: null,
                 body: null,
                 userId: null,
                 displayName: null,
                 email: null,
-                imageFile: null
-            })
+                image: null
+            });
+            document.blogForm.reset();
         } else {
             alert("You must enter a title and message before submitting a blog post.");
             this.setState({
@@ -79,8 +82,9 @@ class BlogList extends React.Component {
                 userId: null,
                 displayName: null,
                 email: null,
-                imageFile: null
+                image: null
             })
+            document.blogForm.reset();
         }
         
     }
@@ -125,13 +129,12 @@ class BlogList extends React.Component {
                 <h1 className = "center">Blog Posts</h1>
                 {this.renderList()}
                 <h4 className = "center">Create a new blog post</h4>
-                <form>
-                    Title: <input onChange = {(event) => {this.newTitle(event)}} value = {this.state.value} required/>
+                <form method = "post" name = "blogForm">
+                    Title: <input onChange = {(event) => {this.newTitle(event)}} minlength="1" maxlength="120"required/>
                     Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
 
-                    <a className = "btn-large waves-effect waves-light green" name = "action" onClick = {() => this.newPosts()}>  
-                        Submit{/* <span><strong>Submit        </strong><i className = "material-icons small" >send</i></span> */}
-                    </a>  
+                    <input className = "btn-large waves-effect waves-light green" type = "button" onClick = {() => this.newPosts()} value = "Submit" />  
+                        
                 </form>
 
                

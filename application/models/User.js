@@ -20,7 +20,8 @@ const customSchema = new Schema({
     username: String,
     firstName: String,
     lastName: String,
-    userID: String
+    userID: String, 
+    avatar: Object
 });
 
 // Before saving a model, run this function. Encrypt a password using salt. This is called hashing. 

@@ -87,7 +87,8 @@ module.exports = app => {
                 body: req.body.body,
                 title: req.body.title,
                 date_created: await Date(Date.now()).toString(),
-                Id: req.body.Id
+                Id: req.body.Id,
+                avatar: req.body.avatar
             });
 
             try {
@@ -131,7 +132,8 @@ module.exports = app => {
                         email: req.body.email,
                         password: req.body.password,
                         userID: Math.random().toString(32).substring(2),
-                        imageURL: req.body.imageURL
+                        imageURL: req.body.imageURL,
+                        avatar: req.body.avatar
                     })
                     console.log(newUser);
                     User.register(newUser, req.body.password, function(err, user) {

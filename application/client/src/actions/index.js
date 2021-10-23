@@ -81,18 +81,20 @@ export const addNewPost = (title, body, userId, email, userName, date_created, I
 
 
 
-export const addNewUserCustom = function(username, password, firstName, lastName, email, imageURL) {
+export const addNewUserCustom = function(username, password, firstName, lastName, email, imageURL, avatar) {
         return async function(dispatch) {
-                const newUser = { username, password, firstName, lastName, email, imageURL };
+                const newUser = { username, password, firstName, lastName, email, imageURL, avatar };
                 const res = await axios.post('/api/register', newUser);
-
-                 dispatch({ type: ADD_NEW_USER, payload: newUser});
+                 
+                dispatch({ type: ADD_NEW_USER, payload: newUser});
+                 
         }
 }
 
 export const signInLocal = (username, password) => async (dispatch) => {
         const data = {"username": username, "password": password}
         const res = await axios.post('/auth/local', data);
+         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
 }
 
