@@ -17,7 +17,7 @@ class Header extends React.Component {
                     ]
                 )
             default:
-                if(this.props.auth.email) {
+                if(this.props.auth.email|| this.props.auth.userID ) {
                     return([
                             <li><a className = "btn" href = "/api/logout">Sign Out</a></li>,
                             <li><Link className = "btn grey" to = "/list">Blog Posts</Link></li>
