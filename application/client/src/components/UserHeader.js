@@ -7,14 +7,14 @@ class UserHeader extends React.Component {
 
     render() {
         const { auth } = this.props;
-        console.log(auth.avatar);
+        console.log(auth);
         if(!auth)
         {
             return null;
         }
         // Create a new File Reader object.
-        console.log(auth.avatar[0]);
-
+        //console.log(auth.avatar[0]);
+        
 
 
         return(
