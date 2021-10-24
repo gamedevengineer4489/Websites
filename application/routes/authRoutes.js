@@ -157,7 +157,7 @@ module.exports = app => {
                 passport.authenticate('local', { failureRedirect: '/login'}),
                 
                 function(req, res) {
-
+                    
                     res.send(req.user);
                 }
 

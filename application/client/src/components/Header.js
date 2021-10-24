@@ -17,12 +17,23 @@ class Header extends React.Component {
                     ]
                 )
             default:
-                return([
-                        
-                        <li><a className = "btn" href = "/api/logout">Sign Out</a></li>,
-                        <li><Link className = "btn grey" to = "/list">Blog Posts</Link></li>
-                    ]
-                )
+                if(this.props.auth.email) {
+                    return([
+                            <li><a className = "btn" href = "/api/logout">Sign Out</a></li>,
+                            <li><Link className = "btn grey" to = "/list">Blog Posts</Link></li>
+                        ]
+                    )
+                } else {
+                    return(
+                        [
+                            <li><a className = "btn" href = "/auth/spotify">Sign In with Spotify <i className = "spotify icon small" /></a></li>,
+                            <li><a className = "btn red" href = '/auth/google'>Sign In with Google <i className = "google icon small" /></a></li>,
+                            <li><a className = "btn grey" href = '/auth/steam'>Sign In with Steam <i className = "google icon small" /></a></li>,
+                            <li><a className = "btn brown" href = '/login'>Login <i className = "computer icon small" /></a></li>,
+                        ]
+                    )
+                }
+                
                 
         }
     }
