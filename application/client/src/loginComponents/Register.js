@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 class Register extends React.Component {
-    state = { username: null, password: null, reenteredPassword: null, firstName: null, lastName: null, email: null, imageURL: null, avatar: null,  name: null, lastModified: null, size: null, type: null, webkitRelativePath: "" };
+    state = { username: null, password: null, reenteredPassword: null, firstName: null, lastName: null, email: null, imageURL: null, avatar: null};
     
 
     obtainEncodedURLString = function(file, onLoadCallback) {
@@ -49,7 +49,19 @@ class Register extends React.Component {
         document.registrationForm.reset();
     }
 
-   
+   checkFileSize = (element) => {
+        var size = element.size;
+        if(size <= 10000)
+        {
+            // Size is limited to 10kb
+            this.setState({ avatar: element })
+        } else {
+            
+            document.getElementById("avatar").value = "";
+            alert('Image size cannot exceed 10kb. Please select a smaller image.');
+            return;
+        }
+   }
 
     render() {
         return(
@@ -62,7 +74,7 @@ class Register extends React.Component {
                             <label>Last Name:</label> <input type = "text" name = "last name" placeholder = "last name" onChange = {(event) => this.setState({ lastName: event.target.value})} required/>
                             <label>Email:</label> <input type = "email" name = "email" placeholder = "email" onChange = {(event) => this.setState({ email: event.target.value})}required/>
                             <label>imageURL(optional):</label> <input type = "url" name = "image URL" placeholder = "imageURL" onChange = {(event) => this.setState({ imageURL: event.target.value})}/>
-                            <label>imageFile(optional):</label> <input type = "file" name = "avatar" accept = "image/png, image/jpeg" onChange = {(event) => this.setState({ avatar: event.target.files[0] })}/>
+                            <label>imageFile(optional):</label> <input type = "file" id = "avatar"  accept = "image/png, image/jpeg" onChange = {(event) => this.checkFileSize(event.target.files[0])}/>
                             
                             <label>Image Selected </label>
                             <br />
