@@ -88,7 +88,10 @@ module.exports = app => {
                 title: req.body.title,
                 date_created: await Date(Date.now()).toString(),
                 Id: req.body.Id,
-                avatar: req.body.avatar
+                avatar: req.body.avatar, 
+                likes: 0,
+                dislikes: 0,
+                users: { email: req.body.email, responded: false }
             });
 
             try {
@@ -109,6 +112,115 @@ module.exports = app => {
             }
            
 
+        }
+    )
+
+    app.patch('/api/list/likes/:Id',
+        async function(req, res) {
+            console.log(req);
+
+            const {Id} = req.params;
+
+            Blog.updateOne(
+                {
+                    Id: Id,
+                    likes: 0,
+                    dislikes: 0,
+                    users: {
+                        $elemMatch: { email: req.user.email, responded: false }
+                    }
+                },
+                {
+                    $inc: { 'likes': 1 },
+                    $set: { 'users.$.responded': true },
+                }
+            ).exec();
+
+            Blog.updateOne(
+                {
+                    Id: Id,
+                    likes: 1,
+                    dislikes: 0,
+                    users: {
+                        $elemMatch: { email: req.user.email,  responded: true }
+                    }
+                },
+                {
+                    $set: { 'likes': 0, 'users.$.responded': false  },
+                }
+            ).exec();
+
+            Blog.updateOne(
+                {
+                    Id: Id,
+                    likes: 0,
+                    dislikes: 1,
+                    users: {
+                        $elemMatch: { email: req.user.email, responded: true }
+                    }
+                },
+                {
+                    $set: { 'likes': 1, 'dislikes': 0 },
+                   
+                }
+            ).exec();
+
+            res.send({});
+        }
+    )
+
+    app.patch('/api/list/dislikes/:Id',
+        async function(req, res) {
+            console.log(req);
+
+            const {Id} = req.params;
+
+            Blog.updateOne(
+                {
+                    Id: Id,
+                    likes: 0,
+                    dislikes: 0,
+                    users: {
+                        $elemMatch: { email: req.user.email, responded: false }
+                    }
+                },
+                {
+                    $inc: { 'dislikes': 1 },
+                    $set: { 'users.$.responded': true },
+                }
+            ).exec();
+
+            Blog.updateOne(
+                {
+                    Id: Id,
+                    likes: 0,
+                    dislikes: 1,
+                    users: {
+                        $elemMatch: { email: req.user.email, responded: true }
+                    }
+                },
+                {
+   
+                    $set: { 'dislikes': 0 , 'users.$.responded': false },
+                }
+            ).exec();
+
+            Blog.updateOne(
+                {
+                    Id: Id,
+                    likes: 1,
+                    dislikes: 0,
+                    users: {
+                        $elemMatch: { email: req.user.email, responded: true }
+                    }
+                },
+                {
+                    $set: { 'likes': 0, 'dislikes': 1 },
+                   
+                }
+            ).exec();
+
+            res.send({});
         }
     )
 

@@ -6,11 +6,8 @@ export default function(state = [], action) {
         case FETCH_POSTS_BLOG:
             return action.payload;
         case ADD_NEW_POST:
-            console.log(state);
             return [...state, action.payload];
         case DELETE_BLOG:
-            console.log(state);
-            state.map(blog => console.log(blog.Id));
             return state.filter(blog => blog.Id != action.payload);
         default:
             return state;

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const passportLocalMongoose = require('passport-local-mongoose');
-//const bcrypt = require('bcryptjs');
+const InputSchema = require('./Input');
 
 
 
@@ -21,7 +21,7 @@ const customSchema = new Schema({
     firstName: String,
     lastName: String,
     userID: String, 
-    // avatar: {type: [Object], blackbox: true }
+    
     avatar: String
 });
 

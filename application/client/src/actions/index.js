@@ -73,7 +73,7 @@ export const removeUndefinedValues = () => async (dispatch) => {
 }
 
 export const addNewPost = (title, body, userId, email, userName, date_created, Id) => async (dispatch) => {
-        const newPost = { userId: userId, username: userName, email: email, body: body, title: title, date_created: date_created, Id: Id  };
+        const newPost = { userId: userId, username: userName, email: email, body: body, title: title, date_created: date_created, Id: Id, likes: 0, dislikes: 0  };
         const result = await axios.post('/api/blog_posts', newPost);
 
         dispatch({ type: ADD_NEW_POST, payload: newPost});
@@ -88,6 +88,24 @@ export const addNewUserCustom = function(username, password, firstName, lastName
                  
                 dispatch({ type: ADD_NEW_USER, payload: newUser});
                  
+        }
+}
+
+export const likePost = (Id) => async (dispatch) => {
+        const res = await axios.patch(`/api/list/likes/${Id}`);
+        // console.log(res.data);
+
+        dispatch({ type: FETCH_POSTS_BLOG, payload: res.data })
+}
+
+
+export const dislikePost = function(Id) {
+        return async (dispatch, dislike) => {
+                console.log(Id);
+                const res = await axios.patch(`/api/list/dislikes/${Id}`, dislike);
+                // console.log(res.data);
+
+                dispatch({ type: FETCH_POSTS_BLOG, payload: res.data })
         }
 }
 

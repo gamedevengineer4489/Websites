@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const InputSchema = require('./Input');
 
 const blogSchema = new Schema({
     userId: String,
@@ -8,7 +9,10 @@ const blogSchema = new Schema({
     body: String,
     title: String,
     date_created: String,
-    Id: String
+    Id: String,
+    likes: Number,
+    dislikes: Number,
+    users: [InputSchema]
 });
 
 mongoose.model('blogs', blogSchema);

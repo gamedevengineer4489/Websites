@@ -1,7 +1,8 @@
 import React from 'react';
-import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify } from '../actions';
+import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify, likePost, dislikePost } from '../actions';
 import { connect } from 'react-redux';
 import UserHeader from './UserHeader';
+
 
 
 
@@ -11,17 +12,7 @@ class BlogList extends React.Component {
 
 
     componentDidMount() {
-
-       
-            
-                this.props.fetchPostsAndUsersBlog();
-            
-        
-        
-       
-        
-
-        
+        this.props.fetchPostsAndUsersBlog();
     }
 
     newTitle = (event) => {
@@ -94,7 +85,7 @@ class BlogList extends React.Component {
 
     renderList() {
             return this.props.blogs.map(blog => {
-                {console.log(blog.Id)}
+                {console.log(blog)}
                 return(
                     
                     <div className = "item" key = {Math.random() * 10}>
@@ -110,9 +101,12 @@ class BlogList extends React.Component {
                                 <p>{blog.date_created}</p>
                             </div>
                         </div>
-                        <form>
-                            <a className = "btn"  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete</a>
-                        </form>
+
+                            <a style = {{ cursor: 'pointer'}}  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete Post</a>
+                            <div className = "inline-icon right">
+                                {blog.likes} <a href = "/list" onClick = {() => this.props.likePost(blog.Id)} className = "button primary"><i className = "inline-icon from-bottom material-icons">thumb_up_alt</i></a> {blog.dislikes} <a href = "/list" onClick = {() =>  this.props.dislikePost(blog.Id)} className = "button primary"><i className = "from-bottom inline-icon material-icons">thumb_down_alt</i></a>
+                            </div>
+
                         <br />
                         <br />
                     </div>
@@ -133,7 +127,7 @@ class BlogList extends React.Component {
                     Title: <input onChange = {(event) => {this.newTitle(event)}} minlength="1" maxlength="120"required/>
                     Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
 
-                    <input className = "btn-large waves-effect waves-light green" type = "button" onClick = {() => this.newPosts()} value = "Submit" />  
+                    <button className = "btn" type = "button" onClick = {() => this.newPosts()} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>
                         
                 </form>
 
@@ -153,4 +147,4 @@ const mapStateToProps = (state) => {
     return { blogs: state.blogs, auth: state.auth }
 }
 
-export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify })(BlogList);
+export default connect(mapStateToProps, { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify, likePost, dislikePost })(BlogList);

@@ -73,14 +73,14 @@ class Register extends React.Component {
                             <label>First Name:</label> <input type = "text" name = "first name" placeholder = "first name" onChange = {(event) => this.setState({ firstName: event.target.value})} required/>
                             <label>Last Name:</label> <input type = "text" name = "last name" placeholder = "last name" onChange = {(event) => this.setState({ lastName: event.target.value})} required/>
                             <label>Email:</label> <input type = "email" name = "email" placeholder = "email" onChange = {(event) => this.setState({ email: event.target.value})}required/>
-                            <label>imageURL(optional):</label> <input type = "url" name = "image URL" placeholder = "imageURL" onChange = {(event) => this.setState({ imageURL: event.target.value})}/>
+                            {/* <label>imageURL(optional):</label> <input type = "url" name = "image URL" placeholder = "imageURL" onChange = {(event) => this.setState({ imageURL: event.target.value})}/> */}
                             <label>imageFile(optional):</label> <input type = "file" id = "avatar"  accept = "image/png, image/jpeg" onChange = {(event) => this.checkFileSize(event.target.files[0])}/>
                             
                             <label>Image Selected </label>
                             <br />
                             {this.state ? console.log(this.state) : null}
                             {this.state.avatar ? console.log(this.state.avatar) : null }
-                            {this.state.avatar ? <img style = {{ height: '200px', width: '200px'}} src = {URL.createObjectURL(this.state.avatar)} /> : <label>No picture selected</label>}
+                            {this.state.avatar ? <img style = {{ height: '100px', width: '100px'}} src = {URL.createObjectURL(this.state.avatar)} /> : <label>No picture selected</label>}
                            
                             <br />
        
