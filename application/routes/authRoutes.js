@@ -233,6 +233,24 @@ module.exports = app => {
         }
     )
 
+    app.patch('/api/blog_posts/edit/:blogID',
+        async function(req, res) {
+
+           
+            
+            Blog.updateOne(
+                {
+                    Id: req.params.blogID
+                },
+                {
+                    $set: { title: req.body.title, body: req.body.body }
+                }
+            ).exec();
+
+            res.send({});
+        }
+    )
+
     app.post('/api/register', 
         async function(req, res) {
                     // Save new User to database 

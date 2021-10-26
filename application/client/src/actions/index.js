@@ -100,9 +100,19 @@ export const likePost = (Id) => async (dispatch) => {
 
 
 export const dislikePost = function(Id) {
-        return async (dispatch, dislike) => {
+        return async (dispatch) => {
                 console.log(Id);
-                const res = await axios.patch(`/api/list/dislikes/${Id}`, dislike);
+                const res = await axios.patch(`/api/list/dislikes/${Id}`);
+                // console.log(res.data);
+
+                dispatch({ type: FETCH_POSTS_BLOG, payload: res.data })
+        }
+}
+
+export const editPost = function(blogID, title, body) {
+        return async (dispatch) => {
+                console.log(blogID);
+                const res = await axios.patch(`/api/blog_posts/edit/${blogID}`, {title : title, body: body});
                 // console.log(res.data);
 
                 dispatch({ type: FETCH_POSTS_BLOG, payload: res.data })
