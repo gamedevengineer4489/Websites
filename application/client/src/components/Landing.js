@@ -8,7 +8,7 @@ class Landing extends React.Component {
         return(
             <div>
                 <h1>Welcome to our website.</h1>
-                <img src = {Image2} style = {{width: '700px', height: '700px', marginLeft: '200px'}}/>
+                <img src = {Image2} style = {{width: '700px', height: '700px', marginLeft: '200px'}} alt = "landing" title = "headerImage"/>
             </div>
         )
     }
