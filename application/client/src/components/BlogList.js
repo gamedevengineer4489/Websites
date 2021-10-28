@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify, likePost, dislikePost } from '../actions';
 import { connect } from 'react-redux';
-import UserHeader from './UserHeader';
+
 
 
 
@@ -91,7 +91,7 @@ class BlogList extends React.Component {
                     <div className = "item" key = {Math.random() * 10}>
                         <span>
                         
-                        <img  style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username || "" : ""}</b>
+                        <img  alt = "i" style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username || "" : ""}</b>
                         </span>
                         <div className = "content">
                             <div className = "description">
@@ -102,11 +102,11 @@ class BlogList extends React.Component {
                             </div>
                         </div>
 
-                            <a style = {{ cursor: 'pointer'}}  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete Post</a>
+                            <a href = "/list" style = {{ cursor: 'pointer'}}  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete Post</a>
                             <a style = {{ cursor: 'pointer'}}  href = {`/list/${blog.Id}`}> Edit Post</a>
-                            <div className = "inline-icon right">
+                            {/* <div className = "inline-icon right">
                                 {blog.likes} <a href = "/list" onClick = {() => this.props.likePost(blog.Id)} className = "button primary"><i className = "inline-icon from-bottom material-icons">thumb_up_alt</i></a> {blog.dislikes} <a href = "/list" onClick = {() =>  this.props.dislikePost(blog.Id)} className = "button primary"><i className = "from-bottom inline-icon material-icons">thumb_down_alt</i></a>
-                            </div>
+                            </div> */}
 
                         <br />
                         <br />
@@ -125,7 +125,7 @@ class BlogList extends React.Component {
                 {this.renderList()}
                 <h4 className = "center">Create a new blog post</h4>
                 <form method = "post" name = "blogForm">
-                    Title: <input onChange = {(event) => {this.newTitle(event)}} minlength="1" maxlength="120"required/>
+                    Title: <input onChange = {(event) => {this.newTitle(event)}} minLength="1" maxLength="120"required/>
                     Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>
 
                     <button className = "btn" type = "button" onClick = {() => this.newPosts()} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>

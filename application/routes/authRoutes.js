@@ -121,13 +121,13 @@ module.exports = app => {
 
             const {Id} = req.params;
 
-            Blog.updateOne(
+            await Blog.updateOne(
                 {
                     Id: Id,
                     likes: 0,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email, responded: false }
+                        $elemMatch: { email: req.user.email, 'users.$.responded': false }
                     }
                 },
                 {
@@ -142,11 +142,11 @@ module.exports = app => {
                     likes: 1,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email,  responded: true }
+                        $elemMatch: { email: req.user.email,  'users.$.responded': true }
                     }
                 },
                 {
-                    $set: { 'likes': 0, dislikes: 0, 'users.$.responded': false  }
+                    $set: { 'likes': 0, 'dislikes': 0, 'users.$.responded': false  }
                 }
             ).exec();
 
@@ -156,7 +156,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 1,
                     users: {
-                        $elemMatch: { email: req.user.email, responded: true }
+                        $elemMatch: { email: req.user.email, 'users.$.responded': true }
                     }
                 },
                 {
@@ -181,7 +181,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email, responded: false }
+                        $elemMatch: { email: req.user.email, 'users.$.responded': false }
                     }
                 },
                 {
@@ -196,7 +196,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 1,
                     users: {
-                        $elemMatch: { email: req.user.email, responded: true }
+                        $elemMatch: { email: req.user.email, 'users.$.responded': true }
                     }
                 },
                 {
@@ -211,7 +211,7 @@ module.exports = app => {
                     likes: 1,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email, responded: true }
+                        $elemMatch: { email: req.user.email, 'users.$.responded': true }
                     }
                 },
                 {

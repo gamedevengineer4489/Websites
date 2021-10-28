@@ -1,5 +1,4 @@
 import React from "react";
-import Image1 from '../images/programmer.png';
 import Image2 from '../images/web.png';
 
 

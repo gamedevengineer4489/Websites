@@ -92,7 +92,7 @@ export const addNewUserCustom = function(username, password, firstName, lastName
 }
 
 export const likePost = (Id) => async (dispatch) => {
-        const res = await axios.patch(`/api/list/likes/${Id}`);
+        const res = axios.patch(`/api/list/likes/${Id}`);
         // console.log(res.data);
 
         dispatch({ type: FETCH_POSTS_BLOG, payload: res.data })
