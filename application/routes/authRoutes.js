@@ -146,7 +146,7 @@ module.exports = app => {
                     }
                 },
                 {
-                    $set: { 'likes': 0, 'users.$.responded': false  },
+                    $set: { 'likes': 0, dislikes: 0, 'users.$.responded': false  }
                 }
             ).exec();
 
@@ -160,7 +160,7 @@ module.exports = app => {
                     }
                 },
                 {
-                    $set: { 'likes': 1, 'dislikes': 0 },
+                    $set: { 'likes': 1, 'dislikes': 0, 'users.$.responded': true },
                    
                 }
             ).exec();
@@ -201,7 +201,7 @@ module.exports = app => {
                 },
                 {
    
-                    $set: { 'dislikes': 0 , 'users.$.responded': false },
+                    $set: { 'dislikes': 0 , 'likes': 0 , 'users.$.responded': false },
                 }
             ).exec();
 
@@ -215,7 +215,7 @@ module.exports = app => {
                     }
                 },
                 {
-                    $set: { 'likes': 0, 'dislikes': 1 },
+                    $set: { 'likes': 0, 'dislikes': 1, 'users.$.responded': true },
                    
                 }
             ).exec();

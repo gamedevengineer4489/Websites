@@ -90,8 +90,8 @@ class BlogList extends React.Component {
                     
                     <div className = "item" key = {Math.random() * 10}>
                         <span>
-                        {console.log(blog.Id)}
-                        <UserHeader userId = {this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username} />
+                        
+                        <img  style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username || "" : ""}</b>
                         </span>
                         <div className = "content">
                             <div className = "description">
