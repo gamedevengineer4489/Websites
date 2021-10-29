@@ -105,7 +105,7 @@ class BlogList extends React.Component {
                             <a href = "/list" style = {{ cursor: 'pointer'}}  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete Post</a>
                             <a style = {{ cursor: 'pointer'}}  href = {`/list/${blog.Id}`}> Edit Post</a>
                             {/* <div className = "inline-icon right">
-                                {blog.likes} <a href = "/list" onClick = {() => this.props.likePost(blog.Id)} className = "button primary"><i className = "inline-icon from-bottom material-icons">thumb_up_alt</i></a> {blog.dislikes} <a href = "/list" onClick = {() =>  this.props.dislikePost(blog.Id)} className = "button primary"><i className = "from-bottom inline-icon material-icons">thumb_down_alt</i></a>
+                                 <a href = "/list" onClick = {() => this.props.likePost(blog.Id)} className = "button primary">{blog.likes} <i className = "inline-icon from-bottom material-icons">thumb_up_alt</i></a> {blog.dislikes} <a href = "/list" onClick = {() =>  this.props.dislikePost(blog.Id)} className = "button primary"><i className = "from-bottom inline-icon material-icons">thumb_down_alt</i></a>
                             </div> */}
 
                         <br />

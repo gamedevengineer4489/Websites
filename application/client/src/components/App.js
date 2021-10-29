@@ -10,6 +10,7 @@ import Landing from './Landing';
 import BlogList from './BlogList';
 import Footer from './Footer';
 import BlogEdit from './BlogEdit';
+import BlogUnique from './BlogUnique';
 
 
 class App extends React.Component {
@@ -41,6 +42,7 @@ class App extends React.Component {
             <Route path = "/login" exact component = {Login} />
             <Route path = "/register" exact component = {Register} />
             <Route path = "/list/:blogId" exact component = {BlogEdit} />
+            <Route path = "/list/:userID/:username" exact component = {BlogUnique} /> {/* Each user has a unique userID */}
             <Footer />
           </div>
         </BrowserRouter>

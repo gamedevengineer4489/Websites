@@ -11,7 +11,7 @@ import _ from 'lodash';
 
 
 // import constants from types.js
-import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG, FETCH_USER_STEAM } from './types';
+import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG, FETCH_USER_STEAM, FETCH_OTHER_USER, FETCH_OTHER_USER_BLOGS } from './types';
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
@@ -138,6 +138,18 @@ export const fetchUserLocal = (id) => async (dispatch) => {
         const res = await axios.get(`/api/current_user/${id}`);
         
         dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
+}
+
+export const fetchUserOther = (id) => async (dispatch) => {
+        const res = await axios.get(`/api/user/${id}`);
+        
+        dispatch({ type: FETCH_OTHER_USER, payload: res.data });
+}
+
+export const fetchBlogsOther = (id) => async (dispatch) => {
+        const res = await axios.get(`/api/blog/${id}`);
+        
+        dispatch({ type: FETCH_OTHER_USER_BLOGS, payload: res.data });
 }
 
 export const deleteBlog = (id) => async(dispatch) => {

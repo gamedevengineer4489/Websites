@@ -127,7 +127,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email, 'users.$.responded': false }
+                        $elemMatch: { email: req.user.email, responded: false }
                     }
                 },
                 {
@@ -142,7 +142,7 @@ module.exports = app => {
                     likes: 1,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email,  'users.$.responded': true }
+                        $elemMatch: { email: req.user.email,  responded: true }
                     }
                 },
                 {
@@ -156,7 +156,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 1,
                     users: {
-                        $elemMatch: { email: req.user.email, 'users.$.responded': true }
+                        $elemMatch: { email: req.user.email, responded: true }
                     }
                 },
                 {
@@ -165,7 +165,8 @@ module.exports = app => {
                 }
             ).exec();
 
-            res.send({});
+            const blogs = await Blog.find({ userId: req.user.userID }).exec();
+            res.send(blogs);
         }
     )
 
@@ -181,7 +182,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email, 'users.$.responded': false }
+                        $elemMatch: { email: req.user.email, responded: false }
                     }
                 },
                 {
@@ -196,7 +197,7 @@ module.exports = app => {
                     likes: 0,
                     dislikes: 1,
                     users: {
-                        $elemMatch: { email: req.user.email, 'users.$.responded': true }
+                        $elemMatch: { email: req.user.email, responded: true }
                     }
                 },
                 {
@@ -211,7 +212,7 @@ module.exports = app => {
                     likes: 1,
                     dislikes: 0,
                     users: {
-                        $elemMatch: { email: req.user.email, 'users.$.responded': true }
+                        $elemMatch: { email: req.user.email, responded: true }
                     }
                 },
                 {
@@ -220,7 +221,10 @@ module.exports = app => {
                 }
             ).exec();
 
-            res.send({});
+            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            res.send(blogs);
+
+            
         }
     )
 
@@ -247,7 +251,8 @@ module.exports = app => {
                 }
             ).exec();
 
-            res.send({});
+            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            res.send(blogs);
         }
     )
 
@@ -329,12 +334,32 @@ module.exports = app => {
             }
         )
 
+        app.get('/api/user/:userID',
+        
+            async function(req, res)
+            {
+                let foundUser = await User.findOne({ userID: req.params.userID });
+                res.send(foundUser);
+            }
+        )
+
+        app.get('/api/blog/:userID',
+        
+            async function(req, res)
+            {
+                let foundBlogs = await Blog.find({ userId: req.params.userID });
+                res.send(foundBlogs);
+            }
+        )
+
         app.delete('/api/blog_posts/:id',
             async function(req, res)
             {
                 console.log(req);
                 await Blog.findOneAndDelete({Id: req.params.id}).exec();
-                res.send({});
+                
+                const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+                res.send(blogs);
             }
         
         )

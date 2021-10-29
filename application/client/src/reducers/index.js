@@ -6,10 +6,13 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import blogReducer from "./blogReducer";
+import otherUserBlogsReducer from "./otherUserBlogsReducer";
+import otherUserReducer from "./otherUserReducer";
 // No brackets here because authReducer was exported using export default.
 
 export default combineReducers({
     auth: authReducer,
     blogs: blogReducer,
-    
+    other: otherUserReducer,
+    otherBlogs: otherUserBlogsReducer
 });
