@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Blog = mongoose.model('blogs');
 const User = mongoose.model('users');
 const keys = require('../config/keys');
+const requireLogin = require('../middleware/requireLogin');
 
 
 module.exports = app => {
@@ -71,7 +72,7 @@ module.exports = app => {
 
 
         
-    app.post('/api/blog_posts',
+    app.post('/api/blog_posts', requireLogin,
         // Post the blog's data to the mongoDB database
 
         
@@ -115,7 +116,7 @@ module.exports = app => {
         }
     )
 
-    app.patch('/api/list/likes/:Id',
+    app.patch('/api/list/likes/:Id', requireLogin,
         async function(req, res) {
             console.log(req);
 
@@ -170,7 +171,7 @@ module.exports = app => {
         }
     )
 
-    app.patch('/api/list/dislikes/:Id',
+    app.patch('/api/list/dislikes/:Id', requireLogin,
         async function(req, res) {
             console.log(req);
 
@@ -228,7 +229,7 @@ module.exports = app => {
         }
     )
 
-    app.get('/api/blog_posts',
+    app.get('/api/blog_posts', requireLogin,
         async function(req, res) {
 
            
@@ -237,7 +238,7 @@ module.exports = app => {
         }
     )
 
-    app.patch('/api/blog_posts/edit/:blogID',
+    app.patch('/api/blog_posts/edit/:blogID', requireLogin,
         async function(req, res) {
 
            
@@ -301,7 +302,7 @@ module.exports = app => {
             
             
             
-            app.post('/api/current_user_local', 
+            app.post('/api/current_user_local',
                     
                 async function(req, res) {
                     console.log('hello world');
@@ -313,7 +314,7 @@ module.exports = app => {
             
         )
 
-        app.get('/api/current_user', 
+        app.get('/api/current_user',
     
             async function(req, res) {
 
@@ -324,7 +325,7 @@ module.exports = app => {
             }
         )
 
-        app.get('/api/current_user/:id', 
+        app.get('/api/current_user/:id',
         
             async function(req, res) {
 
@@ -333,7 +334,7 @@ module.exports = app => {
 
             }
         )
-
+            // The user can access a blog regardless of whether they are logged in or not. 
         app.get('/api/user/:userID',
         
             async function(req, res)
@@ -352,7 +353,7 @@ module.exports = app => {
             }
         )
 
-        app.delete('/api/blog_posts/:id',
+        app.delete('/api/blog_posts/:id', requireLogin,
             async function(req, res)
             {
                 console.log(req);

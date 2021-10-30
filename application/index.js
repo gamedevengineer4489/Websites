@@ -37,7 +37,7 @@ const app = express();
 
 // Need these two apis for authentication
 // We use the body parser api to get access to data stored on a request body property. 
-// From the documentation: "Parse incoming request bodies in a middleware before your handlers, available under the req.body propery".
+// From the documentation: "Parse incoming request bodies in a middleware before your handlers, available under the req.body propery". !!VERY IMPORTANT
 // Also from the documentation: "As req.body's shape is based on user-controlled input, all properties and values in this object are untrusted and should be validated before trusting"
 // bodyParser.json only parses json and only looks at requests where the Content-Type header matches the type opeion. 
 app.use(bodyParser.json());

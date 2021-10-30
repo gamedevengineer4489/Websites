@@ -12,19 +12,22 @@ class BlogUnique extends React.Component {
     renderList() {
         return this.props.otherBlogs.map(blog => {
             return(
-                <div className = "container" key = {Math.random() * 10}>
-                    <div className = "card-content">
-                        <div className = "description">
-                            <h5>{blog.title}</h5>
-                            <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
-                            <p>{blog.date_created}</p>
+                
+                    <div className = "container" key = {Math.random() * 10}>
+                        <div className = "card-content">
+                            <div className = "description">
+                                <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
+                                    <h5>{blog.title}</h5>
+                                </a>
+                                    <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
+                                    <p>{blog.date_created}</p>
+                            </div>
                         </div>
+                        <br />
+                        <br />
                     </div>
-                    <br />
-                    <br />
-                </div>
-
-        )
+                
+            )
         })
     }
 
@@ -46,7 +49,7 @@ class BlogUnique extends React.Component {
 
 const mapStateToProps = (state) => {
     {console.log(state)}
-    return { other: state.other, otherBlogs: state.otherBlogs }
+    return { auth: state.auth, other: state.other, otherBlogs: state.otherBlogs }
 }
 
 

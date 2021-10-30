@@ -91,23 +91,21 @@ class BlogList extends React.Component {
                     <div className = "item" key = {Math.random() * 10}>
                         <span>
                         
-                        <img  alt = "i" style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username || "" : ""}</b>
+                        <img  alt = "i" style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth ? this.props.auth.userID : ""}/${this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username : ""}`}><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username : ""}</b></a>
                         </span>
                         <div className = "content">
                             <div className = "description">
-                                {/* //blog.Id */}
-                                <h5>{blog.title}</h5>
-                                <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
-                                <p>{blog.date_created}</p>
+                                <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
+                                    <h5>{blog.title}</h5>
+                                </a>
+                                    <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
+                                    <p>{blog.date_created}</p>
+                                
                             </div>
                         </div>
 
-                            <a href = "/list" style = {{ cursor: 'pointer'}}  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete Post</a>
-                            <a style = {{ cursor: 'pointer'}}  href = {`/list/${blog.Id}`}> Edit Post</a>
-                            {/* <div className = "inline-icon right">
-                                 <a href = "/list" onClick = {() => this.props.likePost(blog.Id)} className = "button primary">{blog.likes} <i className = "inline-icon from-bottom material-icons">thumb_up_alt</i></a> {blog.dislikes} <a href = "/list" onClick = {() =>  this.props.dislikePost(blog.Id)} className = "button primary"><i className = "from-bottom inline-icon material-icons">thumb_down_alt</i></a>
-                            </div> */}
-
+                            <a href = "/list" style = {{ cursor: 'pointer', textDecoration: 'none'}}  onClick = {() => this.deleteThisBlog(blog.Id)} >Delete Post</a>
+                            <a style = {{ cursor: 'pointer', textDecoration: 'none'}}  href = {`/list/${blog.Id}`}> Edit Post</a>
                         <br />
                         <br />
                     </div>
