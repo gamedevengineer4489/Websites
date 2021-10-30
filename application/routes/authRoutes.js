@@ -364,6 +364,33 @@ module.exports = app => {
             }
         
         )
+
+        app.patch('/api/blog/:id', requireLogin,
+
+            
+            async function(req, res)
+            {
+                
+                console.log(req.params);
+                console.log(req.body);
+                const {Id} = req.params;
+                Blog.findOneAndUpdate(
+                    {
+                        Id: Id
+                    },
+                    {
+                        $push: {
+                            comments: {
+                                email: req.body.email,
+                                username: req.body.username,
+                                comment: req.body.comment
+                            }
+                        }
+                    
+                    }
+                )
+            }
+        )
     }
 
 
