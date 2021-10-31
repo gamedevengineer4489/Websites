@@ -373,22 +373,29 @@ module.exports = app => {
                 
                 console.log(req.params);
                 console.log(req.body);
-                const {Id} = req.params;
+                const {id} = req.params;
                 Blog.findOneAndUpdate(
                     {
-                        Id: Id
+                        Id: id
                     },
                     {
                         $push: {
                             comments: {
                                 email: req.body.email,
                                 username: req.body.username,
-                                comment: req.body.comment
+                                comment: req.body.comment, 
+                                submissionDate: Date(Date.now()).toString()
                             }
                         }
                     
                     }
-                )
+                ).exec();
+
+                let blog = Blog.findOne({
+                    Id: id
+                })
+
+                res.send(blog);
             }
         )
     }

@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class Blog extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { comment: null, username: null, email: null }
-    }
+    
+    state = { comment: null, username: null, email: null }
+    
 
     componentDidMount() {
         console.log(window.location.pathname.split("/"));
@@ -14,7 +13,7 @@ class Blog extends React.Component {
         this.props.fetchBlogsOther(window.location.pathname.split("/")[2]);
     }
 
-    addANewComment(comment) {
+    addANewComment(comment, username, email) {
         // People can only post comments if logged in
         this.setState({
             comment: comment,
@@ -22,11 +21,32 @@ class Blog extends React.Component {
             email: this.props.auth ? this.props.auth.email : "anonymous@yahoo.com"
         })
 
-        if(this.state.comment && this.state.username && this.state.email)
-        {
-            // submit comment
-            this.props.submitComment(this.state.comment, this.state.username, this.state.email, window.location.pathname.split("/")[4])
-        }
+        
+        // submit comment
+        this.props.submitComment(comment, username, email, window.location.pathname.split("/")[4], this.state.email, window.location.pathname.split("/")[2])
+        document.location.replace(document.location.href);
+        
+    }
+
+    renderComments() {
+        return this.props.blog[0].comments.map(comment => {
+            
+                return(
+                    <div className = "card" key = {Math.random() * 10}>
+                        <div className = "card-content">
+                            <div className = "card-title">
+                                <strong>{comment.username}</strong>
+                            </div>
+
+                            <p>{comment.comment}</p>
+                            <br />
+                            <p>{comment.submissionDate}</p>
+                        </div>
+                    </div>
+                )
+            
+        })
+        
     }
 
 
@@ -51,17 +71,20 @@ class Blog extends React.Component {
                             <p>
                                 {this.props.blog[0] ? this.props.blog[0].body : ""}
                             </p>
-                            <br />
+                           
                         </div>
                     </div>
-                    List of Comments
+                    <h5>Comments</h5>
+                    <hr style = {{ height: '1px', backgroundColor: 'green'}}/>
+                    </center>
+                    {this.props.blog[0] ? this.renderComments() : "No comments. Be the first to leave a comment."}
                     <br />
                     <br />
                     <div id = "commentForm">
                         <strong>Comment:</strong> <textarea onChange = {(event) => this.setState({ comment: event.target.value })} />
-                        <button className = "btn" type = "button" onClick = {() => this.addANewComment(this.state.comment)} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>
+                        <button className = "btn" type = "button" onClick = {() => this.addANewComment(this.state.comment, this.props.auth ? (this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username) : "Anonymous User", this.props.auth ? this.props.auth.email : "anonymous@yahoo.com")} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>
                     </div>
-                </center>
+                
                 
             </div>
         )

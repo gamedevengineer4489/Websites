@@ -120,8 +120,10 @@ class BlogList extends React.Component {
                 
                
                 <h1 className = "center">Blog Posts</h1>
-                {this.renderList()}
-                <h4 className = "center">Create a new blog post</h4>
+                <center>
+                    {this.renderList()}
+                    <h4 className = "center">Create a new blog post</h4>
+                </center>
                 <form method = "post" name = "blogForm">
                     Title: <input onChange = {(event) => {this.newTitle(event)}} minLength="1" maxLength="120"required/>
                     Message: <textarea onChange = {(event) => {this.newMessage(event)}} required/>

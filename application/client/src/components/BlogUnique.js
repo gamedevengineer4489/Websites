@@ -16,7 +16,7 @@ class BlogUnique extends React.Component {
                     <div className = "container" key = {Math.random() * 10}>
                         <div className = "card-content">
                             <div className = "description">
-                                <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
+                                <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.other.userID}/${this.props.other.googleUserName || this.props.other.spotifyUserName || this.props.other.username}/${blog.Id}`}>
                                     <h5>{blog.title}</h5>
                                 </a>
                                     <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>

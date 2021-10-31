@@ -160,10 +160,10 @@ export const deleteBlog = (id) => async(dispatch) => {
 
 }
 
-export const submitComment = (comment, username, email, id) => async(dispatch) => {
+export const submitComment = (comment, username, email, id, otherId) => async(dispatch) => {
         const res = await axios.patch(`/api/blog/${id}`, { comment: comment, username: username, email: email, id: id});
         console.log(res.data);
-        dispatch({ type: FETCH_OTHER_USER_BLOGS, payload: res.data })
+        dispatch(fetchBlogsOther(otherId));
 
 }
 
