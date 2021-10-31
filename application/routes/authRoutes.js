@@ -353,6 +353,17 @@ module.exports = app => {
             }
         )
 
+        app.get('/api/users',
+        
+            async function(req, res)
+            {
+                
+                let foundUsers = await User.find();
+                console.log(foundUsers);
+                res.send(foundUsers);
+            }
+        )
+
         app.delete('/api/blog_posts/:id', requireLogin,
             async function(req, res)
             {

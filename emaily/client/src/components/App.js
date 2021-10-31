@@ -9,6 +9,7 @@ import SurveyNew from './emails/SurveyNew';
 import Dashboard from './Dashboard';
 
 
+
 class App extends React.Component {
     componentDidMount() {
         this.props.fetchUser();
@@ -23,6 +24,7 @@ class App extends React.Component {
                         <Route exact path = "/" component = {Landing} />
                         <Route exact path = "/surveys" component = {Dashboard} />
                         <Route path = "/surveys/new" component = {SurveyNew} />
+                        
                     </div>
                     
 

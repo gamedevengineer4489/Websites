@@ -11,7 +11,7 @@ import _ from 'lodash';
 
 
 // import constants from types.js
-import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG, FETCH_USER_STEAM, FETCH_OTHER_USER, FETCH_OTHER_USER_BLOGS } from './types';
+import { FETCH_USER_GOOGLE, FETCH_USER_SPOTIFY, FETCH_POSTS_BLOG, FETCH_USERS_BLOG, REMOVE_UNDEFINED_VALUES, ADD_NEW_POST, ADD_NEW_USER, FETCH_USER_LOCAL, DELETE_BLOG, FETCH_USER_STEAM, FETCH_OTHER_USER, FETCH_OTHER_USER_BLOGS, OBTAIN_ALL_USERS } from './types';
 
 // Use axios to send requests to our express server.
 export const fetchUserSpotify = () => async (dispatch) => {
@@ -165,6 +165,13 @@ export const submitComment = (comment, username, email, id, otherId) => async(di
         console.log(res.data);
         dispatch(fetchBlogsOther(otherId));
 
+}
+
+// Obtain all users
+export const obtainAllUsers = () => async (dispatch) => {
+        const res = await axios.get('/api/users');
+        console.log(res.data);
+        dispatch({type: OBTAIN_ALL_USERS, payload: res.data });
 }
 
 

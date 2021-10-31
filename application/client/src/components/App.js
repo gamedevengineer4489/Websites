@@ -12,6 +12,7 @@ import Footer from './Footer';
 import BlogEdit from './BlogEdit';
 import BlogUnique from './BlogUnique';
 import Blog from './Blog';
+import AllUsers from './AllUsers';
 
 class App extends React.Component {
   componentDidMount() {
@@ -44,6 +45,7 @@ class App extends React.Component {
             <Route path = "/list/:blogId" exact component = {BlogEdit} />
             <Route path = "/list/:userID/:username" exact component = {BlogUnique} /> {/* Each user has a unique userID */}
             <Route path = "/list/:userID/:username/:blogID" exact component = {Blog} /> {/* Each blog has a unique Id */}
+            <Route path = "/users" exact component = {AllUsers} />
             <Footer />
           </div>
         </BrowserRouter>

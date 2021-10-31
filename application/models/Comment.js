@@ -8,4 +8,4 @@ const commentSchema = new mongoose.Schema({
     submissionDate: String
 })
 
-mongoose.model('comments', commentSchema);
+module.exports = commentSchema;

@@ -20,6 +20,7 @@ class Header extends React.Component {
                 if(this.props.auth.email|| this.props.auth.userID ) {
                     return([
                             <li key = "4"><a className = "btn" href = "/api/logout">Sign Out</a></li>,
+                            <li key = "7"><a className = "btn pink" href = "/users">Other Blogs</a></li>,
                             <li key = "5"><Link className = "btn grey" to = "/list">Blog Posts</Link></li>
                         ]
                     )
