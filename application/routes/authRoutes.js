@@ -394,7 +394,8 @@ module.exports = app => {
                             comments: {
                                 email: req.body.email,
                                 username: req.body.username,
-                                comment: req.body.comment, 
+                                comment: req.body.comment,
+                                userID: req.body.userID, 
                                 submissionDate: Date(Date.now()).toString()
                             }
                         }
@@ -407,6 +408,25 @@ module.exports = app => {
                 })
 
                 res.send(blog);
+            }
+        )
+
+        app.delete('/api/blog/comment/:id/:blogID/:otherUserID', requireLogin,
+            async function(req, res)
+            {
+                console.log(req.params);
+                Blog.findOneAndUpdate(
+                    {
+                        _id: req.params.blogID
+                    },
+                    {
+                         $pull: { 'comments': {_id: req.params.id }}
+                    }
+                ).exec();
+
+                let blogs = Blog.find({userId: req.params.otherUserID}).exec();
+
+                res.send(blogs);
             }
         )
     }

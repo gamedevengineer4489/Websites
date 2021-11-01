@@ -5,7 +5,8 @@ const commentSchema = new mongoose.Schema({
     email: String,
     username: String,
     comment: String,
-    submissionDate: String
+    submissionDate: String,
+    userID: String
 })
 
 module.exports = commentSchema;

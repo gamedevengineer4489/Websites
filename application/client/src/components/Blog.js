@@ -23,13 +23,15 @@ class Blog extends React.Component {
 
         
         // submit comment
-        this.props.submitComment(comment, username, email, window.location.pathname.split("/")[4], this.state.email, window.location.pathname.split("/")[2])
+        this.props.submitComment(comment, username, email, this.props.auth.userID, window.location.pathname.split("/")[4],  window.location.pathname.split("/")[2])
         document.location.replace(document.location.href);
         
     }
 
     renderComments() {
-        return this.props.blog[0].comments.map(comment => {
+        if(this.props.blog[0].comments.length != 0)
+        {
+            return this.props.blog[0].comments.map(comment => {
             
                 return(
                     <div className = "card" key = {Math.random() * 10}>
@@ -42,11 +44,16 @@ class Blog extends React.Component {
                             <br />
                             <p>{comment.submissionDate}</p>
                         </div>
+                        <div className = "card-action">
+                            {this.props.auth && this.props.auth.userID === comment.userID ? <a onClick = {() => this.props.deleteComment(comment._id, this.props.blog[0]._id, this.props.other.userID)} style = {{ cursor: 'pointer', textDecoration: 'none', color: 'red' }}><code>Delete Comment</code></a> : ""}
+                        </div>
                     </div>
                 )
             
-        })
+            })
+        }
         
+        return <div><strong>No comments posted. Be the first to comment on this blog post.</strong></div>
     }
 
 
