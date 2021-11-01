@@ -13,7 +13,7 @@ class BlogUnique extends React.Component {
         return this.props.otherBlogs.map(blog => {
             return(
                 
-                    <div className = "container" key = {Math.random() * 10}>
+                    <div className = "card" key = {Math.random() * 10}>
                         <div className = "card-content">
                             <div className = "description">
                                 <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.other.userID}/${this.props.other.googleUserName || this.props.other.spotifyUserName || this.props.other.username}/${blog.Id}`}>
