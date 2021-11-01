@@ -27,7 +27,7 @@ class AllUsers extends React.Component {
                 <center>
                     <h3 ><mark >All Users Blogs</mark></h3>
                     <br />
-                    {this.props.users ? this.renderUsers() : "No Users have accessed this website yet."}
+                    {this.props.users.length > 0 ? this.renderUsers() : "No Users have accessed this website yet."}
                 </center>
             </div>
         )

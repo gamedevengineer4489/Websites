@@ -39,7 +39,7 @@ class BlogUnique extends React.Component {
                     <img src = {this.props.other ? (this.props.other.imageURLSpotify || this.props.other.imageURLGoogle || this.props.other.avatar ) : ""}/>
                     <hr />
                     <br />
-                    {this.renderList()}
+                    {this.props.otherBlogs[0] ? this.renderList() : <center><strong>This user has not posted any Blogs.</strong></center>}
                 </center>
             </div>
         )

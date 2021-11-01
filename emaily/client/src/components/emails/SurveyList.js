@@ -60,11 +60,8 @@ class SurveyList extends Component {
       <div>
         <br />
         <button className = "btn" onClick = {() => this.props.fetchSurveysByTitle()}>Sort By Title</button>
-        <span> </span>
         <button className = "btn" onClick = {() => this.props.fetchSurveysBySentDate()}>Sort By Sent Date</button>
-        <span> </span>
         <button className = "btn" onClick = {() => this.props.fetchSurveysByNo()}>Sort By No</button>
-        <span> </span>
         <button className = "btn" onClick = {() => this.props.fetchSurveysByYes()}>Sort By Yes</button>
         {this.renderSurveys()}
       </div>
