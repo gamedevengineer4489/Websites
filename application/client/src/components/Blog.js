@@ -77,7 +77,7 @@ class Blog extends React.Component {
                     <h5>Comments</h5>
                     <hr style = {{ height: '1px', backgroundColor: 'green'}}/>
                 </center>
-                    {this.renderComments()}
+                    {this.props.blog[0] ? this.renderComments() : 'No comments.'}
                     <br />
                     <br />
                     <div id = "commentForm">

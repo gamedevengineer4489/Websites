@@ -88,15 +88,15 @@ class BlogList extends React.Component {
                 {console.log(blog)}
                 return(
                     
-                    <div className = "item" key = {Math.random() * 10}>
-                        <span>
+                    <div className = "card" key = {Math.random() * 10}>
                         
-                        <img  alt = "i" style = {{ width: '60px', height: '60px', borderRadius: '40px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth ? this.props.auth.userID : ""}/${this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username : ""}`}><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username : ""}</b></a>
-                        </span>
-                        <div className = "content">
+                        
+                        <img  alt = "i" style = {{ width: '60px', height: '60px', borderRadius: '40px', marginTop: '10px' }} src={this.props.auth ? this.props.auth.imageURLGoogle || this.props.auth.imageURLSpotify || this.props.auth.imageURLSteam || this.props.auth.avatar || this.props.auth.imageURL || 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1' : 'https://th.bing.com/th/id/OIP.aZmeezB0ccZ_TZsi6odQ0wAAAA?pid=ImgDet&rs=1'} /><a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth ? this.props.auth.userID : ""}/${this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username : ""}`}><b style = {{ fontSize: 'x-large', margin: '8px'}}>{this.props.auth ? this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username : ""}</b></a>
+                        
+                        <div className = "card-content">
                             <div className = "description">
                                 <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
-                                    <h5>{blog.title}</h5>
+                                    <h5 className = "card-title">{blog.title}</h5>
                                 </a>
                                     <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
                                     <p>{blog.date_created}</p>
