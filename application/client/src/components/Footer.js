@@ -8,7 +8,6 @@ class Footer extends React.Component {
                     
                     <footer id = "footer" style = {{ padding: '1em'}}>  
                         2021 Copyright OC Websites
-                        
                     </footer>  
                 </div>      
             </div>

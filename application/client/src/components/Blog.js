@@ -46,6 +46,7 @@ class Blog extends React.Component {
                         </div>
                         <div className = "card-action">
                             {this.props.auth && this.props.auth.userID === comment.userID ? <a onClick = {() => this.props.deleteComment(comment._id, this.props.blog[0]._id, this.props.other.userID)} style = {{ cursor: 'pointer', textDecoration: 'none', color: 'red' }}><code>Delete Comment</code></a> : ""}
+                            {this.props.auth && this.props.auth.userID === comment.userID ? <a style = {{ cursor: 'pointer', textDecoration: 'none', color: 'red' }}><code>Edit Comment</code></a> : ""}
                         </div>
                     </div>
                 )
@@ -91,7 +92,7 @@ class Blog extends React.Component {
                         <strong>Comment:</strong> <textarea onChange = {(event) => this.setState({ comment: event.target.value })} />
                         <button className = "btn" type = "button" onClick = {() => this.addANewComment(this.state.comment, this.props.auth ? (this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username) : "Anonymous User", this.props.auth ? this.props.auth.email : "anonymous@yahoo.com")} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>
                     </div>
-                
+
                 
             </div>
         )

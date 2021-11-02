@@ -140,13 +140,7 @@ class BlogList extends React.Component {
                     <button className = "btn" type = "button" onClick = {() => this.newPosts()} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>
                         
                 </form>
-
                
-
-                <br />
-                <br />
-                <br />
-                <br />
             </div>
         )
     }
