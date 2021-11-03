@@ -434,12 +434,19 @@ module.exports = app => {
             async function(req, res)
             {
                 console.log(req.params);
-                Blog.findOneAndUpdate(
+                console.log(req.body);
+                
+
+
+                Blog.updateOne(
                     {
-                        _id: req.params.blogID
+                        Id: req.params.blogID,
+                        comments: {
+                            $elemMatch: { _id: req.params.id }
+                        }
                     },
                     {
-                         $pull: { 'comments': {_id: req.params.id }}
+                         $set: {'comments.$.comment': req.body.comment}
                     }
                 ).exec();
 

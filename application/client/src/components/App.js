@@ -13,6 +13,7 @@ import BlogEdit from './BlogEdit';
 import BlogUnique from './BlogUnique';
 import Blog from './Blog';
 import AllUsers from './AllUsers';
+import CommentEdit from './CommentEdit';
 
 class App extends React.Component {
   componentDidMount() {
@@ -39,6 +40,7 @@ class App extends React.Component {
             <Header />
             <br />
             <Route path = "/" exact component = {Landing} />
+            <Route path = "/edit/:blogID/:commentID" exact component = {CommentEdit} />
             <Route path = "/list" exact component = {BlogList} />
             <Route path = "/login" exact component = {Login} />
             <Route path = "/register" exact component = {Register} />
@@ -46,6 +48,7 @@ class App extends React.Component {
             <Route path = "/list/:userID/:username" exact component = {BlogUnique} /> {/* Each user has a unique userID */}
             <Route path = "/list/:userID/:username/:blogID" exact component = {Blog} /> {/* Each blog has a unique Id */}
             <Route path = "/users" exact component = {AllUsers} />
+            
             <Footer />
           </div>
         </BrowserRouter>

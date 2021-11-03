@@ -166,17 +166,22 @@ export const deleteComment = (id, blogID, otherUserID) => async (dispatch) => {
         dispatch(fetchBlogsOther(otherUserID));
 }
 
+export const editComment = (id, blogID, otherUserID, comment, username) => async (dispatch) => {
+        const res = await axios.patch(`/api/blog/comment/edit/${id}/${blogID}/${otherUserID}`, {comment, username});
+
+        dispatch(fetchBlogsOther(otherUserID));
+}
+
 export const submitComment = (comment, username, email, userID, id, otherId) => async(dispatch) => {
         const res = await axios.patch(`/api/blog/${id}`, { comment: comment, username: username, userID: userID, email: email, id: id});
-        console.log(res.data);
+        
         dispatch(fetchBlogsOther(otherId));
-
 }
 
 // Obtain all users
 export const obtainAllUsers = () => async (dispatch) => {
         const res = await axios.get('/api/users');
-        console.log(res.data);
+        
         dispatch({type: OBTAIN_ALL_USERS, payload: res.data });
 }
 
