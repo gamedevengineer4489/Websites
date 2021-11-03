@@ -46,7 +46,7 @@ class Blog extends React.Component {
                         </div>
                         <div className = "card-action">
                             {this.props.auth && this.props.auth.userID === comment.userID ? <a onClick = {() => this.props.deleteComment(comment._id, this.props.blog[0]._id, this.props.other.userID)} style = {{ cursor: 'pointer', textDecoration: 'none', color: 'red' }}><code>Delete Comment</code></a> : ""}
-                            {this.props.auth && this.props.auth.userID === comment.userID ? <a href = {`/edit/${this.props.blog[0].Id}/${comment._id}`} style = {{ cursor: 'pointer', textDecoration: 'none', color: 'red' }}><code>Edit Comment</code></a> : ""}
+                            {this.props.auth && this.props.auth.userID === comment.userID ? <a href = {`/edit/${this.props.blog[0].Id}/${comment._id}/${this.props.blog[0].userId}`} style = {{ cursor: 'pointer', textDecoration: 'none', color: 'red' }}><code>Edit Comment</code></a> : ""}
                         </div>
                     </div>
                 )

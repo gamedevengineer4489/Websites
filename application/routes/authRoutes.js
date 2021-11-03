@@ -24,7 +24,7 @@ module.exports = app => {
             res.redirect('/list');
         }
     )
-    ///////////
+
     app.get(
         '/auth/spotify',
         passport.authenticate('spotify', {

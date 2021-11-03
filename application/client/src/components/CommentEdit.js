@@ -8,9 +8,8 @@ class CommentEdit extends React.Component {
     state = { comment: null }
 
     componentDidMount() {
-        this.props.fetchPostsAndUsersBlog();
-
-        
+        this.props.fetchUserOther(window.location.href.split("/")[6]);
+        this.props.fetchBlogsOther(window.location.href.split("/")[6]);
     }
 
     
@@ -35,9 +34,9 @@ class CommentEdit extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-    console.log(state.blogs);
+    {console.log(state)}
     // return { blog: state.blogs.filter(function(blog) {return blog.Id === window.location.pathname.substring(6)} ), comment: state.blogs.filter(function(blog) {return blog.Id === window.location.pathname.substring(6)} ).comments.filter(function(comment) { return comment._id === window.location.pathname.substring(7)}) }
-    return { blog: state.blogs.filter(function(blog) {return blog.Id === window.location.href.split('/')[4]} ), other: state.other }
+    return { blog: state.otherBlogs.filter(function(blog) {return blog.Id === window.location.href.split('/')[4]} ), other: state.other }
 }
 
 export default connect(mapStateToProps, { editComment, fetchPostsAndUsersBlog, fetchBlogsOther, fetchUserOther })(CommentEdit);

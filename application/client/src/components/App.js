@@ -40,7 +40,7 @@ class App extends React.Component {
             <Header />
             <br />
             <Route path = "/" exact component = {Landing} />
-            <Route path = "/edit/:blogID/:commentID" exact component = {CommentEdit} />
+            <Route path = "/edit/:blogID/:commentID/:userID" exact component = {CommentEdit} />
             <Route path = "/list" exact component = {BlogList} />
             <Route path = "/login" exact component = {Login} />
             <Route path = "/register" exact component = {Register} />
