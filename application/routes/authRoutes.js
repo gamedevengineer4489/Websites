@@ -222,7 +222,7 @@ module.exports = app => {
                 }
             ).exec();
 
-            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            const blogs = await Blog.find({ userId: req.user.userID });
             res.send(blogs);
 
             
@@ -233,7 +233,7 @@ module.exports = app => {
         async function(req, res) {
 
            
-            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            const blogs = await Blog.find({ userId: req.user.userID });
             res.send(blogs);
         }
     )
@@ -252,8 +252,30 @@ module.exports = app => {
                 }
             ).exec();
 
-            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            const blogs = await Blog.find({ userId: req.user.userID });
             res.send(blogs);
+        }
+    )
+
+    app.patch('/api/changePassword', 
+        async function(req, res)
+        {
+
+            User.findByUsername(req.body.username).then(function(sanitizedUser) {
+                if(sanitizedUser)
+                {
+                    sanitizedUser.setPassword(req.body.password, function() {
+                        sanitizedUser.save();
+                        res.status(200).json({message: 'password reset successful.'})
+                    })
+                } else {
+                    res.status(500).json({message: 'This user does not exist.'})
+                }
+            }, function(err) {
+                console.error(err);
+            })
+
+           
         }
     )
 
@@ -266,12 +288,12 @@ module.exports = app => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        password: req.body.password,
                         userID: Math.random().toString(32).substring(2),
                         imageURL: req.body.imageURL,
                         avatar: req.body.avatar
                     })
                     console.log(newUser);
+                    
                     User.register(newUser, req.body.password, function(err, user) {
                         // A user with the same username cannot be created.
                             if(err) {
@@ -280,9 +302,6 @@ module.exports = app => {
                                 res.redirect('/')
                             } else {
                                 console.log({ success: true, message: "Your account has been saved"});
-                                
-                
-                                
                             }
                     })
     })

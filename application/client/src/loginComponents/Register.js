@@ -39,11 +39,11 @@ class Register extends React.Component {
             {
                 this.obtainEncodedURLString(this.state.avatar).then(result => this.props.addNewUserCustom(this.state.username, this.state.password, this.state.firstName, this.state.lastName, this.state.email, this.state.imageURL, result ));
                 document.location.replace(document.location.href.substring(0, window.location.href.length - 8) + 'login');
-                alert(document.location.href);
+                
             } else {
                 this.props.addNewUserCustom(this.state.username, this.state.password, this.state.firstName, this.state.lastName, this.state.email, this.state.imageURL, this.state.avatar );
                 document.location.replace(document.location.href.substring(0, window.location.href.length - 8) + 'login');
-                alert(document.location.href);
+                
             }
            
             

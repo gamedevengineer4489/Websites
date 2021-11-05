@@ -5,7 +5,6 @@
 
 // importing the axios library
 import axios from 'axios';
-import jsonPlaceholder from '../api/jsonPlaceholder';
 import _ from 'lodash';
 
 
@@ -38,12 +37,7 @@ export const fetchUserGoogle = () => async (dispatch) => {
         dispatch({ type: FETCH_USER_GOOGLE, payload: res.data });
 }
 
-export const fetchUsersBlog = (id) => async (dispatch) => {
-        const res = await jsonPlaceholder.get(`/users/${id}`);
-        console.log(res.data);
-        
-        dispatch({ type: FETCH_USERS_BLOG, payload: res.data });
-}
+
 
 export const fetchPostsBlog = () => async (dispatch) => {
         //const res = await jsonPlaceholder.get('/posts');
@@ -88,6 +82,14 @@ export const addNewUserCustom = function(username, password, firstName, lastName
                  
                 dispatch({ type: ADD_NEW_USER, payload: newUser});
                  
+        }
+}
+
+export const changePassword = function(username, password) {
+        return async function(dispatch) {
+                const res = await axios.patch('/api/changePassword', {username, password});
+
+                dispatch({ type: FETCH_USER_LOCAL, payload: res.data });
         }
 }
 

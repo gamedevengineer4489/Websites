@@ -24,7 +24,8 @@ class Login extends React.Component {
                         <Link to = "/"><button className = "btn" type = "submit" onClick = {() => this.signIn()}>Log-in</button></Link>
                     </form>
                     <br />
-                    Don't have an account yet? Then sign-in with google or spotify or create an account <a href = "/register">here.</a>
+                    Don't have an account yet? Then sign-in with google or spotify or create an account <a href = "/register">here. </a>
+                    <b>Note:</b> Please write down your username as this is the only way a password can be retrieved if a password needs to be changed <a href = "/changePassword">here. </a>
             </div>
         )
     }

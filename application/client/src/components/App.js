@@ -14,6 +14,7 @@ import BlogUnique from './BlogUnique';
 import Blog from './Blog';
 import AllUsers from './AllUsers';
 import CommentEdit from './CommentEdit';
+import ResetPassword from '../loginComponents/ResetPassword';
 
 class App extends React.Component {
   componentDidMount() {
@@ -40,6 +41,7 @@ class App extends React.Component {
             <Header />
             <br />
             <Route path = "/" exact component = {Landing} />
+            <Route path = "/changePassword" exact component = {ResetPassword} />
             <Route path = "/edit/:blogID/:commentID/:userID" exact component = {CommentEdit} />
             <Route path = "/list" exact component = {BlogList} />
             <Route path = "/login" exact component = {Login} />
