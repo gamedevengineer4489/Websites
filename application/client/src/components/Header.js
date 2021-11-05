@@ -29,7 +29,7 @@ class Header extends React.Component {
                         [
                             <li key = "6"><a className = "btn" href = "/auth/spotify">Sign In with Spotify <i className = "spotify icon small" /></a></li>,
                             <li key = "7"><a className = "btn red" href = '/auth/google'>Sign In with Google <i className = "google icon small" /></a></li>,
-                            <li key = "8"><a className = "btn grey" href = '/auth/steam'>Sign In with Steam <i className = "google icon small" /></a></li>,
+                            // <li key = "8"><a className = "btn grey" href = '/auth/steam'>Sign In with Steam <i className = "google icon small" /></a></li>,
                             <li key = "9"><a className = "btn brown" href = '/login'>Login <i className = "computer icon small" /></a></li>,
                         ]
                     )
