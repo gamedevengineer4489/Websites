@@ -40,7 +40,6 @@ export const fetchUserGoogle = () => async (dispatch) => {
 
 
 export const fetchPostsBlog = () => async (dispatch) => {
-        //const res = await jsonPlaceholder.get('/posts');
         const res = await axios.get(`/api/blog_posts`);
         console.log(res.data);
         dispatch({ type: FETCH_POSTS_BLOG, payload: res.data });

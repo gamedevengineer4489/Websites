@@ -281,175 +281,176 @@ module.exports = app => {
 
     app.post('/api/register', 
         async function(req, res) {
-                    // Save new User to database 
-                    console.log(req);
-                    const newUser = new User({
-                        username: req.body.username,
-                        firstName: req.body.firstName,
-                        lastName: req.body.lastName,
-                        email: req.body.email,
-                        userID: Math.random().toString(32).substring(2),
-                        imageURL: req.body.imageURL,
-                        avatar: req.body.avatar
-                    })
-                    console.log(newUser);
+            // Save new User to database 
+            console.log(req);
+            const newUser = new User({
+            username: req.body.username,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            userID: Math.random().toString(32).substring(2),
+            imageURL: req.body.imageURL,
+            avatar: req.body.avatar
+        })
+        console.log(newUser);
                     
-                    User.register(newUser, req.body.password, function(err, user) {
-                        // A user with the same username cannot be created.
-                            if(err) {
-                                console.log(err);
-                                console.log({ success: false, message: 'Your account could not be saved. Error: ', err})
-                                res.redirect('/')
-                            } else {
-                                console.log({ success: true, message: "Your account has been saved"});
-                            }
-                    })
+        User.register(newUser, req.body.password, function(err, user) {
+            // A user with the same username cannot be created.
+            if(err) {
+                console.log(err);
+                console.log({ success: false, message: 'Your account could not be saved. Error: ', err})
+                res.redirect('/')
+            } else {
+                console.log({ success: true, message: "Your account has been saved"});
+            }
+        })
     })
                     
             
                 
-            app.post('/auth/local',
-                passport.authenticate('local', { failureRedirect: '/login'}),
+    app.post('/auth/local',
+        passport.authenticate('local', { failureRedirect: '/login'}),
                 
-                function(req, res) {
+        function(req, res) {
                     
-                    res.send(req.user);
-                }
+            res.send(req.user);
+        }
 
-            )
+    )
 
             
             
             
-            app.post('/api/current_user_local',
+    app.post('/api/current_user_local',
                     
-                async function(req, res) {
-                    console.log('hello world');
+        async function(req, res) {
+            console.log('hello world');
 
-                    res.send(req.user);
+            res.send(req.user);
 
-            }
+        }
 
             
-        )
+    )
 
-        app.get('/api/current_user',
+    app.get('/api/current_user',
     
-            async function(req, res) {
+        async function(req, res) {
 
-                console.log(req);
+            console.log(req);
 
-                res.send(req.user);
+            res.send(req.user);
 
-            }
-        )
+        }
+    )
 
-        app.get('/api/current_user/:id',
+    app.get('/api/current_user/:id',
         
-            async function(req, res) {
+        async function(req, res) {
 
-                let foundUser = await User.findOne({ userID: req.params.id });
-                res.send(foundUser);
+            let foundUser = await User.findOne({ userID: req.params.id });
+            res.send(foundUser);
 
-            }
-        )
-            // The user can access a blog regardless of whether they are logged in or not. 
-        app.get('/api/user/:userID',
+        }
+    )
+    
+    // The user can access a blog regardless of whether they are logged in or not. 
+    app.get('/api/user/:userID',
         
-            async function(req, res)
-            {
-                let foundUser = await User.findOne({ userID: req.params.userID });
-                res.send(foundUser);
-            }
-        )
+        async function(req, res)
+        {
+            let foundUser = await User.findOne({ userID: req.params.userID });
+            res.send(foundUser);
+        }
+    )
 
-        app.get('/api/blog/:userID',
+    app.get('/api/blog/:userID',
         
-            async function(req, res)
-            {
-                let foundBlogs = await Blog.find({ userId: req.params.userID });
-                res.send(foundBlogs);
-            }
-        )
+        async function(req, res)
+        {
+            let foundBlogs = await Blog.find({ userId: req.params.userID });
+            res.send(foundBlogs);
+        }
+    )
 
-        app.get('/api/users',
+    app.get('/api/users',
         
-            async function(req, res)
-            {
+        async function(req, res)
+        {
                 
-                let foundUsers = await User.find();
-                console.log(foundUsers);
-                res.send(foundUsers);
-            }
-        )
+            let foundUsers = await User.find();
+            console.log(foundUsers);
+            res.send(foundUsers);
+        }
+    )
 
-        app.delete('/api/blog_posts/:id', requireLogin,
-            async function(req, res)
-            {
-                console.log(req);
-                await Blog.findOneAndDelete({Id: req.params.id}).exec();
+    app.delete('/api/blog_posts/:id', requireLogin,
+        async function(req, res)
+        {
+            console.log(req);
+            await Blog.findOneAndDelete({Id: req.params.id}).exec();
                 
-                const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
-                res.send(blogs);
-            }
+            const blogs = await Blog.find({ userId: req.user.userID }) || [{}];
+            res.send(blogs);
+        }
         
-        )
+    )
 
-        app.patch('/api/blog/:id', requireLogin,
+    app.patch('/api/blog/:id', requireLogin,
 
             
-            async function(req, res)
-            {
+        async function(req, res)
+        {
                 
                 console.log(req.params);
                 console.log(req.body);
                 const {id} = req.params;
-                Blog.findOneAndUpdate(
-                    {
-                        Id: id
-                    },
-                    {
-                        $push: {
-                            comments: {
-                                email: req.body.email,
-                                username: req.body.username,
-                                comment: req.body.comment,
-                                userID: req.body.userID, 
-                                submissionDate: Date(Date.now()).toString()
-                            }
-                        }
-                    
-                    }
-                ).exec();
-
-                let blog = Blog.findOne({
+            Blog.findOneAndUpdate(
+                {
                     Id: id
-                })
-
-                res.send(blog);
-            }
-        )
-
-        app.delete('/api/blog/comment/:id/:blogID/:otherUserID', requireLogin,
-            async function(req, res)
-            {
-                console.log(req.params);
-                Blog.findOneAndUpdate(
-                    {
-                        _id: req.params.blogID
-                    },
-                    {
-                         $pull: { 'comments': {_id: req.params.id }}
+                },
+                {
+                    $push: {
+                        comments: {
+                            email: req.body.email,
+                            username: req.body.username,
+                            comment: req.body.comment,
+                            userID: req.body.userID, 
+                            submissionDate: Date(Date.now()).toString()
+                        }
                     }
-                ).exec();
+                    
+                }
+            ).exec();
 
-                let blogs = Blog.find({userId: req.params.otherUserID}).exec();
+            let blog = Blog.findOne({
+                Id: id
+            })
 
-                res.send(blogs);
-            }
-        )
+            res.send(blog);
+        }
+    )
 
-        app.patch('/api/blog/comment/edit/:id/:blogID/:otherUserID', requireLogin,
+    app.delete('/api/blog/comment/:id/:blogID/:otherUserID', requireLogin,
+        async function(req, res)
+        {
+            console.log(req.params);
+            Blog.findOneAndUpdate(
+                {
+                    _id: req.params.blogID
+                },
+                {
+                        $pull: { 'comments': {_id: req.params.id }}
+                }
+            ).exec();
+
+            let blogs = Blog.find({userId: req.params.otherUserID}).exec();
+
+            res.send(blogs);
+        }
+    )
+
+    app.patch('/api/blog/comment/edit/:id/:blogID/:otherUserID', requireLogin,
             async function(req, res)
             {
                 console.log(req.params);
