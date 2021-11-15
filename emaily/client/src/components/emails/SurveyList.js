@@ -13,7 +13,6 @@ class SurveyList extends Component {
       return (
 
         <div className="card medium teal" key={survey._id}>
-          {/* {console.log((survey._id))} */}
           <div className="card-content ">
             <span className="card-title" style = {{ fontSize: 'xx-large'}}><b>{survey.title}</b></span>
             <p style = {{ fontSize: 'large'}}>
@@ -21,7 +20,6 @@ class SurveyList extends Component {
             </p>
             <p style = {{ fontSize: 'large'}}>
               <b>Sent On:</b> {new Date(survey.dateSent).toLocaleDateString() === "Invalid Date" ? "No responses have been received" : new Date(survey.dateSent).toLocaleDateString()},
-              <span> </span>
               <br />
               <b>Sent From:</b> {survey.from}
               <br />
@@ -59,10 +57,13 @@ class SurveyList extends Component {
     return (
       <div>
         <br />
-        <button className = "btn" onClick = {() => this.props.fetchSurveysByTitle()}>Sort By Title</button>
-        <button className = "btn" onClick = {() => this.props.fetchSurveysBySentDate()}>Sort By Sent Date</button>
-        <button className = "btn" onClick = {() => this.props.fetchSurveysByNo()}>Sort By No</button>
-        <button className = "btn" onClick = {() => this.props.fetchSurveysByYes()}>Sort By Yes</button>
+        <button className = "btn " onClick = {() => this.props.fetchSurveysByTitle()} style = {{ backgroundColor: 'dodgerblue'}}>Sort By Title</button>
+        <span>{' '}</span>
+        <button className = "btn" onClick = {() => this.props.fetchSurveysBySentDate()} style = {{ backgroundColor: 'mediumseagreen'}}>Sort By Sent Date</button>
+        <span>{' '}</span>
+        <button className = "btn" onClick = {() => this.props.fetchSurveysByNo()} style = {{ backgroundColor: 'violet'}}>Sort By No</button>
+        <span>{' '}</span>
+        <button className = "btn" onClick = {() => this.props.fetchSurveysByYes()} style = {{ backgroundColor: 'gray'}}>Sort By Yes</button>
         {this.renderSurveys()}
       </div>
     );

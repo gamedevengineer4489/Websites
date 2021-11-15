@@ -7,6 +7,7 @@ import Landing from './Landing';
 import Header from './Header';
 import SurveyNew from './emails/SurveyNew';
 import Dashboard from './Dashboard';
+import Footer from './Footer';
 
 
 
@@ -19,14 +20,15 @@ class App extends React.Component {
         return(
             <div>
                 <BrowserRouter>
+                    
+                    <Header />
                     <div className = "container">
-                        <Header />
                         <Route exact path = "/" component = {Landing} />
                         <Route exact path = "/surveys" component = {Dashboard} />
                         <Route path = "/surveys/new" component = {SurveyNew} />
                         
                     </div>
-                    
+                    <Footer />
 
                 </BrowserRouter>
             </div>

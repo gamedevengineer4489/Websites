@@ -37,24 +37,25 @@ class App extends React.Component {
     return(
       <div>
         <BrowserRouter>
-          <div className = "container">
+          <div  style = {{ minHeight: '100vh'}}>
             <Header />
             <br />
-            <Route path = "/" exact component = {Landing} />
-            <Route path = "/changePassword" exact component = {ResetPassword} />
-            <Route path = "/edit/:blogID/:commentID/:userID" exact component = {CommentEdit} />
-            <Route path = "/list" exact component = {BlogList} />
-            <Route path = "/login" exact component = {Login} />
-            <Route path = "/register" exact component = {Register} />
-            <Route path = "/list/:blogId" exact component = {BlogEdit} />
-            <Route path = "/list/:userID/:username" exact component = {BlogUnique} /> {/* Each user has a unique userID */}
-            <Route path = "/list/:userID/:username/:blogID" exact component = {Blog} /> {/* Each blog has a unique Id */}
-            <Route path = "/users" exact component = {AllUsers} />
+            <div className = "container">
+              <Route path = "/" exact component = {Landing} />
+              <Route path = "/changePassword" exact component = {ResetPassword} />
+              <Route path = "/edit/:blogID/:commentID/:userID" exact component = {CommentEdit} />
+              <Route path = "/list" exact component = {BlogList} />
+              <Route path = "/login" exact component = {Login} />
+              <Route path = "/register" exact component = {Register} />
+              <Route path = "/list/:blogId" exact component = {BlogEdit} />
+              <Route path = "/list/:userID/:username" exact component = {BlogUnique} /> {/* Each user has a unique userID */}
+              <Route path = "/list/:userID/:username/:blogID" exact component = {Blog} /> {/* Each blog has a unique Id */}
+              <Route path = "/users" exact component = {AllUsers} />
+            </div>
             
-            <Footer />
           </div>
         </BrowserRouter>
-        
+        <Footer />
       </div>
     )
   }

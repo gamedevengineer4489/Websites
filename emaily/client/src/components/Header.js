@@ -18,9 +18,9 @@ class Header extends React.Component {
             default:
                 return [
                     <li key = "1"><Payments /></li>,
-                    <li key = "4"><a href = '/surveys' className = "btn">To Surveys</a></li>,
+                    <li key = "4"><a href = '/surveys' className = "btn" style = {{ color: 'black'}}>To Surveys</a></li>,
                     <li key = "3" style = {{ margin: '0 10px' }}>Credits: {this.props.auth.credits}</li>,
-                    <li key = "2"><a href = '/api/logout' className = "btn">LogOut</a></li>
+                    <li key = "2"><a href = '/api/logout' className = "btn" style = {{ color: 'black'}}>Log Out</a></li>
                 ];
         }
     }
@@ -30,11 +30,12 @@ class Header extends React.Component {
             <nav>
                 <div className = "nav-wrapper">
                     
-                    <Link to = '/' className = "left brand-logo">
+                    <Link to = '/' className = "left brand-logo" style = {{ marginLeft: '10px', color: 'darkgreen'}}>
                         OC Websites
                     </Link>
                     <ul className = "right">
                         {this.renderButtons()}
+                        
                     </ul>
                 </div>
             </nav>
