@@ -22,7 +22,7 @@ class App extends React.Component {
                 <BrowserRouter>
                     
                     <Header />
-                    <div className = "container">
+                    <div className = "container" style = {{ minHeight: '100vh'}}>
                         <Route exact path = "/" component = {Landing} />
                         <Route exact path = "/surveys" component = {Dashboard} />
                         <Route path = "/surveys/new" component = {SurveyNew} />
