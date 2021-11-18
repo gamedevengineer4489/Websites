@@ -39,15 +39,17 @@ class Header extends React.Component {
 
     render() {
         return(
-            <nav>
-                {console.log(this.props.auth)}
-                <div className = "nav-wrapper blue">
-                    <Link className = "brand-logo right" to = "/" style = {{ color: 'chocolate', fontFamily: 'fantasy', fontStyle: 'italic', textDecoration: 'none'}}>OC Websites</Link>
-                    <ul className = "left">
-                        {this.renderButtons()}
-                    </ul>
-                </div>
-            </nav>
+            <div style = {{ width: 'auto', height: 'auto', objectFit: 'contain'}}>
+                <nav>
+                    <div className = "nav-wrapper blue" >
+                        <Link className = "brand-logo right" to = "/" style = {{ color: 'chocolate', fontFamily: 'fantasy', fontStyle: 'italic', textDecoration: 'none'}}>OC Websites</Link>
+                        <ul className = "left">
+                            {this.renderButtons()}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
            
         )
     }
