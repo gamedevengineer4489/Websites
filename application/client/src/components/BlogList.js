@@ -137,7 +137,7 @@ class BlogList extends React.Component {
                     Title: <input onChange = {(event) => {this.newTitle(event)}} minLength="1" maxLength="120"required/>
                     Message: <textarea id = "text" onChange = {(event) => {this.newMessage(event)}}  style = {{ wordBreak: 'break-all' }} required/>
                     <br />
-                    <button className = "btn" type = "button" onClick = {() => this.newPosts()} value = "Submit" > Submit <i className = "inline-icon material-icons">send</i></button>
+                    <button className = "btn" type = "button" onClick = {() => this.newPosts()} value = "Submit"> Submit <i className = "inline-icon material-icons">send</i></button>
                         
                 </form>
                
