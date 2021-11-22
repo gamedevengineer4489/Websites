@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'materialize-css/dist/css/materialize.min.css';
+import BackgroundColorContext from './contexts/BackgroundColorContext';
 
 ReactDOM.render(
-  
-    <App />
+    
+      <App />
+
+    
   ,
   document.getElementById('root')
 );
