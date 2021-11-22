@@ -54,8 +54,9 @@ class App extends React.Component {
             </div>
             
           </div>
+          <Footer />
         </BrowserRouter>
-        <Footer />
+        
       </div>
     )
   }

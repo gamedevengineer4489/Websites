@@ -102,7 +102,7 @@ class BlogList extends React.Component {
                             <div className = "description">
                                 
                                 <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
-                                    <h5 className = "card-title">{blog.title}</h5>
+                                    <h5 className = "card-title" style = {{ color: 'black'}}>{blog.title}</h5>
                                 </a>
                                 
                                     <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>

@@ -69,7 +69,7 @@ class Blog extends React.Component {
                     <img src = {this.props.other ? (this.props.other.imageURLSpotify || this.props.other.imageURLGoogle || this.props.other.avatar ) : ""}/>
                     <div className = "card">
                         <div className = "card-content">
-                            <div className = "card-title">
+                            <div className = "card-title" style = {{color: 'black'}}>
                                 <strong>{this.props.blog[0] ? this.props.blog[0].title : ""}</strong>
                                 <br />
                                 Posted by {this.props.other ? (this.props.other.spotifyUserName || this.props.other.googleUserName || this.props.other.username) : "Unknown User"}

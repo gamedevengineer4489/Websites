@@ -32,7 +32,7 @@ class Header extends React.Component {
                     return([
                             <li key = "4"><a className = "sidenav-close" href = "/api/logout" style = {{ textDecoration: 'none'}}>Sign Out</a></li>,
                             <li key = "5"><a className = "sidenav-close" href = "/users" style = {{ textDecoration: 'none'}}>Other Blogs</a></li>,
-                            <li key = "6"><Link className = "sidenav-close" to = "/list" style = {{ backgroundColor: 'tomato', textDecoration: 'none'}}>Blog Posts</Link></li>
+                            <li key = "6"><Link className = "sidenav-close" to = "/list" style = {{ textDecoration: 'none'}}>Blog Posts</Link></li>
                         ]
                     )
                 } else {
