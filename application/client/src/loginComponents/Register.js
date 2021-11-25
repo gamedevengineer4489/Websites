@@ -29,6 +29,12 @@ class Register extends React.Component {
 
     register = function() {
         // First check if the entered password and reentered passwords are the same
+        var rgx = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.\w{2,3}]+$)/);
+        if(!rgx.test(this.state.email))
+        {
+            alert("The entered email is invalid.");
+            document.getElementById("emailEntered").value = "";
+        }
         if(this.state.password !== this.state.reenteredPassword)
         {
             alert("The password and reentered password don't match.");
@@ -79,7 +85,7 @@ class Register extends React.Component {
                             <label> Renter Password:</label> <input type = "password" id = "reenteredPassword" placeholder = "password" onChange = {(event) => this.setState({ reenteredPassword: event.target.value})} required/>
                             <label>First Name:</label> <input type = "text" name = "first name" placeholder = "first name" onChange = {(event) => this.setState({ firstName: event.target.value})} required/>
                             <label>Last Name:</label> <input type = "text" name = "last name" placeholder = "last name" onChange = {(event) => this.setState({ lastName: event.target.value})} required/>
-                            <label>Email:</label> <input type = "email" name = "email" placeholder = "email" onChange = {(event) => this.setState({ email: event.target.value})}required/>
+                            <label>Email:</label> <input type = "email" name = "email" id = "emailEntered" placeholder = "email" onChange = {(event) => this.setState({ email: event.target.value})}required/>
                             <label>imageFile(optional):</label> <input type = "file" id = "avatar"  accept = "image/png, image/jpeg" onChange = {(event) => this.checkFileSize(event.target.files[0])}/>
                             
                             <label>Image Selected </label>
