@@ -68,7 +68,7 @@ class Header extends React.Component {
                         
                     </div>
                     <ul className="sidenav" id="mobile-demo">
-                        <span style = {{ color: 'black', fontSize: 'large' }} ><center>Login with any of the following.</center></span>
+                        <span style = {{ color: 'black', fontSize: 'large' }} ><center>{this.props.auth ? "Main Menu" : "Login with any of the following."}</center></span>
                         {this.renderButtons()}
                     </ul>
                 </nav>

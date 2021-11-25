@@ -34,27 +34,29 @@ class Register extends React.Component {
         {
             alert("The entered email is invalid.");
             document.getElementById("emailEntered").value = "";
-        }
-        if(this.state.password !== this.state.reenteredPassword)
-        {
-            alert("The password and reentered password don't match.");
-            document.getElementById("reenteredPassword").value = "";
-            
         } else {
-            if(this.state.avatar)
+            if(this.state.password !== this.state.reenteredPassword)
             {
-                this.obtainEncodedURLString(this.state.avatar).then(result => this.props.addNewUserCustom(this.state.username, this.state.password, this.state.firstName, this.state.lastName, this.state.email, this.state.imageURL, result ));
-                document.location.replace(document.location.href.substring(0, window.location.href.length - 8) + 'login');
+                alert("The password and reentered password don't match.");
+                document.getElementById("reenteredPassword").value = "";
                 
             } else {
-                this.props.addNewUserCustom(this.state.username, this.state.password, this.state.firstName, this.state.lastName, this.state.email, this.state.imageURL, this.state.avatar );
-                document.location.replace(document.location.href.substring(0, window.location.href.length - 8) + 'login');
+                if(this.state.avatar)
+                {
+                    this.obtainEncodedURLString(this.state.avatar).then(result => this.props.addNewUserCustom(this.state.username, this.state.password, this.state.firstName, this.state.lastName, this.state.email, this.state.imageURL, result ));
+                    document.location.replace(document.location.href.substring(0, window.location.href.length - 8) + 'login');
+                    
+                } else {
+                    this.props.addNewUserCustom(this.state.username, this.state.password, this.state.firstName, this.state.lastName, this.state.email, this.state.imageURL, this.state.avatar );
+                    document.location.replace(document.location.href.substring(0, window.location.href.length - 8) + 'login');
+                    
+                }
+            
+                
                 
             }
-           
-            
-            
         }
+        
         
         
     }
