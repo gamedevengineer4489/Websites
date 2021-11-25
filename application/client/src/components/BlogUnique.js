@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import {Link} from 'react-router-dom';
 
 class BlogUnique extends React.Component {
     componentDidMount() {
@@ -16,9 +17,9 @@ class BlogUnique extends React.Component {
                     <div className = "card" key = {Math.random() * 10}>
                         <div className = "card-content">
                             <div className = "description">
-                                <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.other.userID}/${this.props.other.googleUserName || this.props.other.spotifyUserName || this.props.other.username}/${blog.Id}`}>
+                                <Link style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.other.userID}/${this.props.other.googleUserName || this.props.other.spotifyUserName || this.props.other.username}/${blog.Id}`}>
                                     <h5>{blog.title}</h5>
-                                </a>
+                                </Link>
                                     <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
                                     <p>{blog.date_created}</p>
                             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetchPostsAndUsersBlog, removeUndefinedValues, addNewPost, fetchUserLocal, postUserLocal, deleteBlog, fetchUserGoogle, fetchUserSpotify, likePost, dislikePost } from '../actions';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 
 
@@ -90,7 +90,6 @@ class BlogList extends React.Component {
 
     renderList() {
             return this.props.blogs.map(blog => {
-                {console.log(blog)}
                 return(
                     
                     <div className = "card" key = {Math.random() * 10}>
@@ -101,9 +100,9 @@ class BlogList extends React.Component {
                         <div className = "card-content">
                             <div className = "description">
                                 
-                                <a style = {{ cursor: 'pointer', textDecoration: 'none'}} href = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
+                                <Link style = {{ cursor: 'pointer', textDecoration: 'none'}} to = {`/list/${this.props.auth.userID}/${this.props.auth.googleUserName || this.props.auth.spotifyUserName || this.props.auth.username}/${blog.Id}`}>
                                     <h5 className = "card-title" style = {{ color: 'black'}}>{blog.title}</h5>
-                                </a>
+                                </Link>
                                 
                                     <p style = {{ wordBreak: 'break-all'}}>{blog.body} </p>
                                     <p>{blog.date_created}</p>

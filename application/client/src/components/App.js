@@ -16,6 +16,11 @@ import AllUsers from './AllUsers';
 import CommentEdit from './CommentEdit';
 import ResetPassword from '../loginComponents/ResetPassword';
 
+function changeTheme() {
+  var element = document.body;
+  element.classList.toggle("darkMode");
+}
+
 class App extends React.Component {
   componentDidMount() {
     
@@ -39,6 +44,8 @@ class App extends React.Component {
         <BrowserRouter>
           <div  style = {{ minHeight: '100vh'}}>
             <Header />
+            <br />
+            {/* <button className = "ui primary button red" onClick = {() => changeTheme()} style = {{ marginLeft: '1650px', color: 'white' }}>Change Background Color</button> */}
             <br />
             <div className = "container">
               <Route path = "/" exact component = {Landing} />
