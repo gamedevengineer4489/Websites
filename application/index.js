@@ -17,7 +17,7 @@ require('./services/passport');
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
-// Starting the express server. The express server parses incoming requests with JSON palyloads and is based on body-parser.
+// Starting the express server. The express server parses incoming requests with JSON payloads and is based on body-parser.
 // From the documentation online:
 // "Returns middleware that only parses JSON and only looks at requests where the Content-Type header matches the type option.""
 // "A new body object containing the parsed data is populated on the request object after the middleware(i.e. req.body), or an 
@@ -49,7 +49,7 @@ app.use(bodyParser.json());
 //     resave: false
 // }))
 
-// Cookie-session is a simple cookie-bases session middleware. 
+// Cookie-session is a simple cookie-based session middleware. 
 // From the documentation: "This module stores the session data on the client within a cookie, 
 // while a module like express-session stores only a session identifier on the client within  a cookie and stores the session data on the server, typically on a database"
 app.use(
