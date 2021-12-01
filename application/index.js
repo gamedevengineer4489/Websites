@@ -29,11 +29,7 @@ const app = express();
 // If you try to set a static port value like 3000 instead of process.env.PORT || 3000 where 3000 is your static setting, then your application will result in a 500 gateway error because Amazon is configuring the port for you.
 // Also the environment variable NODE_ENV is set to 'production' when your application is hosted on another service like this.
 // Use port 5000 or another port unless there exists a preconfigured port.
-// app.get('/', function(req, res) {
-//     // no request is being made right now.
-//     // So we send a response
-//     res.send({'Language': 'German'});
-// })
+
 
 // Need these two apis for authentication
 // We use the body parser api to get access to data stored on a request body property. 
