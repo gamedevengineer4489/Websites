@@ -291,19 +291,19 @@ module.exports = app => {
             userID: Math.random().toString(32).substring(2),
             imageURL: req.body.imageURL,
             avatar: req.body.avatar
-        })
-        console.log(newUser);
-                    
-        User.register(newUser, req.body.password, function(err, user) {
-            // A user with the same username cannot be created.
-            if(err) {
-                console.log(err);
-                console.log({ success: false, message: 'Your account could not be saved. Error: ', err})
-                res.redirect('/')
-            } else {
-                console.log({ success: true, message: "Your account has been saved"});
-            }
-        })
+            })
+            console.log(newUser);
+                        
+            User.register(newUser, req.body.password, function(err, user) {
+                // A user with the same username cannot be created.
+                if(err) {
+                    console.log(err);
+                    console.log({ success: false, message: 'Your account could not be saved. Error: ', err})
+                    res.redirect('/')
+                } else {
+                    console.log({ success: true, message: "Your account has been saved"});
+                }
+            })
     })
                     
             
