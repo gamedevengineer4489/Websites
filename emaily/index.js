@@ -14,7 +14,13 @@ require('./models/Survey');
 require('./services/passport');
 
 // Connecting to a mongoDB database
-mongoose.Promise = global.Promise;
+// From Stack Overflow
+// From user vkarpov15
+// Mongoose maintainer here. If you're using Mongoose 5, please remove mongoose.Promise = global.Promise;. That line was used to address the below deprecation warning with promises in Mongoose 4:
+// WARNING: Mongoose: mpromise (mongoose's default promise library) is deprecated, plug in your own promise library instead
+// It does nothing in Mongoose 5. You should only use mongoose.Promise in Mongoose 5 if you want to use your own promise library with Mongoose, like Bluebird or Q.
+// There's also a little more about mongoose.Promise here: https://masteringjs.io/tutorials/mongoose/promise#the-mongoosepromise-property
+// mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 // Starting the express server. The express server parses incoming requests with JSON palyloads and is based on body-parser.
