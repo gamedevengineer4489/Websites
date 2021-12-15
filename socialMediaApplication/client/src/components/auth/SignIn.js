@@ -9,11 +9,14 @@ class Signin extends React.Component {
     onFormSubmit = (formProps) => {
         //this.props.signup(formProps);
         console.log(formProps);
-        if(formProps.email && formProps.hash)
+        var rgx = new RegExp(/^\w+([\.-]?\w+)*@\w+[\.\w{2,3}]+$/);
+        if(formProps.email && formProps.hash && rgx.test(formProps.email))
         {
-            
-                this.props.signin(formProps);
-                window.location.href = '/';
+            this.props.signin(formProps);
+            window.location.href = '/';
+        } else if(!rgx.test(formProps.email))
+        {
+            alert("The email you entered is invalid. Enter a valid email address.");
         }
         else {
             alert("You must enter a username and password. These fields cannot be left blank.");
