@@ -2,8 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
-
+const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const passport = require('passport');
 
 require('./models/User');
 require('./services/passport');
@@ -21,7 +22,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-// Cookie lasts for 30 days
+// Cookie lasts for 12 hours
 app.use(
     cookieSession({
         keys: [keys.cookie],
@@ -49,7 +50,7 @@ if(process.env.NODE_ENV === 'production') {
     })
 }
 
-// The ordering here is important. If the order is switched, you will get errors of which there are no answers to on Stack Overflow.
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, (err) => {

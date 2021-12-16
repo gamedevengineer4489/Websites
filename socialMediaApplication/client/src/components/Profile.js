@@ -49,6 +49,7 @@ class Profile extends React.Component {
     onImageSubmit = (formProps) => {
         if(formProps.profileImage)
         {
+            
             this.obtainEncodedURLString(formProps.profileImage[0]).then(profileImage => this.props.addImageData({profileImage}));
             let currentURL = window.location.href;
             window.location.href = currentURL;

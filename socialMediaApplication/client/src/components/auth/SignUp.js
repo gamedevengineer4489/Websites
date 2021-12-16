@@ -10,7 +10,8 @@ class SignUp extends React.Component {
     formSubmit = (formProps) => {
         //this.props.signup(formProps);
         console.log(formProps.hashReenter);
-        if(formProps.email && formProps.username)
+        var rgx = new RegExp(/^\w+([\.-]?\w+)*@\w+[\.\w{2,3}]+$/);
+        if(formProps.email && formProps.username && formProps.email.test(rgx))
         {
             if(formProps.hash === formProps.hashReenter)
             {
@@ -19,6 +20,10 @@ class SignUp extends React.Component {
             } else {
                 alert("The rentered password does not match ");
             }
+        }
+        else if(formProps.email && formProps.username && !rgx.test(formProps.email))
+        {
+            alert("The email you entered is invalid. Provide a valid email address.");
         }
         else {
             alert("You must enter a username and password. These fields cannot be left blank.");
