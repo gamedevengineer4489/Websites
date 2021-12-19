@@ -1,5 +1,5 @@
 import React from 'react';
-
+import key from './key';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Contact extends React.Component {
     form_id_js = "javascript_form";
 
     data_js = {
-        "access_token": 's2mcm5zxebzwqs7jiax1noyo'
+        "access_token": key.mail_api
     };
 
     
