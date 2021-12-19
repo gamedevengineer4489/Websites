@@ -20,7 +20,7 @@ class App extends React.Component {
           <BrowserRouter>
               <Header />
               <br />
-              <button className = "ui primary button red" onClick = {() => changeTheme()} style = {{ marginLeft: '1650px', color: 'white' }}>Change Background Color</button>
+              <button className = "waves-effect wave-light btn" onClick = {() => changeTheme()} style = {{ marginLeft: '1650px', color: 'white' }}>Change Background Color</button>
               <Routes>
                   <Route path = "/" exact element = {<Landing />} />
                   <Route path = "/websites" exact element = {<Websites />} />
