@@ -13,6 +13,7 @@ import SignUp from './components/auth components/SignUp';
 import SignIn from './components/auth components/SignIn';
 import Shop from './components/Shop';
 import ShoppingCart from './components/ShoppingCart';
+import CoffeeShop from './components/CoffeeShop';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -26,6 +27,7 @@ ReactDOM.render(
                     <Route path = "/registration" element = {<SignUp />} />
                     <Route path = "/changepassword" element = {<PasswordChange />} />
                     <Route path = "/shop" element = {<Shop />} />
+                    <Route path = "/coffee" element = {<CoffeeShop />} />
                     <Route path = "/checkout" element = {<ShoppingCart />} />
                 </Routes>
             </App>

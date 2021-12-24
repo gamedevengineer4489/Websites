@@ -6,6 +6,7 @@ const passport = require('passport');
 
 const keys = require('./config/keys');
 
+require('./models/Coffee');
 require('./models/Inventory');
 require('./models/Sale');
 require('./models/User');
@@ -28,7 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+require('./routes/coffeeRoutes')(app);
 require('./routes/authRoutes')(app); // the express application is the input here.
 require('./routes/storeRoutes')(app); // the express application is the input here. 
 require('./routes/billingRoutes')(app);

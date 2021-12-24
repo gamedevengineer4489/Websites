@@ -25,7 +25,8 @@ class Header extends React.Component {
                     [
                         <li key = "4"><a className = "sidenav-close" href = "/auth/logout">Sign-Out</a></li>,
                         <li key = "5"><Link className = "sidenav-close" to = "/shop">Shop</Link></li>,
-                        <li key = "6"><Link className = "sidenav-close" to = "/checkout">Cart</Link></li>
+                        <li key = "6"><Link className = "sidenav-close" to = "/coffee">Coffee Shop</Link></li>,
+                        <li key = "7"><Link className = "sidenav-close" to = "/checkout">Cart</Link></li>
                     ]
                 )
         }

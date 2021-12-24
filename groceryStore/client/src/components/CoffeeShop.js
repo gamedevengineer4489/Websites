@@ -5,10 +5,10 @@ import * as actions from './actions';
 
 class Shop extends React.Component {
     componentDidMount() {
-        this.props.getInventory();
+        this.props.getCoffee();
     }
     renderStore() {
-        return this.props.store.map(item => {
+        return this.props.coffee.map(item => {
             return(
                 <div className = "card" style={{ padding: '10px', marginLeft: '600px', marginRight: '700px', position: 'static'}} key = {Math.random() * 10}>
                    {console.log(item.imageURL)}
@@ -25,14 +25,14 @@ class Shop extends React.Component {
     render() {
         return(
             <div style = {{ marginTop: '70px'}}>
-                {this.props.store && this.props.store.length ? this.renderStore() : ''}
+                {this.props.coffee && this.props.coffee.length ? this.renderStore() : ''}
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return { store: state.store }
+    return { coffee: state.coffee }
 }
 
 export default connect(mapStateToProps, actions)(Shop);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_IN, SIGN_UP, OBTAIN_INVENTORY, ADD_TO_SHOPPING_CART, CHECKOUT } from './types';
+import { SIGN_IN, SIGN_UP, OBTAIN_INVENTORY, ADD_TO_SHOPPING_CART, CHECKOUT, OBTAIN_COFFEE } from './types';
 
 export const signin = (formProps) => async (dispatch) => {
     const res = await axios.post('/auth/signin', formProps);
@@ -24,6 +24,12 @@ export const getInventory = () => async (dispatch) => {
     const res = await axios.get('/store/inventory');
 
     dispatch({ type: OBTAIN_INVENTORY, payload: res.data });
+}
+
+export const getCoffee = () => async (dispatch) => {
+    const res = await axios.get('/coffee/inventory');
+
+    dispatch({ type: OBTAIN_COFFEE, payload: res.data });
 }
 
 export const addToShoppingCart = (item) => async (dispatch) => {
