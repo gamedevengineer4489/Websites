@@ -5,25 +5,16 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { date: new Date()}
+        this.state = { date: new Date() }
     }
 
     componentDidMount() {
         this.timer = setInterval(() => this.setState({date: new Date()}), 1000);
     }
 
-
-
-    
-    
-    
-    
-       
-    
-
     render() {
         return(
-            <div style = {{ position: 'relative'}}>
+            <div style = {{ position: 'fixed', width: '100%', height : '30px'}}>
                 <nav >
                     <div className = "nav-wrapper blue" >
                         <div className = "row">

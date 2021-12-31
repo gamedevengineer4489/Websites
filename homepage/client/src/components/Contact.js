@@ -1,5 +1,4 @@
 import React from 'react';
-import key from './key';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -7,18 +6,11 @@ class Contact extends React.Component {
         this.state = { body: "", subject: "" }
     }
 
-
-
-    //update this with your js_form selector
     form_id_js = "javascript_form";
 
     data_js = {
-        "access_token": key.mail_api
+        "access_token": 's2mcm5zxebzwqs7jiax1noyo'
     };
-
-    
-
-    
 
     js_send() {
         let sendButton = document.getElementById("js_send");
@@ -48,8 +40,6 @@ class Contact extends React.Component {
         return false;
     }
 
-    
-
     toParams(data_js) {
         var form_data = [];
         for ( var key in data_js ) {
@@ -59,28 +49,20 @@ class Contact extends React.Component {
         return form_data.join("&");
     }
 
-
-
     render() {
         return(
             <div style = {{ height: '882px'}}>
-                
-               
                 <form id="javascript_form" style = {{ padding: '30px'}}>
-                    
                     <fieldset>
                         <h1><center>Contact Form</center></h1>
-                        <label style = {{ fontSize: 'large', color: 'black'}}>Subject</label>
-                        <input type="text" name="subject" placeholder="Subject" maxLength = "250" required/>
-                        <label style = {{ fontSize: 'large', color: 'black'}}>Message</label>
-                        <textarea name="text" placeholder="Message" required></textarea>
+                        <label >Subject</label>
+                        <input type="text" name="subject" placeholder="Subject" maxLength = "250" autoComplete = "none" required/>
+                        <label >Message</label>
+                        <textarea name="text" placeholder="Message" autoComplete = "none" required></textarea>
                         <input type="submit" id="js_send" value="Send" onClick = {() => this.js_send()} className = "btn"/>
                     </fieldset>
-                    {/* <!-- not required, but we'd appreciate it if you'd link to us somewhere on your site --> */}
                     <p>Powered by <a href="https://postmail.invotes.com" target="_blank" rel="noreferrer">PostMail</a></p>
                 </form>
-                
-
             </div>
         )
     }

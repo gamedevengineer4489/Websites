@@ -16,16 +16,19 @@ class App extends React.Component {
   render() {
     return(
       
-        <div className = "maintainer">
+        <div>
           <BrowserRouter>
               <Header />
               <br />
-              <button className = "waves-effect wave-light btn" onClick = {() => changeTheme()} style = {{ marginLeft: '1650px', color: 'white' }}>Change Background Color</button>
+              <br />
+              <br />
+              <br />
+              <button className = "waves-effect wave-light btn" onClick = {() => changeTheme()} style = {{ marginLeft: '1650px', color: 'white', marginTop: '5px', position: 'static' }}>Change Background Color</button>              
+              <br />
               <Routes>
                   <Route path = "/" exact element = {<Landing />} />
                   <Route path = "/websites" exact element = {<Websites />} />
                   <Route path = "/message" exact element = {<Contact />} />
-                  
               </Routes>
               
               
