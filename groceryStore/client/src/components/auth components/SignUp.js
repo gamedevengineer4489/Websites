@@ -7,19 +7,29 @@ import * as actions from '../actions';
 
 class SignUp extends React.Component {
     onFormSubmit = (formProps) => {
+        // alexanderdalessi@yahoo.com
+        // alexander.dalessi@gmail.com
+        var rgx = new RegExp(/^\w+([.-]\w+)*@\w+[.]\w{2,3}$/);
         let formSubmission = formProps;
         
-        if(formSubmission.email && formSubmission.firstname && formSubmission.hash && formSubmission.hashReenter && formSubmission.lastname && formSubmission.image)
+        if(formSubmission.email && formSubmission.firstname && formSubmission.hash && formSubmission.hashReenter && formSubmission.lastname && formSubmission.image && rgx.test(formSubmission.email))
         {
             
             this.obtainEncodedURLString(formProps.image[0]).then(profileImage => this.props.signup({email: formSubmission.email, firstname: formSubmission.firstname, lastname: formSubmission.lastname, hash: formSubmission.hash, hashReenter: formSubmission.hashReenter, image: profileImage}));
-            console.log(formSubmission);
+            
             
             window.location.href = "/signin";
-        } else {
+        } 
+        else if(formSubmission.email && formSubmission.firstname && formSubmission.hash && formSubmission.hashReenter && formSubmission.lastname && formSubmission.image && !rgx.test(formSubmission.email))
+        {
+            alert('The email entered is invalid.');
+        }
+        else {
             alert('To register an account all fields must be filled out.');
         }
     }
+
+    
 
     customFileInput = (field) => {
         delete field.input.value; // <-- deleting the value property
@@ -80,7 +90,6 @@ class SignUp extends React.Component {
                     {this.props.form.signup &&  this.props.form.signup.values &&  this.props.form.signup.values.image &&  this.props.form.signup.values.image.length ? <img alt = "abc" style = {{ height: '100px', width: '100px'}} src = {URL.createObjectURL(this.props.form.signup.values.image[0])} /> : <label>No picture selected</label>}
                     <br />
                     <button className='waves-effect waves-light btn'>Sign-Up</button>
-                    
                 </form>
             </div>
         )

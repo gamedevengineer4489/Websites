@@ -25,9 +25,9 @@ ReactDOM.render(
                     <Route path = "/" element = {<Landing />} />
                     <Route path = "/signin" element = {<SignIn />} />
                     <Route path = "/registration" element = {<SignUp />} />
-                    <Route path = "/changepassword" element = {<PasswordChange />} />
+                    <Route path = "/changePassword" element = {<PasswordChange />} />
                     <Route path = "/shop" element = {<Shop />} />
-                    <Route path = "/coffee" element = {<CoffeeShop />} />
+                    <Route path = "/coffeeShop" element = {<CoffeeShop />} />
                     <Route path = "/checkout" element = {<ShoppingCart />} />
                 </Routes>
             </App>

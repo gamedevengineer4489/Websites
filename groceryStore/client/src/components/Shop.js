@@ -6,17 +6,17 @@ import * as actions from './actions';
 class Shop extends React.Component {
     componentDidMount() {
         this.props.getInventory();
+        window.scrollTo(0,0);
     }
     renderStore() {
         return this.props.store.map(item => {
             return(
-                <div className = "card" style={{ padding: '10px', marginLeft: '600px', marginRight: '700px', position: 'static'}} key = {Math.random() * 10}>
-                   {console.log(item.imageURL)}
-                   <h3>{item.productName}</h3>
-                   <center><img src = {item.imageURL} style={{ height: '400px', width: '450px'}}/></center>
+                <div className = "card" style={{ marginLeft: '20px', padding: '10px', position: 'static', width: '300px' }} key = {Math.random() * 10}>
+                   <h5><center>{item.productName}</center></h5>
+                   <img src = {item.imageURL} style={{ height: '200px', width: '250px' }}/>
                    <h5>Price: ${item.productPrice}</h5>
                    <div className='right'>
-                       <button className='waves-effect wave-light btn' onClick={() => this.props.addToShoppingCart(item)}>Add To Cart</button>
+                      {item.quantity > 0 ? <button className='waves-effect wave-light btn' onClick={() => this.props.addToCartDraft(item)}>Add To Cart</button> : 'Sold Out. Come Back Later'}
                    </div>
                 </div>
             )

@@ -3,10 +3,14 @@ const { Schema } = mongoose;
 
 
 const saleSchema = new Schema({
+    name: String,
+    city: String,
+    country: String,
+    last4: String,
     // The items purchased
     items: Array,
     // Price Paid
-    totalPrice: Number,
+    totalPaid: Number,
     // Information about the user
     
 })

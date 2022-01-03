@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_IN, SIGN_UP, OBTAIN_INVENTORY, ADD_TO_SHOPPING_CART, CHECKOUT, OBTAIN_COFFEE } from './types';
+import { SIGN_IN, SIGN_UP, OBTAIN_INVENTORY, CHECKOUT, OBTAIN_COFFEE, CART_DRAFT } from './types';
 
 export const signin = (formProps) => async (dispatch) => {
     const res = await axios.post('/auth/signin', formProps);
@@ -20,6 +20,12 @@ export const getCurrentUser = () => async (dispatch) => {
     dispatch({ type: SIGN_IN, payload: res.data });
 }
 
+export const changePassword = (formProps) => async (dispatch) => {
+    const res = await axios.patch('/auth/changePassword', formProps);
+
+    dispatch({ type: SIGN_IN, payload: res.data });
+}
+
 export const getInventory = () => async (dispatch) => {
     const res = await axios.get('/store/inventory');
 
@@ -32,13 +38,24 @@ export const getCoffee = () => async (dispatch) => {
     dispatch({ type: OBTAIN_COFFEE, payload: res.data });
 }
 
-export const addToShoppingCart = (item) => async (dispatch) => {
-    dispatch({ type: ADD_TO_SHOPPING_CART, payload: item });
+export const addToCartDraft = (item) => async (dispatch) => {
+    const res = await axios.post('/store/cart', item);
+
+    dispatch({ type: CART_DRAFT, payload: res.data });
 }
 
-export const handleToken = (token, amount) => async dispatch => {
-    const res = await axios.post('/api/stripe', {token, amount} );
-    
+export const getCart = () => async (dispatch) => {
+    const res = await axios.get('/store/getCart');
+
+    dispatch({ type: CART_DRAFT, payload: res.data});
+}
+
+
+
+export const handleToken = (token, amount, items) => async dispatch => {
+    await axios.post('/api/stripe', {token, amount, items} );
+    // local storage is bad. let's not use it.
+    localStorage.clear();
     dispatch({ type: CHECKOUT, payload: null });
 };
 

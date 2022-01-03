@@ -6,21 +6,24 @@ import * as actions from './actions';
 class Shop extends React.Component {
     componentDidMount() {
         this.props.getCoffee();
+        window.scrollTo(0,0);
     }
     renderStore() {
-        return this.props.coffee.map(item => {
-            return(
-                <div className = "card" style={{ padding: '10px', marginLeft: '600px', marginRight: '700px', position: 'static'}} key = {Math.random() * 10}>
-                   {console.log(item.imageURL)}
-                   <h3>{item.productName}</h3>
-                   <center><img src = {item.imageURL} style={{ height: '400px', width: '450px'}}/></center>
-                   <h5>Price: ${item.productPrice}</h5>
-                   <div className='right'>
-                       <button className='waves-effect wave-light btn' onClick={() => this.props.addToShoppingCart(item)}>Add To Cart</button>
-                   </div>
-                </div>
-            )
-        })
+        if(this.props.coffee && this.props.coffee.length)
+        {
+            return this.props.coffee.map(item => {
+                return(
+                    <div className = "card" style={{ marginLeft: '20px', padding: '10px', position: 'static', width: '300px'}} key = {Math.random() * 10}>
+                    <h5><center>{item.productName}</center></h5>
+                    <center><img src = {item.imageURL} style={{ height: '200px', width: '250px'}}/></center>
+                    <h5>Price: ${item.productPrice}</h5>
+                    <div className='right'>
+                        <button className='waves-effect wave-light btn' onClick={() => this.props.addToCartDraft(item)}>Add To Cart</button>
+                    </div>
+                    </div>
+                )
+            })
+        }
     }
     render() {
         return(
@@ -28,6 +31,7 @@ class Shop extends React.Component {
                 {this.props.coffee && this.props.coffee.length ? this.renderStore() : ''}
             </div>
         )
+       
     }
 }
 

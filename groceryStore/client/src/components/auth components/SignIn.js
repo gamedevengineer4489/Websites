@@ -34,6 +34,7 @@ class SignUp extends React.Component {
                     </fieldset>
                     <br />
                     <button className='waves-effect waves-light btn'>Sign-In</button>
+                    <p>If you have forgotten your password. <a href = "/changePassword">Click Here!</a></p>
                 </form>
             </div>
         )
