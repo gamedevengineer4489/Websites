@@ -8,7 +8,7 @@ import Payments from './Payments';
 class ShoppingCart extends React.Component {
 
     componentDidMount() {
-        this.props.getCart();
+        
         window.scrollTo(0,0);
     }
 
@@ -25,6 +25,7 @@ class ShoppingCart extends React.Component {
                        <h5><center>{item.productName}</center></h5>
                        <center><img src = {item.imageURL} style={{ height: '200px', width: '250px' }} /></center>
                        <h5>Price: ${item.productPrice}</h5>
+                       <a href = "/checkout" onClick = {() => this.props.removeFromCart(item)} className='btn' style={{ position: 'static'}}>Remove From Cart</a>
                     </div>
                 )
             })
@@ -33,7 +34,7 @@ class ShoppingCart extends React.Component {
     }
     render() {
         return(
-            <div style = {{ marginTop: '70px', minHeight: '100vh'}}>
+            <div style = {{ marginTop: '70px', minHeight: '100vh', position: 'static'}}>
                 {this.renderCart()}
                 
                 {this.props.shoppingCart.items.items && this.props.shoppingCart.items.items.length ? <div className='left' style={{ marginLeft: '20px'}}>

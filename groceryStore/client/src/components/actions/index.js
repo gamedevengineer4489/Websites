@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_IN, SIGN_UP, OBTAIN_INVENTORY, CHECKOUT, OBTAIN_COFFEE, CART_DRAFT } from './types';
+import { SIGN_IN, SIGN_UP, OBTAIN_INVENTORY, CHECKOUT, OBTAIN_COFFEE, CART_DRAFT, REMOVE_FROM_CART } from './types';
 
 export const signin = (formProps) => async (dispatch) => {
     const res = await axios.post('/auth/signin', formProps);
@@ -42,6 +42,12 @@ export const addToCartDraft = (item) => async (dispatch) => {
     const res = await axios.post('/store/cart', item);
 
     dispatch({ type: CART_DRAFT, payload: res.data });
+}
+
+export const removeFromCart = (item) => async (dispatch) => {
+    const res = await axios.patch('/store/cart', item);
+
+    dispatch({ type: REMOVE_FROM_CART, payload: res.data });
 }
 
 export const getCart = () => async (dispatch) => {

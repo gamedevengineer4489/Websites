@@ -11,6 +11,8 @@ const inventorySchema = new Schema({
     quantity: Number,
     // Profile Image 
     imageURL: String,
+    // Unique number identifying item
+    id: Number
     
 })
 

@@ -18,7 +18,7 @@ class Shop extends React.Component {
                     <center><img src = {item.imageURL} style={{ height: '200px', width: '250px'}}/></center>
                     <h5>Price: ${item.productPrice}</h5>
                     <div className='right'>
-                        <button className='waves-effect wave-light btn' onClick={() => this.props.addToCartDraft(item)}>Add To Cart</button>
+                        {item.quantity > 0 ? <a className='btn' onClick={() => this.props.addToCartDraft(item)}>Add To Cart</a> : 'Sold Out. Come Back Later'}
                     </div>
                     </div>
                 )

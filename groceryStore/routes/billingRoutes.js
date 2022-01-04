@@ -27,11 +27,7 @@ module.exports = app => {
 
         let cart = await Cart.findOneAndUpdate({ email: req.user.email }, {$pullAll: { items: req.body.items }});
 
-        for(item of req.body.items)
-        {
-            await Inventory.findOneAndUpdate({_id: item._id}, {$inc: {quantity: -1}}).exec();
-            await Coffee.findOneAndUpdate({_id: item._id}, {$inc: {quantity: -1}}).exec();
-        }
+        
         cart.save();
         purchase.save();
         res.send(req.user);

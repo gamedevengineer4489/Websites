@@ -4,3 +4,4 @@ export const OBTAIN_INVENTORY = 'OBTAIN_INVENTORY';
 export const OBTAIN_COFFEE = 'OBTAIN_COFFEE';
 export const CHECKOUT = 'CHECKOUT';
 export const CART_DRAFT = 'CART_DRAFT';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
