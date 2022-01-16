@@ -1,0 +1,11 @@
+export const SIGN_IN = 'SIGN_IN';
+
+// For shop section
+export const OBTAIN_CLOTHES_INVENTORY = 'OBTAIN_CLOTHES_INVENTORY';
+export const OBTAIN_GAMES_INVENTORY = 'OBTAIN_GAMES_INVENTORY';
+export const OBTAIN_FILM_INVENTORY = 'OBTAIN_FILM_INVENTORY';
+export const OBTAIN_SOUVENIR_INVENTORY = 'OBTAIN_SOUVENIR_INVENTORY';
+
+// For checking out
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const CHECKOUT = 'CHECKOUT';
