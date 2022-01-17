@@ -111,8 +111,6 @@ const stripe = require('stripe')(keys.stripeSecretKey);
 const requireLogin = require('./middleware/requireLogin');
 const PURCHASES = require('./models/Sale');
 
-
-
 app.post('/api/stripe', requireLogin, async(req, res) => {
     await stripe.charges.create({
         amount: req.body.amount,

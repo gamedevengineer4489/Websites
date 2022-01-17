@@ -7,11 +7,15 @@ import ANOTHERBLOG_IMAGE from '../images/ANOTHERBLOG_IMAGE.PNG';
 import Grocery1 from '../images/grocery.PNG';
 import Grocery2 from '../images/grocery1.PNG';
 import Grocery3 from '../images/grocery2.PNG';
+import Zoo1 from '../images/zooFrontPage.PNG';
+import Zoo2 from '../images/Zoo2.PNG';
+import Zoo3 from '../images/zooSelection.PNG';
+import Zoo4 from '../images/zooCheckout.PNG';
 
 class Websites extends React.Component {
     render() {
         return(
-            <div style = {{height: '5100px'}}>
+            <div style = {{height: '7500px'}}>
                 <center>
                     <h1><mark>Website Examples</mark></h1>
                     <a onClick = {() => {window.open("https://protected-ocean-66873.herokuapp.com/")}} style = {{ cursor: 'pointer'}}><code style = {{ fontSize: 'x-large'}}>Example Email Sender Service</code></a>
@@ -37,6 +41,16 @@ class Websites extends React.Component {
                     <img src = {Grocery2} style = {{ height: '600px', width: '1100px'}} />
                     <br />
                     <img src = {Grocery3} style = {{ height: '600px', width: '1100px'}} />
+                    <br />
+                    <a onClick = {() => {window.open("https://shielded-mountain-59586.herokuapp.com/")} } style = {{ cursor: 'pointer'}}><code style = {{ fontSize: 'x-large'}}>Example Zoo Website</code></a>
+                    <br />
+                    <img src = {Zoo1} style = {{ height: '600px', width: '1100px'}} />
+                    <br />
+                    <img src = {Zoo4} style = {{ height: '600px', width: '1100px'}} />
+                    <br />
+                    <img src = {Zoo3} style = {{ height: '600px', width: '1100px'}} />
+                    <br />
+                    <img src = {Zoo2} style = {{ height: '600px', width: '1100px'}} />
                 </center>
             </div>
         )

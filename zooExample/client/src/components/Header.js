@@ -37,7 +37,7 @@ class Header extends React.Component {
                 <nav>
                     <div className='nav-wrapper blue' >
                         {this.renderButtons()}
-                        <Link className='brand-logo right' style={{ color: 'orangered' }} to = '/'>Dalessi Zoo</Link>
+                        <Link className='brand-logo right' style={{ color: 'orangered', marginLeft: '170px' }} to = '/'>Dalessi Zoo</Link>
                     </div>
                 </nav>
                 
