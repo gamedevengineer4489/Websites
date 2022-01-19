@@ -37,8 +37,6 @@ passport.use(
             })
 
             cart.save();
-
-            console.log(profile.name);
             const user = await new User({ googleId: profile.id, email: profile.emails[0].value, firstName: profile.name.givenName, lastName: profile.name.familyName  }).save();
             user.save();
             done(null, user);

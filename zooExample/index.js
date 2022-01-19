@@ -101,7 +101,6 @@ app.post('/store/addToCart', async (req, res) => {
 });
 
 app.get('/store/getCart', async (req, res) => {
-    console.log(req);
     let cart = await CART.findOne({ email: req.user.email }).exec();
     res.send(cart);
 });
