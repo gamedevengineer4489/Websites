@@ -42,28 +42,30 @@ class SurveyList extends Component {
   }
 
     renderSurveysByDateSent() {
-      // Need to do something like this with the mongoDB survey data.
       if(this.props.surveys.length > 0)
       {
         let array = this.props.surveys.sort((a, b) => (a.dateSent > b.dateSent) ? 1 : -1);
-        console.log(array);
       }
       
     }
 
-  
+  // Pushing to production
 
   render() {
     return (
       <div>
         <br />
-        <button className = "btn " onClick = {() => this.props.fetchSurveysByTitle()} style = {{ backgroundColor: 'dodgerblue'}}>Sort By Title</button>
-        <span>{' '}</span>
-        <button className = "btn" onClick = {() => this.props.fetchSurveysBySentDate()} style = {{ backgroundColor: 'mediumseagreen'}}>Sort By Sent Date</button>
-        <span>{' '}</span>
-        <button className = "btn" onClick = {() => this.props.fetchSurveysByNo()} style = {{ backgroundColor: 'violet'}}>Sort By No</button>
-        <span>{' '}</span>
-        <button className = "btn" onClick = {() => this.props.fetchSurveysByYes()} style = {{ backgroundColor: 'gray'}}>Sort By Yes</button>
+        <strong style={{ fontSize: 'large'}}>Sort Surveys By: </strong>
+        <br />
+        <button className = "btn " onClick = {() => this.props.fetchSurveysByTitle()} style = {{ backgroundColor: 'dodgerblue'}}>Title</button>
+        <span style={{ paddingBottom: '15px', paddingTop: '5px', paddingRight: '10px'}} />
+        <button className = "btn" onClick = {() => this.props.fetchSurveysBySentDate()} style = {{ backgroundColor: 'mediumseagreen'}}>Sent Date</button>
+        <span style={{ paddingBottom: '15px', paddingTop: '5px', paddingRight: '10px'}} />
+        <button className = "btn" onClick = {() => this.props.fetchSurveysByNo()} style = {{ backgroundColor: 'violet'}}>No</button>
+        <span style={{ paddingBottom: '15px', paddingTop: '5px', paddingRight: '10px'}} />
+        <button className = "btn" onClick = {() => this.props.fetchSurveysByYes()} style = {{ backgroundColor: 'gray'}}>Yes</button>
+        <span style={{ paddingBottom: '15px', paddingTop: '5px', paddingRight: '10px'}} />
+        <br />
         {this.renderSurveys()}
       </div>
     );

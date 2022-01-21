@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import M from 'materialize-css';
 
 import Landing from './Landing';
 import Header from './Header';
@@ -14,6 +15,11 @@ import Footer from './Footer';
 class App extends React.Component {
     componentDidMount() {
         this.props.fetchUser();
+        var options = {};
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems, options);
+        });
     }
 
     render() {

@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 
 class BlogList extends React.Component {
-    l
    state  = { title: null, body: null, userId: null, displayName: null, email: null, image: null }
 
 
@@ -23,7 +22,6 @@ class BlogList extends React.Component {
             email: this.props.auth.email,
             image: this.props.auth.avatar
         })
-        console.log(this.state.title);
     }
 
     newMessage = (event) => {
@@ -39,7 +37,6 @@ class BlogList extends React.Component {
         text.style.height = 'auto';
         text.style.height = text.scrollHeight + 'px';
         text.style.textAlign = 'left';
-        console.log(this.state.body);
     }
 
     deleteThisBlog = (id) => {

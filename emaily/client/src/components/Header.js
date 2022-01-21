@@ -18,27 +18,37 @@ class Header extends React.Component {
             default:
                 return [
                     <li key = "1"><Payments /></li>,
-                    <li key = "4"><a href = '/surveys' className = "btn" style = {{ color: 'black'}}>To Surveys</a></li>,
-                    <li key = "3" style = {{ margin: '0 10px' }}>Credits: {this.props.auth.credits}</li>,
-                    <li key = "2"><a href = '/api/logout' className = "btn" style = {{ color: 'black'}}>Log Out</a></li>
+                    <li key = "4"><a href = '/surveys'  style = {{ color: 'black'}}>To Surveys</a></li>,
+                    <li key = "3" style = {{ margin: '0 10px' }}><b>Credits:</b> {this.props.auth.credits}</li>,
+                    <li key = "2"><a href = '/api/logout' style = {{ color: 'black'}}>Log Out</a></li>
                 ];
         }
     }
 
     render() {
         return(
-            <nav>
-                <div className = "nav-wrapper">
-                    
-                    <Link to = '/' className = "left brand-logo" style = {{ marginLeft: '10px', color: 'darkgreen'}}>
-                        OC Websites
-                    </Link>
-                    <ul className = "right">
-                        {this.renderButtons()}
+            <div>
+                <nav>
+                    <div className = "nav-wrapper">
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                        <ul className = "left hide-on-med-and-down" style={{paddingLeft: '5px'}}>
+                            {this.renderButtons()}
+                        </ul>
+                        <Link to = '/' className = "right brand-logo" style = {{ marginLeft: '10px', color: 'darkgreen'}}>
+                            OC Websites
+                        </Link>
                         
-                    </ul>
-                </div>
-            </nav>
+                    </div>
+                
+                </nav>
+                <ul class="sidenav" id="mobile-demo">
+                    <center>
+                        {this.renderButtons()}
+                    </center>
+                    
+                </ul>
+            </div>
+            
             
         )
     }

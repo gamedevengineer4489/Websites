@@ -63,8 +63,6 @@ class Blog extends React.Component {
         return (
             <div>
                 <center>
-                    {console.log(this.props)}
-                    {console.log(this.state)}
                     <h1>{this.props.other ? (this.props.other.spotifyUserName || this.props.other.googleUserName || this.props.other.username) : "User not found"}</h1>
                     <img src = {this.props.other ? (this.props.other.imageURLSpotify || this.props.other.imageURLGoogle || this.props.other.avatar ) : ""}/>
                     <div className = "card">
