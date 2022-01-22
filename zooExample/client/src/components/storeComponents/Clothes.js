@@ -18,13 +18,16 @@ class Clothes extends React.Component {
         {
             return this.props.clothes.map(clothe => {
                 return(
-                    <Grid item className = "card" style={{ padding: '10px', position: 'static', width: '450px', marginLeft: '10px'  }} key = {Math.random() * 10}>
-                         <h5>{clothe.productName}</h5>
-                        <img src = {clothe.imageURL} style = {{ maxWidth: '400px', minHeight: '350px'}}/>
-                        <p><b>Price: ${clothe.productPrice}</b></p>
-                        <button onClick = {() => this.props.addItemToCart(clothe)} className = "waves-effect wave-light btn">Add To Cart</button>
-                        
-                   </Grid>
+                    <div style={{ paddingRight: '10px', position: 'static'}}>
+                        <Grid item className = "card" style={{ position: 'static', width: '350px', marginLeft: '5px', padding: '10px'  }} key = {Math.random() * 10}>
+                            <h5>{clothe.productName}</h5>
+                            <img src = {clothe.imageURL} style = {{ width: '325px', maxHeight: '350px'}}/>
+                            <p><b>Price: ${clothe.productPrice}</b></p>
+                            <button onClick = {() => this.props.addItemToCart(clothe)} className = "waves-effect wave-light btn">Add To Cart</button>
+                        </Grid>
+                        <br />
+                    </div>
+                    
                     
                 )
             })
@@ -34,7 +37,7 @@ class Clothes extends React.Component {
 
     render() {
         return(
-            <Grid style={{ marginTop: '70px', padding: '10px', marginLeft: '10px'}} container>
+            <Grid style={{ marginTop: '70px', position: 'static'}} container>
                 {this.renderInventory()}
                
             </Grid>

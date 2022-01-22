@@ -17,12 +17,16 @@ class Games extends React.Component {
         {
             return this.props.games.map(game => {
                 return(
-                    <Grid className='card' style = {{ marginTop: '70px', padding: '10px', maxWidth: '450px', position: 'static', marginLeft: '10px' }} key = {Math.random() * 10}>
-                        <h5>{game.productName}</h5>
-                        <img src = {game.imageURL} style = {{ maxWidth: '400px'}}/>
-                        <p><b>Price: ${game.productPrice}</b></p>
-                        <button onClick = {() => this.props.addItemToCart(game)} className = "waves-effect wave-light btn">Add To Cart</button>
-                    </Grid>
+                    <div style={{ paddingRight: '10px'}}>
+                        <Grid className='card' style={{ position: 'static', width: '350px', marginLeft: '5px', padding: '10px'  }} key = {Math.random() * 10}>
+                            <h5>{game.productName}</h5>
+                            <img src = {game.imageURL} style = {{ width: '325px', maxHeight: '350px'}}/>
+                            <p><b>Price: ${game.productPrice}</b></p>
+                            <button onClick = {() => this.props.addItemToCart(game)} className = "waves-effect wave-light btn">Add To Cart</button>
+                        </Grid>
+                        <br />
+                    </div>
+                    
                 )
             })
         }
@@ -31,7 +35,7 @@ class Games extends React.Component {
 
     render() {
         return(
-            <Grid style = {{ marginLeft: '10px'}} container>
+            <Grid style = {{ marginTop: '70px', marginLeft: '10px', position: 'static'}} container>
                 {this.renderInventory()}
                
             </Grid>

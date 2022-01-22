@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 class Footer extends Component {
     render() {
         return(
-            <footer className='page-footer' style={{ backgroundColor: 'green'}}>
+            <footer className='page-footer' style={{ backgroundColor: 'green', width: '100%'}}>
                 <div className='row'>
-                    <div className='column' style = {{ marginLeft: '10px', color: 'white' }}>
+                    <div className='column' style = {{ marginLeft: '10px', color: 'white', paddingBottom: '5px' }}>
                         <Link  className = 'footerColumn' to = "/" onClick={() => window.open("https://ancient-reaches-75615.herokuapp.com/")} style={{ fontFamily: 'sans-serif', fontSize: 'x-large', color: 'tomato'}}>Dalessi Zoo</Link>
                         <p>Website created by Alexander Dalessi</p>
                     </div>

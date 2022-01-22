@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import zooImage from '../images/zooImage.jpg';
-import image1 from '../images/frontPageImages/image1.jpg';
-import image2 from '../images/frontPageImages/image2.jpg';
-import image3 from '../images/frontPageImages/image3.jpg';
+import zooImage from '../mediaFiles/frontPageImages/zooImage.jpg';
+import image1 from '../mediaFiles/frontPageImages/image1.jpg';
+import image2 from '../mediaFiles/frontPageImages/image2.jpg';
+import image3 from '../mediaFiles/frontPageImages/image3.jpg';
 
 function Landing() {
     const images = [
@@ -24,17 +24,20 @@ function Landing() {
     };
 
     return(
-        <div style = {{ marginTop: '70px', padding: '4px'}}>
+        <div style = {{ marginTop: '40px', padding: '4px', minHeight: '1200px', position: 'static' }}>
             <center>
                 <h1>Hello. Herzlich Wilkommen auf der Website unseres Zoos. </h1>
                 <br />
-                <span style = {{ paddingRight: '10px',  bottom: '250px', position: 'relative'}}>
-                    <button className = "waves-effect wave-light btn"  onClick={() => previous()}>previous</button>
+                
+                <img src = {images[index]} style = {{ height: '50vh', maxWidth: '50vw'}} />
+                <br />
+                <span style = {{ paddingRight: '10vh' }}>
+                    <button style = {{ position: 'static'}} className = "waves-effect wave-light btn" onClick={() => previous()}><i style = {{ position: 'static'}} className='material-icons'>chevron_left</i></button>
                 </span>
-                <img src = {images[index]} style = {{ height: '500px', 'width': 'auto'}} />
-                <span style = {{ paddingLeft: '10px',  bottom: '250px', position: 'relative'}}>
-                    <button className = "waves-effect wave-light btn" onClick={() => next()}>next</button>
-                </span>
+                
+                
+                    <button style = {{ position: 'static'}} className = "waves-effect wave-light btn" onClick={() => next()}><i style = {{ position: 'static'}} className='material-icons'>chevron_right</i></button>
+                
             </center>
         </div>
     );

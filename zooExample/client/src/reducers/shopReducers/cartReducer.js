@@ -5,7 +5,6 @@ export default (state = {items: [], total: null}, action) => {
         case ADD_TO_CART:
             let newCart = action.payload;
             let newestTotal = 0;
-            console.log(newCart.items);
             for(var items of newCart.items)
             {
                 newestTotal += items.productPrice;

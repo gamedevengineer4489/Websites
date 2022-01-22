@@ -1,46 +1,53 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import * as actions from '../actions';
 
 class Header extends React.Component {
+    
     renderButtons() {
         if(this.props.auth === null)
         {
             return null;
         } else if(this.props.auth === false)
         {
-            return(
-                <ul>
-                    <li alt = {Math.random()}><a href = "/auth/google">Sign-in with Google</a></li>
-                    <li alt = {Math.random()}><a href = "/wildlife">Animals</a></li>
-                    <li alt = {Math.random()}><a href = "/shop">Shop</a></li>
-                    <li alt = {Math.random()}><a href = "/checkout">Checkout</a></li>
-                </ul>
-            )
+            return [
+                
+                    <li alt = {Math.random()}><a href = "/auth/google">Sign-in with Google</a></li>,
+                    <li alt = {Math.random()}><a href = "/wildlife">Animals</a></li>,
+                    <li alt = {Math.random()}><a href = "/shop">Shop</a></li>,
+                    <li alt = {Math.random()}><a href = "/checkout">Checkout</a></li>,
+            ]
+            
         } else {
-            return(
-                <ul>
-                    <li alt = {Math.random()}><a href = "/api/logout">Sign-Out</a></li>
-                    <li alt = {Math.random()}><a href = "/wildlife">Animals</a></li>
-                    <li alt = {Math.random()}><a href = "/shop">Shop</a></li>
-                    <li alt = {Math.random()}><a href = "/checkout">Checkout</a></li>
-                </ul>
-            )
+            return[
+                
+                    <li alt = {Math.random()}><a href = "/api/logout">Sign-Out</a></li>,
+                    <li alt = {Math.random()}><a href = "/wildlife">Animals</a></li>,
+                    <li alt = {Math.random()}><a href = "/shop">Shop</a></li>,
+                    <li alt = {Math.random()}><a href = "/checkout">Checkout</a></li>,
+                
+            ]
         }
     }
 
     render() {
         return(
-            <div style={{ position: 'fixed', width: '100%', top: '0'}}>
-                <nav>
-                    <div className='nav-wrapper blue' >
-                        {this.renderButtons()}
-                        <Link className='brand-logo right' style={{ color: 'orangered', marginLeft: '170px' }} to = '/'>Dalessi Zoo</Link>
-                    </div>
-                </nav>
+            <div >
                 
+                    <nav style={{ position: 'fixed', top: '0px', width: '100%'}}>
+                        <div className='nav-wrapper blue' >
+                            <a href="#" data-target="mobile-demo" className = "sidenav-trigger"><i className = "material-icons">menu</i></a>
+                            <ul className='left hide-on-med-and-down'>
+                                {this.renderButtons()}
+                            </ul>
+                            <Link className='right brand-logo' style={{ color: 'orangered', marginLeft: '170px' }} to = '/'>Dalessi Zoo</Link>
+                        </div>
+                    </nav>
+                
+                <ul class='sidenav' id="mobile-demo">
+                    {this.renderButtons()}
+                </ul>
             </div>
         )
     }

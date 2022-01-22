@@ -17,12 +17,14 @@ class ShoppingCart extends React.Component {
         {
             return this.props.cart.items.items.map(item => {
                 return(
-                    <Grid className = "card" style = {{ position: 'static', padding: '10px', maxWidth: '450px', marginLeft: '10px' }} key = {Math.random() * 10}>
-                        <h5>{item.productName}</h5>
-                        <img src = {item.imageURL} style = {{ maxWidth: '400px', height: '400px'}} />
-                        <p><b>Price: ${item.productPrice}</b></p>
-                        
-                    </Grid>
+                    <div style={{ paddingRight: '10px'}}>
+                        <Grid className = "card" style={{ position: 'static', width: '350px', marginLeft: '5px', padding: '10px'  }} key = {Math.random() * 10}>
+                            <h5>{item.productName}</h5>
+                            <img src = {item.imageURL} style = {{ maxWidth: '325px', height: '350px'}} />
+                            <p><b>Price: ${item.productPrice}</b></p>
+                        </Grid>
+                    </div>
+                    
                 )
             })
         }
@@ -32,11 +34,13 @@ class ShoppingCart extends React.Component {
 
     render() {
         return(
-            <Grid style={{ marginTop: '70px', padding: '10px', marginLeft: '10px', marginRight: '10px'}} container>
+            <div>
+                <Grid style={{ marginTop: '70px', padding: '10px', marginRight: '10px' }} container>
                     {this.renderItems()}
-                    <div style={{ marginTop: '5px', marginLeft: '20px', marginRight: '10px'}} >{this.props.cart.total > 0 ? <Payments /> : ''}</div>
-                    
-            </Grid>
+                </Grid>
+                <div style={{ marginLeft: '20px', marginRight: '10px'}} >{this.props.cart.total > 0 ? <Payments /> : ''}</div>
+            </div>
+            
         )
     }
 }
