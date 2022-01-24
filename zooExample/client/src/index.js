@@ -15,7 +15,11 @@ import Games from './components/storeComponents/Games';
 import Films from './components/storeComponents/Films';
 import Souvenirs from './components/storeComponents/Souvenirs';
 import ShoppingCart from './components/storeComponents/ShoppingCart';
-
+import Animal from './components/Animal';
+import tigerVideo from './mediaFiles/videoFiles/tigerVideo.mp4';
+import zebraVideo from './mediaFiles/videoFiles/zebraVideo.mp4';
+import lionVideo from './mediaFiles/videoFiles/lionVideo2.mp4';
+import grizzlyBearVideo from './mediaFiles/videoFiles/grizzlyBearVideo.mp4';
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -31,6 +35,10 @@ ReactDOM.render(
                     <Route path = '/shop/films' element = {<Films />}/>
                     <Route path = '/shop/souvenirs' element = {<Souvenirs />}/>
                     <Route path = '/wildlife' element = {<Wildlife />}/>
+                    <Route path = '/wildlife/Tiger' element = {<Animal videoSRC = {tigerVideo} title = "Tiger" />}/>
+                    <Route path = '/wildlife/Zebra' element = {<Animal videoSRC = {zebraVideo} title = "Zebra" />}/>
+                    <Route path = '/wildlife/Lion' element = {<Animal videoSRC = {lionVideo} title = "Lion" />}/>
+                    <Route path = '/wildlife/Bear' element = {<Animal videoSRC = {grizzlyBearVideo} title = "Bear" />}/>
                     <Route path = '/checkout' element = {<ShoppingCart />}/>
                 </Routes>
                 

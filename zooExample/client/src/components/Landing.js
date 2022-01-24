@@ -26,7 +26,7 @@ function Landing() {
     return(
         <div style = {{ marginTop: '40px', padding: '4px', minHeight: '1200px', position: 'static' }}>
             <center>
-                <h1>Hello. Herzlich Wilkommen auf der Website unseres Zoos. </h1>
+                <h1>Hello. Welcome to our Zoo's website. </h1>
                 <br />
                 
                 <img src = {images[index]} style = {{ height: '50vh', maxWidth: '50vw'}} />

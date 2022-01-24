@@ -13,19 +13,19 @@ class Header extends React.Component {
         {
             return [
                 
-                    <li alt = {Math.random()}><a href = "/auth/google">Sign-in with Google</a></li>,
-                    <li alt = {Math.random()}><a href = "/wildlife">Animals</a></li>,
-                    <li alt = {Math.random()}><a href = "/shop">Shop</a></li>,
-                    <li alt = {Math.random()}><a href = "/checkout">Checkout</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/auth/google">Sign-in with Google</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/wildlife">Animals</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/shop">Shop</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/checkout">Checkout</a></li>,
             ]
             
         } else {
             return[
                 
-                    <li alt = {Math.random()}><a href = "/api/logout">Sign-Out</a></li>,
-                    <li alt = {Math.random()}><a href = "/wildlife">Animals</a></li>,
-                    <li alt = {Math.random()}><a href = "/shop">Shop</a></li>,
-                    <li alt = {Math.random()}><a href = "/checkout">Checkout</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/api/logout">Sign-Out</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/wildlife">Animals</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/shop">Shop</a></li>,
+                    <li key ={Math.random() * 10 + 1}><a href = "/checkout">Checkout</a></li>,
                 
             ]
         }
@@ -45,7 +45,7 @@ class Header extends React.Component {
                         </div>
                     </nav>
                 
-                <ul class='sidenav' id="mobile-demo">
+                <ul className ='sidenav' id="mobile-demo">
                     {this.renderButtons()}
                 </ul>
             </div>
