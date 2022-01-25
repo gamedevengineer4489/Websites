@@ -14,12 +14,8 @@ class Wildlife extends React.Component {
                 return(
                     <div key ={Math.random() * 10 + 1}>
                         <Grid item className = "card"   style={{ marginLeft: '10px', padding: '10px', position: 'static', width: '300px', maxHeight: '500px' }} >
-                            
                             <a href = {`/wildlife/${animal.animalName}`}><h5 >{animal.animalName}</h5></a>
-                            <h5 >Origin: {animal.countryOrigin}</h5>
-                            <br />
-                            <img src = {animal.imageURL} style={{ height: '200px', width: '250px' }} />
-                            <h5>{animal.bio}</h5>
+                            <img src = {animal.imageURL} style={{ height: '200px', width: '250px' }} alt = {`A ${animal.animalName.toLowerCase()}`}/>
                         </Grid>
                         <br />
                     </div>
@@ -31,7 +27,7 @@ class Wildlife extends React.Component {
 
     render() {
         return(
-            <Grid style={{ marginTop: '60px'}} container>
+            <Grid style={{ marginTop: '70px'}} container>
                 {this.renderAnimals()}
             </Grid>
         )
