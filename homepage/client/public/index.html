@@ -69,6 +69,82 @@
       .dark-mode textarea {
         color: white;
       }
+
+      .dark-mode .btn {
+        background-color: #36eedc;
+        color: white;
+      }
+
+      #modal01 {
+        /* The dot indicates a classname. */
+        /* This is the background. */
+        position: fixed; /* Stays in place */
+        z-index: 1; /* Sits on top */
+        left: 0;
+        top: 0px;
+        padding-top: 100px;
+        width: 100%; /* Full Width */
+        height: 100%; /* Full Height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Black w/ opacity */
+        background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+      }
+
+      .modal-content {
+          margin-left: 20vw;
+          display: block;
+          width: 100%;
+          max-width: 700px;
+          
+          z-index: 2;
+      }
+
+      .caption {
+          margin: auto;
+          display: block;
+          width: 80%;
+          max-width: 700px;
+          text-align: center;
+          color: black;
+          padding: 10px 0;
+
+      }
+
+      .close {
+          position: absolute;
+          top: 15px;
+          right: 35px;
+          color: #f1f1f1;
+          font-size: 40px;
+          font-weight: bold;
+          transition: 0.3s;
+      }
+
+      .close:hover {
+          color: #bbb;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      .modal-content, #caption {
+          animation-name: zoom;
+          animation-duration: 0.6s;
+      }
+
+      @keyframes zoom {
+          from {transform:scale(0)}
+          to {transform:scale(1)}
+      }
+
+      @media only screen and (max-width: 700px) {
+          .modal-content {
+              width: 100%;
+          }
+      }
+
+      
+
+      
     </style>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -85,7 +161,10 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -100,6 +179,7 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div id = "modal"></div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

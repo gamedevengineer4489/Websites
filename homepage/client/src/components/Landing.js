@@ -9,9 +9,11 @@ class Landing extends React.Component {
                         <h1>Hello. Welcome to our website. Nice to meet you.</h1>
                         <img style = {{ maxWidth: '80%', maxHeight: '100%', width: 'auto', height: 'auto'}} src = {programmerImage} alt = "homepage" />
                         <br />
+                        <figcaption><a style = {{ fontStyle: 'italic'}} href="https://www.vecteezy.com/free-vector/coding">Coding Vectors by Vecteezy</a></figcaption>
                     </center>
-                    <figcaption style = {{ marginLeft: '200px'}}><a style = {{ fontStyle: 'italic'}} href="https://www.vecteezy.com/free-vector/coding">Coding Vectors by Vecteezy</a></figcaption>
-                    <br />  
+                    
+                    <br />
+                      
             </div>
         )
     }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Footer extends React.Component {
     render() {
         return(
-            <footer className = "page-footer">
+            <footer className = "page-footer" style={{ width: '100%', bottom: '0px', position: 'relative'}} id = "footer">
                 <div className = "row">
                     <div className = "col s9">
                         <h5 style = {{ color: 'darkgreen', fontSize: 'xx-large', fontFamily: 'fantasy', fontStyle: 'italic'}}>OC Websites</h5>

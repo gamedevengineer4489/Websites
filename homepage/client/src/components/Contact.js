@@ -68,4 +68,6 @@ class Contact extends React.Component {
     }
 }
 
+// This is a comment.
+
 export default Contact;
