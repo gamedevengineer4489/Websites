@@ -52,9 +52,9 @@ class Contact extends React.Component {
     render() {
         return(
             <div style = {{ height: '882px'}}>
-                <form id="javascript_form" style = {{ padding: '30px'}}>
+                <form className='contactForm' id="javascript_form" style = {{ padding: '30px'}}>
                     <fieldset>
-                        <h1><center>Contact Form</center></h1>
+                        <h2><center>Contact Form</center></h2>
                         <label >Subject</label>
                         <input type="text" name="subject" placeholder="Subject" maxLength = "250" autoComplete = "none" required/>
                         <label >Message</label>

@@ -9,23 +9,33 @@ import Footer from './components/Footer';
 import Websites from './components/Websites';
 import Contact from './components/Contact';
 
-function changeTheme() {
-  var element = document.body;
-  element.classList.toggle("dark-mode");
-  
-}
+
 
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { darkMode: false }
+  }
+
   componentDidMount() {
     var options = {};
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelector('.sidenav');
             var instances = M.Sidenav.init(elems, options);
     });
 
-    
+    this.setState({ darkMode: false });
+    console.log("Is Dark Mode turned on? " + this.state.darkMode);
+  }
+  
+
+  changeTheme() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+    this.setState({ darkMode: this.state.darkMode ? false : true });
+    console.log("Is Dark Mode turned on? " + this.state.darkMode);
   }
 
   render() {
@@ -38,7 +48,7 @@ class App extends React.Component {
               <br />
               <br />
               <br />
-              <button className = "btn" onClick = {() => changeTheme()} style = {{ marginTop: '5px', marginLeft: '3vh', color: 'white' }}>Change Background Color</button>              
+              <button className = "btn" onClick = {() => this.changeTheme()} style = {{ marginTop: '5px', marginLeft: '3vh', color: 'white' }}>{this.state.darkMode === true ? 'Light Mode' : 'Dark Mode'}</button>              
               <br />
               <br />
               <Routes>

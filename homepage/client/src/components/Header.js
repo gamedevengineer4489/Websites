@@ -26,10 +26,10 @@ class Header extends React.Component {
                         <div className = "nav-wrapper blue" >
                             <a data-target = "mobile-demo" className='sidenav-trigger' style={{ cursor: 'pointer'}} ><i className='material-icons'>menu</i></a>
                             <ul className = "row left hide-on-med-and-down">
-                                <li key ={Math.random() * 10 + 1}><Link to = "/websites" className = "col" > <span style = {{ fontSize: 'large', color: 'black'}}>Websites</span></Link></li>
-                                <li key ={Math.random() * 10 + 1}><Link to = "/message"><span style = {{ fontSize: 'large', color: 'black'}}>Message Us</span></Link></li>
+                                <li key ={Math.random() * 10 + 1} ><Link to = "/websites" className = "col" > <span style = {{ fontSize: 'large', color: 'black'}}>Websites</span></Link></li>
+                                <li key ={Math.random() * 10 + 1}><Link to = "/message" ><span style = {{ fontSize: 'large', color: 'black'}}>Message Us</span></Link></li>
                             </ul>
-                            <div className = "brand-logo right" ><Link to = "/" style = {{ color: 'darkgreen', fontWeight: 'bolder', fontStyle: 'italic'}}>OC Websites</Link></div>
+                            <div className = "brand-logo right" ><Link to = "/" style = {{ color: 'black', fontWeight: 'bolder', fontStyle: 'italic'}}>OC Websites</Link></div>
                         </div>
                     </nav>
 

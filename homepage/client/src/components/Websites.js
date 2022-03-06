@@ -53,7 +53,8 @@ class Websites extends React.Component {
             <div style = {{maxHeight: '10000px'}} >
                 <div style = {{ overflow: this.state.show ? 'hidden' : 'auto', position: this.state.show ? 'fixed' : 'static'}}>
                     <center>
-                        <h2><mark>Website Examples</mark></h2>
+                        <h2>Website Examples</h2>
+                        <hr style={{ width: '80vw' }}/>
                         <a onClick = {() => {window.open("https://protected-ocean-66873.herokuapp.com/")}} style = {{ cursor: 'pointer'}}><code style = {{ fontSize: 'x-large'}}>Example Email Sender Service</code></a>
                         <br />
                         
@@ -102,16 +103,13 @@ class Websites extends React.Component {
 
                 </div>
 
-                <a id="modal01" onClick = {() => this.closeModal()} style = {{ display: this.state.show ? "block" : "none"}} >
-                
-                    <div className='modal-content'>
-                        <img className='image' id='img01' alt = "A website example." style = {{ width: '75vw', height: 'auto'}} />
-                    </div>
-                </a>
-                
-                
+                        <a id="modal01" onClick = {() => this.closeModal()} style = {{ display: this.state.show ? "block" : "none"}} >
+                            <div className='modal-content' >
+                                    <img className = 'modalImage' id='img01' alt = "A website example."  />
+                            </div>
+                        </a>
 
-            </div>
+                </div>
         )
     }
 }
