@@ -1,0 +1,6 @@
+export const FETCH_USER = 'FETCH_USER';
+export const CREATE_DECK = 'CREATE_DECK';
+export const FETCH_DECKS = 'FETCH_DECKS';
+export const FETCH_DECK_WORDS = 'FETCH_DECK_WORDS';
+export const FETCH_DECK_DEFINITIONS = 'FETCH_DECK_DEFINITIONS';
+export const DELETE_DECK = 'DELETE_DECK';

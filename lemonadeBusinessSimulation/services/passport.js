@@ -12,7 +12,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
     });
 
     passport.deserializeUser(( req, user, done) => {
-        db.query("SELECT * FROM users WHERE GoogleID = ?", [user.GoogleID], (err, rows) => {
+        db.query("SELECT * FROM users WHERE GoogleID = ?", [user.GoogleID], (err, user) => {
             if(err) {
                 return done(err);
             }
@@ -30,6 +30,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
         db.query("SELECT * FROM users where GoogleID = ?", [profile.id], (err, rows) => {
 
             if(err) {
+                console.log(err);
                 return done(err);
             }
             
