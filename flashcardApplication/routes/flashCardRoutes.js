@@ -13,7 +13,7 @@ module.exports = app => {
             db.query(insertColumnsQuery);
 
             var insertQuery = "INSERT INTO " + tableName + "(googleid, emailaddress, " + req.body.deckname.toLowerCase() + "_words, " + req.body.deckname.toLowerCase() + "_definitions) VALUES($1,$2,$3, $4)";
-            db.query(insertQuery, [req.body.googleid, req.body.emailaddress, req.body.firstword, req.body.firstworddefinition]);
+            db.query(insertQuery, [req.body.googleid, req.body.emailaddress, req.body.firstword.replaceAll('_', ' '), req.body.firstworddefinition.replaceAll('_', ' ')]);
 
             var insertQueryDecks = "INSERT INTO users" + "(" + `decks_${req.user.googleid})` + "VALUES($1)";
             db.query(insertQueryDecks, [req.body.deckname.toLowerCase()]);

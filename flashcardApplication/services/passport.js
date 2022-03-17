@@ -2,7 +2,6 @@ const db = require('../config/database'); // Using the mysql database
 const keys = require('../config/keys');
 
 const passport = require('passport');
-const { Pool } = require('pg/lib');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 

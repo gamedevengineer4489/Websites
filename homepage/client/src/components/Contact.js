@@ -49,6 +49,10 @@ class Contact extends React.Component {
         return form_data.join("&");
     }
 
+    componentDidMount() {
+        window.scroll(0,0);
+    }
+
     render() {
         return(
             <div style = {{ height: '882px'}}>
