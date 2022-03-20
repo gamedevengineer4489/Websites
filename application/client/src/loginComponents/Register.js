@@ -80,25 +80,27 @@ class Register extends React.Component {
     render() {
         return(
             <div>
-                <h1>New user registration</h1>
-                <label>Username:</label> <input type = "text" name = "username" placeholder = "username" onChange = {(event) => this.setState({ username: event.target.value})} required />
-                <label>Password:</label> <input type = "password" name = "password" placeholder = "password" onChange = {(event) => this.setState({ password: event.target.value})} required/>
-                <label> Renter Password:</label> <input type = "password" id = "reenteredPassword" placeholder = "password" onChange = {(event) => this.setState({ reenteredPassword: event.target.value})} required/>
-                <label>First Name:</label> <input type = "text" name = "first name" placeholder = "first name" onChange = {(event) => this.setState({ firstName: event.target.value})} required/>
-                <label>Last Name:</label> <input type = "text" name = "last name" placeholder = "last name" onChange = {(event) => this.setState({ lastName: event.target.value})} required/>
-                <label>Email:</label> <input type = "email" name = "email" id = "emailEntered" placeholder = "email" onChange = {(event) => this.setState({ email: event.target.value})}required/>
-                <label>imageFile(optional):</label> <input type = "file" id = "avatar"  accept = "image/png, image/jpeg" onChange = {(event) => this.checkFileSize(event.target.files[0])}/>
+                        <h1>New user registration</h1>
+                        
+                            <label>Username:</label> <input type = "text" name = "username" placeholder = "username" onChange = {(event) => this.setState({ username: event.target.value})} required />
+                            <label>Password:</label> <input type = "password" name = "password" placeholder = "password" onChange = {(event) => this.setState({ password: event.target.value})} required/>
+                            <label> Renter Password:</label> <input type = "password" id = "reenteredPassword" placeholder = "password" onChange = {(event) => this.setState({ reenteredPassword: event.target.value})} required/>
+                            <label>First Name:</label> <input type = "text" name = "first name" placeholder = "first name" onChange = {(event) => this.setState({ firstName: event.target.value})} required/>
+                            <label>Last Name:</label> <input type = "text" name = "last name" placeholder = "last name" onChange = {(event) => this.setState({ lastName: event.target.value})} required/>
+                            <label>Email:</label> <input type = "email" name = "email" id = "emailEntered" placeholder = "email" onChange = {(event) => this.setState({ email: event.target.value})}required/>
+                            <label>imageFile(optional):</label> <input type = "file" id = "avatar"  accept = "image/png, image/jpeg" onChange = {(event) => this.checkFileSize(event.target.files[0])}/>
                             
-                <label>Image Selected </label>
-                <br />
-                {this.state.avatar ? <img style = {{ height: '100px', width: '100px'}} src = {URL.createObjectURL(this.state.avatar)} /> : <label>No picture selected</label>}
+                            <label>Image Selected </label>
+                            <br />
+                            {this.state.avatar ? <img style = {{ height: '100px', width: '100px'}} src = {URL.createObjectURL(this.state.avatar)} /> : <label>No picture selected</label>}
                            
-                <br />
+                            <br />
        
                             
-                <strong>Note: If no image url or file is provided then a default profile picture will be provided.</strong>
-                <br />
-                <button className = "btn" onClick = {() => this.register()}>Register</button>                
+                            <strong>Note: If no image url or file is provided then a default profile picture will be provided.</strong>
+                            <br />
+                            <button className = "btn" onClick = {() => this.register()}>Register</button>
+                        
             </div>
         )
     }

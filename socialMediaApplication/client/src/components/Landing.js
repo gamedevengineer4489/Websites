@@ -24,8 +24,8 @@ class Landing extends React.Component {
                             </div>
                             {/* { The css for all the card classes has the position property set to absolute. 
                                 This results in the content going over the header. Therefore, this property has to be overriden to the default position property of static. } */}
-                            <div className = "card-image" style = {{ position: 'static '}}>
-                                    <img src = {computer} style = {{ height: '500px', width: '500px', marginBottom: '120px', position: 'static' }}/>
+                            <div className = "card-image" style = {{ position: 'static ', padding: '20px', height: '66vh'}}>
+                                    <img src = {computer} style = {{ height: '50vh', width: 'auto' }}/>
                             </div>
                         </center>
                     </div>

@@ -8,10 +8,8 @@ import * as actions from '../../actions';
 
 class SignUp extends React.Component {
     formSubmit = (formProps) => {
-        //this.props.signup(formProps);
-        console.log(formProps.hashReenter);
         var rgx = new RegExp(/^\w+([\.-]?\w+)*@\w+[\.\w{2,3}]+$/);
-        if(formProps.email && formProps.username && formProps.email.test(rgx))
+        if(formProps.email && formProps.username)
         {
             if(formProps.hash === formProps.hashReenter)
             {
@@ -35,10 +33,12 @@ class SignUp extends React.Component {
         const { handleSubmit } = this.props;
 
         return(
-            <div style = {{ padding: '5px', marginTop: '50px'}}>
+            <div style = {{ padding: '5px', marginTop: '70px'}}>
                 <center><h3>Registration</h3></center>
+                <hr />
+                <br />
                 <form onSubmit = {handleSubmit(this.formSubmit)}>
-                    <fieldset>
+                    <fieldset className='anyField'>
                         <label>Email</label>
                         <Field
                             name = "email"
@@ -46,9 +46,9 @@ class SignUp extends React.Component {
                             component = "input"
                             autoComplete = "none"
                         />
-                    </fieldset>
+                    </fieldset >
                     <br />
-                    <fieldset>
+                    <fieldset className='anyField'>
                         <label>Username</label>
                         <Field
                             name = "username"
@@ -56,9 +56,9 @@ class SignUp extends React.Component {
                             component = "input"
                             autoComplete = "none"
                         />
-                    </fieldset>
+                    </fieldset >
                     <br />
-                    <fieldset>
+                    <fieldset className='anyField'>
                         <label>Password</label>
                         <Field
                             name = "hashReenter"
@@ -68,7 +68,7 @@ class SignUp extends React.Component {
                         />
                     </fieldset>
                     <br />
-                    <fieldset>
+                    <fieldset className='anyField'>
                         <label>Renter Password</label>
                         <Field
                             name = "hash"
@@ -78,7 +78,10 @@ class SignUp extends React.Component {
                         />
                     </fieldset>
                     <br />
-                    <button className = "waves-effect waves-light btn">Sign Up</button>
+                    <div className = 'anyField'>
+                        <button className = "waves-effect waves-light btn">Sign Up</button>
+                    </div>
+                    
                 </form>
             </div>
         )

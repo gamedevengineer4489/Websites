@@ -23,7 +23,6 @@ module.exports = app => {
     });
 
     app.patch('/auth/addUserData', async (req, res, next) => {
-        console.log(req.user);
         
         await User.findOneAndUpdate(
             {
@@ -32,9 +31,9 @@ module.exports = app => {
             {
                 $set: { bio: req.body.biography }
             }
-        );
+        ).exec();
 
-        const user = await User.findOne({_id: req.user._id});
+        const user = await User.findOne({_id: req.user._id}).exec();
 
         res.send(user);
         

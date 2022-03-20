@@ -4,6 +4,7 @@ const SpotifyStrategy = require('passport-spotify').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const SteamStrategy = require('passport-steam').Strategy;
 
+
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -13,6 +14,7 @@ const User = mongoose.model('users');
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
+
 
 
 passport.deserializeUser(function(id, done) {

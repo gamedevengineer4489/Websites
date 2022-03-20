@@ -25,7 +25,7 @@ class AllUsers extends React.Component {
         return(
             <div style = {{ marginTop: '80px'}}>
                 <center>
-                    <h3 ><mark >All Users</mark></h3>
+                    <h3 >All Users</h3>
                     <br />
                     {this.props.users.length > 0 ? this.renderUsers() : "No Users have accessed this website yet."}
                 </center>

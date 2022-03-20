@@ -3,7 +3,7 @@ import React from 'react';
 export default class Footer extends React.Component {
     render() {
         return(
-            <footer className = "page-footer">
+            <footer className = "page-footer" style={{ backgroundColor: 'black'}}>
                 <div className = "row">
                     <div className = "col s2">
                         <a className = "footerColumn" href = "/"  onClick = {() => window.open("https://ancient-reaches-75615.herokuapp.com/")}>OC Websites</a><wbr />

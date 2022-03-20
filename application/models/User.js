@@ -20,7 +20,8 @@ const customSchema = new Schema({
     username: String,
     firstName: String,
     lastName: String,
-    userID: String,
+    userID: String, 
+    
     avatar: String
 });
 

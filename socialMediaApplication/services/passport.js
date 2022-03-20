@@ -23,12 +23,10 @@ passport.use(new LocalStrategy(localOptions, async (email, hash, done) => {
             {
                 return done(err);
             }
-            console.log(user);
             if(!user)
             {
                 return done(null, false);
             }
-            console.log(user);
             bcrypt.compare(hash, user.hash, (err, isMatch) => {
                 if(err)
                 {
@@ -42,6 +40,6 @@ passport.use(new LocalStrategy(localOptions, async (email, hash, done) => {
 
                 done(null, user);
             });
-        });
+        }).clone().catch((err) => console.log(err));
     })
 )

@@ -22,9 +22,9 @@ class Header extends React.Component {
             case false:
                 return(
                     [       
-                        <li key = "1"><a className = "sidenav-close" href = "/auth/spotify" style = {{ textDecoration: 'none'}}><center><i className = "spotify icon" /> </center></a></li>,
-                        <li key = "2"><a className = "sidenav-close" href = '/auth/google' style = {{ textDecoration: 'none', color: 'green'}}><center><i className = "google icon" /> </center></a></li>,
-                        <li key = "3"><a className = "sidenav-close" href = '/login' style = {{ textDecoration: 'none', color: 'black'}}><center>Login with Username and Password</center></a></li>,
+                        <li key = "1"><a className = "sidenav-close" id = "spotify" href = "/auth/spotify" style = {{ textDecoration: 'none'}}><center><i className = "spotify icon" /> </center></a></li>,
+                        <li key = "2"><a className = "sidenav-close" id = "google" href = '/auth/google' style = {{ textDecoration: 'none', color: 'green'}}><center><i className = "google icon" /> </center></a></li>,
+                        <li key = "3"><a className = "sidenav-close" id = "login" href = '/login' style = {{ textDecoration: 'none', color: 'black'}}><center>Login with Username and Password</center></a></li>,
                     ]
                 )
             default:
@@ -38,9 +38,9 @@ class Header extends React.Component {
                 } else {
                     return(
                         [
-                            <li key = "7"><a className = "sidenav-close" href = "/auth/spotify" style = {{ textDecoration: 'none'}}><center><i className = "spotify icon" /> </center></a></li>,
-                            <li key = "8"><a className = "sidenav-close" href = '/auth/google' style = {{ textDecoration: 'none', color: 'green'}}><center><i className = "google icon" /> </center></a></li>,
-                            <li key = "9"><a className = "sidenav-close" href = '/login' style = {{ textDecoration: 'none', color: 'black'}}><center>Login with Username and Password</center></a></li>,
+                            <li key = "7"><a className = "sidenav-close" id = "spotify" href = "/auth/spotify" style = {{ textDecoration: 'none'}}><center><i className = "spotify icon" /> </center></a></li>,
+                            <li key = "8"><a className = "sidenav-close" id = "google" href = '/auth/google' style = {{ textDecoration: 'none', color: 'green'}}><center><i className = "google icon" /> </center></a></li>,
+                            <li key = "9"><a className = "sidenav-close" id = "login" href = '/login' style = {{ textDecoration: 'none', color: 'black'}}><center>Login with Username and Password</center></a></li>,
                         ]
                     )
                 }
@@ -55,7 +55,7 @@ class Header extends React.Component {
             <div >
                 <nav>
                     <div className = "nav-wrapper blue" style = {{ minHeight: '50px'}}>
-                        <Link className = "brand-logo right" to = "/" style = {{ color: 'chocolate', fontFamily: 'fantasy', fontStyle: 'italic', textDecoration: 'none', position : 'absolute'}}>OC Websites</Link>
+                        <Link className = "brand-logo right" to = "/" style = {{ color: 'black', fontFamily: 'fantasy', fontStyle: 'italic', textDecoration: 'none', position : 'absolute'}}>OC Websites</Link>
                         <a data-target="mobile-demo" className="sidenav-trigger" style = {{ cursor: 'pointer'}}><i className="material-icons" style = {{ textDecoration: 'none'}}>menu</i></a>
                         
                         <ul className = "hide-on-med-and-down" >

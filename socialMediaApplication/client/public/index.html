@@ -14,9 +14,14 @@
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <!-- <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />       -->
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />      
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css" rel="stylesheet"/>
- 
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -28,9 +33,25 @@
     -->
     <title>React App</title>
     <style>
-      body {
-        background-color: bisque;
+      .sidenav-close:hover, .sidenav-close:focus {
+        color: white !important;
       }
+
+      #mobile-demo {
+        color: black !important;
+      }
+
+     .anyField {
+       max-width: 600px;
+       margin-left: auto;
+       margin-right: auto;
+     }
+
+     @media only screen and (max-width: 700px) {
+       .anyField {
+         max-width: 600px;
+       }
+     }
     </style>
   </head>
   <body>

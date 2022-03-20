@@ -6,7 +6,7 @@ class Footer extends React.Component {
             <footer className = "page-footer" style = {{ backgroundColor: 'cornflowerblue', padding: '10px', color: 'black'}} >
                 <div className = "row">
                     <div className = "col s2">
-                        <a style = {{ color: 'chocolate', fontFamily: 'fantasy', fontStyle: 'italic', fontSize: 'xx-large', textDecoration: 'none', cursor: 'pointer'}} onClick = {() => window.open("https://ancient-reaches-75615.herokuapp.com/")}>OC Websites</a><wbr />
+                        <a style = {{ color: 'black', fontFamily: 'fantasy', fontStyle: 'italic', fontSize: 'xx-large', textDecoration: 'none', cursor: 'pointer'}} onClick = {() => window.open("https://ancient-reaches-75615.herokuapp.com/")}>OC Websites</a><wbr />
                         <p style = {{ fontFamily: 'sans-serif', fontSize: 'medium', fontStyle: 'italic'}}>Website Created By Alexander Dalessi</p>
                     </div>
                     
