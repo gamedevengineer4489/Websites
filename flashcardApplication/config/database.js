@@ -18,7 +18,4 @@ const config = {
 
 const client = new Pool(config);
 
-console.log(client);
-
-
 module.exports = client;

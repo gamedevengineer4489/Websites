@@ -3,7 +3,7 @@ const requireLogin = require('../middleware/requireLogin');
 
 module.exports = app => {
     app.post('/api/createDeck', requireLogin, (req, res) => {
-            console.log(req);
+            
             
             var tableName = `Deck_${req.body.googleid}_${req.body.deckname.toLowerCase()}`;
             var createTableQuery = "CREATE TABLE IF NOT EXISTS " + tableName + "(googleid character varying NOT NULL, emailaddress character varying)";
@@ -79,21 +79,15 @@ module.exports = app => {
     });
 
     app.get('/api/fetchDeck/definitions/:deckname', requireLogin, async (req, res) => {
-        console.log(req);
-        
         var tableName = `deck_${req.user.googleid}_${req.params.deckname}`;
-        console.log(tableName);
         db.query(`SELECT ${req.params.deckname}_definitions FROM ${tableName}`, (err, result) => {
             if(result && result.rows) {
                 res.send(result.rows);
             } else {
                 res.send({});
             }
-            
-            
         });
         
     });
 }
 
-// pushing again to heroku

@@ -3,7 +3,7 @@ const express = require('express');
 const passport = require('passport');
 require('custom-env').env(true);
 
-const db = require('./config/database'); // requireing the database
+const db = require('./config/database'); // requiring the database
 require('./services/passport');
 const keys = require('./config/keys');
 
