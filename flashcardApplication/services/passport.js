@@ -4,24 +4,21 @@ const keys = require('../config/keys');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-
-
-    passport.serializeUser((user, done) => {
-        
+passport.serializeUser((user, done) => {
         done(null, user);
-    });
+});
 
-    passport.deserializeUser(( req, user, done) => {
+passport.deserializeUser(( req, user, done) => {
         db.query("SELECT * FROM users WHERE googleid = $1", [user.googleid], (err, result) => {
             if(err) {
                 return done(err);
             }
-            const {rows} = result;
+
             done(err, user);
         });
-    });
+});
 
-    passport.use(new GoogleStrategy({
+passport.use(new GoogleStrategy({
         clientID: keys.googleClientID,
         clientSecret: keys.googleClientSecret,
         callbackURL: "/auth/google/callback",
@@ -51,8 +48,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
                 db.query(insertQuery, [newUserMySQL.googleid, newUserMySQL.firstname, newUserMySQL.lastname, newUserMySQL.emailaddress, null], (err, result) => {
                     return done(null, newUserMySQL);
                 });
-
-                
             }
         });
-    }));
+}));

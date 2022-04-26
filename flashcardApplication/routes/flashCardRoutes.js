@@ -52,10 +52,8 @@ module.exports = app => {
     });
 
     app.get('/api/fetchDeck/words/:deckname', requireLogin, async (req, res) => {
-        console.log(req);
         
         var tableName = `deck_${req.user.googleid}_${req.params.deckname}`;
-        console.log(tableName);
         db.query(`SELECT ${req.params.deckname}_words FROM ${tableName}`, (err, result) => {
             if(result && result.rows) {
                 res.send(result.rows);
@@ -69,7 +67,6 @@ module.exports = app => {
     });
 
     app.delete('/api/fetchDeck/:deckname', requireLogin, async (req, res) => {
-        console.log(req);
         
         var columnName = `decks_${req.user.googleid}`;
         var tableToDropName = `deck_${req.user.googleid}_${req.params.deckname}`;

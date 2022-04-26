@@ -1,13 +1,8 @@
 import axios from 'axios';
 import { FETCH_USER, CREATE_DECK, FETCH_DECKS, FETCH_DECK_WORDS, FETCH_DECK_DEFINITIONS, DELETE_DECK } from './types';
 
-
-
-
-
 export const getUser = () => async (dispatch) => {
     const res = await axios.get('/api/current_user');
-    console.log(res);
     dispatch({ type: FETCH_USER, payload: res.data });
 }
 
