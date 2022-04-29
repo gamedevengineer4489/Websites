@@ -35,7 +35,6 @@ module.exports = app => {
     );
 
     app.get('/api/fetchDecks', requireLogin, async (req, res) => {
-        console.log(req);
         
         var columnName = `decks_${req.user.googleid}`;
         
